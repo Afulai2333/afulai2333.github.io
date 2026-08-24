@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快照26.3-snapshot-8已发布</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+        :root {
+            --bg-primary: #f8f9fa;
+            --bg-content: #fff;
+            --text-primary: #333;
+            --text-secondary: #666;
+            --text-heading: #222;
+            --accent-color: #3a6cf4;
+            --shadow: rgba(0,0,0,0.05);
+            --code-bg: #f1f3f5;
+            --code-color: #d63384;
+            --blockquote-bg: #f9f9f9;
+            --table-header-bg: #f1f5ff;
+            --info-bg: #f1f5ff;
+            --warn-bg: #fff5f5;
+            --img-brightness: 1;
+            --mourn-bg: #333;
+            --border-color: #f0f0f0;
+        }
+
+        .dark-mode {
+            --bg-primary: #1a1a2e;
+            --bg-content: #16213e;
+            --text-primary: #e0e0e0;
+            --text-secondary: #999;
+            --text-heading: #f0f0f0;
+            --accent-color: #6b9eff;
+            --shadow: rgba(0,0,0,0.3);
+            --code-bg: #2d3748;
+            --code-color: #e53e3e;
+            --blockquote-bg: #2d3a4f;
+            --table-header-bg: #0f3460;
+            --info-bg: #1a365d;
+            --warn-bg: #4a1a1a;
+            --img-brightness: 0.8;
+            --mourn-bg: #1a1a1a;
+            --border-color: #2d3a4f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding: 20px 15px;
+            max-width: 900px;
+            margin: 0 auto;
+            filter: grayscale(100%);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body img {
+            filter: brightness(var(--img-brightness));
+            transition: filter 0.3s ease;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: none;
+            background-color: var(--bg-content);
+            color: var(--text-secondary);
+            box-shadow: 0 2px 10px var(--shadow);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            color: var(--accent-color);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .headerimage img {
+            width: 100%;
+            border-radius: 16px;
+            object-fit: cover;
+            box-shadow: 0 2px 12px var(--shadow);
+            margin-bottom: 16px;
+        }
+
+        .title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .headertitle {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-heading);
+        }
+
+        .headercategory {
+            background-color: rgba(58, 108, 244, 0.15);
+            color: var(--accent-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .content {
+            background-color: var(--bg-content);
+            padding: 24px;
+            border-radius: 18px;
+            box-shadow: 0 2px 15px var(--shadow);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .content p {
+            font-size: 16px;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        ul {
+            padding-left: 22px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: var(--text-primary);
+        }
+
+        li ul {
+            margin-top: 6px;
+            padding-left: 20px;
+        }
+
+        li ul li {
+            margin-bottom: 6px;
+            color: var(--text-secondary);
+        }
+
+        li ul ul {
+            margin-top: 4px;
+            padding-left: 16px;
+        }
+
+        li ul ul li {
+            margin-bottom: 5px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        li ul ul ul {
+            margin-top: 4px;
+            padding-left: 14px;
+        }
+
+        li ul ul ul li {
+            margin-bottom: 4px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        li ul ul ul ul {
+            margin-top: 3px;
+            padding-left: 12px;
+        }
+
+        li ul ul ul ul li {
+            margin-bottom: 4px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        li ul ul ul ul ul {
+            margin-top: 3px;
+            padding-left: 10px;
+        }
+
+        li ul ul ul ul ul li {
+            margin-bottom: 3px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        ol {
+            padding-left: 22px;
+            margin-bottom: 16px;
+            list-style-type: decimal;
+        }
+
+        ol li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: var(--text-primary);
+        }
+
+        ol ol {
+            margin-top: 6px;
+            padding-left: 20px;
+            list-style-type: lower-alpha;
+        }
+
+        ol ol li {
+            margin-bottom: 6px;
+            color: var(--text-secondary);
+        }
+
+        ol ol ol {
+            margin-top: 4px;
+            padding-left: 18px;
+            list-style-type: lower-roman;
+        }
+
+        ol ol ol li {
+            margin-bottom: 5px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        ol ol ol ol {
+            margin-top: 4px;
+            padding-left: 16px;
+            list-style-type: upper-alpha;
+        }
+
+        ol ol ol ol li {
+            margin-bottom: 4px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        ol ol ol ol ol {
+            margin-top: 3px;
+            padding-left: 14px;
+            list-style-type: upper-roman;
+        }
+
+        ol ol ol ol ol li {
+            margin-bottom: 4px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        ol ol ol ol ol ol {
+            margin-top: 3px;
+            padding-left: 12px;
+            list-style-type: decimal;
+        }
+
+        ol ol ol ol ol ol li {
+            margin-bottom: 3px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        code {
+            font-family: "SF Mono", "Consolas", "Monaco", monospace;
+            background-color: var(--code-bg);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: var(--code-color);
+            font-weight: 500;
+            word-break: break-all;
+        }
+
+        .content h1 { font-size: 1.8em; margin: 0.8em 0; color: var(--text-heading); }
+        .content h2 { font-size: 1.5em; margin: 0.8em 0; color: var(--text-heading); }
+        .content h3 { font-size: 1.25em; margin: 0.8em 0; color: var(--text-primary); }
+        .content a { color: var(--accent-color); text-decoration: none; }
+        .content a:hover { text-decoration: underline; }
+        .content blockquote { border-left: 4px solid var(--accent-color); margin: 1em 0; padding: 0.5em 1em; background: var(--blockquote-bg); color: var(--text-secondary); }
+        .content pre { background: var(--code-bg); color: var(--text-primary); padding: 15px; border: 2px solid var(--border-color); border-radius: 10px; overflow-x: auto; margin: 1em 0; }
+        .content pre code { background: none; padding: 0; color: inherit; border: none; border-radius: 0; font-size: inherit; }
+        .content img { max-width: 100%; height: auto; border-radius: 8px; }
+
+        .content .info {
+            background-color: var(--info-bg);
+            border: 2px solid var(--accent-color);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: var(--text-primary);
+            font-size: 15px;
+        }
+
+        .content .info::before {
+            content: "ⓘ";
+            font-size: 18px;
+            color: var(--accent-color);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .content .warn {
+            background-color: var(--warn-bg);
+            border: 2px solid #e53e3e;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: var(--text-primary);
+            font-size: 15px;
+        }
+
+        .content .warn::before {
+            content: "⚠";
+            font-size: 18px;
+            color: #e53e3e;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .content .mourn {
+            background-color: var(--mourn-bg);
+            border: 2px solid #666;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .content .trivia {
+            background-color: var(--trivia-bg);
+            border: 2px solid #34A853;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: var(--text-primary);
+            font-size: 15px;
+        }
+
+        .content .trivia::before {
+            content: "?";
+            font-size: 18px;
+            color: #34A853;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; background-color: var(--bg-content); margin: 20px 0; font-size: 16px; box-shadow: 0 1px 5px var(--shadow); }
+        thead th { background-color: var(--table-header-bg); color: var(--text-heading); font-weight: 500; text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--border-color); }
+        tbody td { padding: 12px 16px; color: var(--text-primary); border-bottom: 1px solid var(--border-color); }
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:hover { background-color: rgba(255,255,255,0.05); }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            .theme-toggle {
+                width: 40px;
+                height: 40px;
+                top: 15px;
+                right: 15px;
+            }
+
+            .headertitle {
+                font-size: 20px;
+            }
+
+            .content {
+                padding: 18px 16px;
+                border-radius: 14px;
+            }
+
+            .headerimage img {
+                border-radius: 12px;
+            }
+
+            table { font-size: 15px; border-radius: 8px; }
+            th, td { padding: 10px 12px !important; }
+        }
+    </style>
+</head>
+<body>
+<button class="theme-toggle" onclick="toggleTheme()" id="theme-toggle" title="切换深色模式">
+    <svg id="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+</button>
+<div class="header">
+    <div class="headerimage">
+        <img src="https://www.minecraft.net/content/dam/minecraftnet/article-asset/2026/minecraft-26-3-snapshot-8/new-article-hero-image.jpg" alt="快照26.3-snapshot-8已发布">
+    </div>
+    <div class="title-row">
+        <div class="headertitle">
+            快照26.3-snapshot-8已发布
+        </div>
+        <div class="headercategory">
+            麦块版讯
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <p>快照26.3-snapshot-8已发布。</p>
+<p>中国共产党的优秀党员，久经考验的忠诚的共产主义战士，杰出的无产阶级革命家、政治家，党和国家的卓越领导人，中国共产党第十四届、十五届中央政治局常委，国务院原总理朱镕基同志，因病医治无效，于2026年8月12日11时06分在北京逝世，享年98岁。</p>
+<p>让我们沉痛缅怀朱镕基同志。</p>
+<p>本次更新内容如下。</p>
+<h1>新内容</h1>
+<h2>探险地图重命名</h2>
+<p>对3种探险家地图的名称进行了重命名：</p>
+<ul>
+<li>Buried Ancient City Map</li>
+<li>Buried Mineshaft Map</li>
+<li>Abandoned Camp Map</li>
+</ul>
+<h2>Realms邀请码系统</h2>
+<p>为Realms加入了邀请码管理能力。</p>
+<ul>
+<li>每个Realm最多可创建5个邀请码。</li>
+<li>支持设置邀请码启用与停用状态，或手动删除。</li>
+<li>可自定义邀请码过期时间。</li>
+<li>玩家端加入了“加入Realm”界面，直接输入邀请码即可进入服务器。</li>
+</ul>
+<h1>玩法与机制改动</h1>
+<ul>
+<li>坐垫现在仅在被会造成窒息的方块完全覆盖时才会被破坏，修复了卡透视、异常破坏的问题。</li>
+<li>村民升级职业解锁的新交易现在无需关闭交易窗口等待，玩家处于交易界面时也会实时更新。</li>
+</ul>
+<h1>用户界面优化</h1>
+<p>对世界选项界面做了第二轮迭代，且支持从暂停菜单直接打开。</p>
+<ul>
+<li>原“游戏模式”按钮重命名为“默认游戏模式”。</li>
+<li>“通用”分类加入了个人游戏模式，显示当前世界你的活跃游戏模式，等价于<code>/gamemode</code>命令或F3+F4快捷键。</li>
+<li>“多人游戏”分类加入了强制游戏模式，控制是否将其他玩家的游戏模式强制匹配世界的默认游戏模式。</li>
+</ul>
+<h1>技术更新</h1>
+<h2>数据包版本116.0</h2>
+<ul>
+<li>世界生成
+<ul>
+<li>移除了地物类型<code>minecraft:desert_well</code>。</li>
+<li><code>minecraft:template</code>地物加入<code>processors</code>字段，支持传入结构处理器列表的命名空间ID或内联定义，对模板结构进行后处理。</li>
+</ul>
+</li>
+<li>放置修饰符
+<ul>
+<li>加入了<code>minecraft:randomly_selected</code>：从给定的修饰符列表中随机选取一个执行放置逻辑，参数<code>placements</code>为非空修饰符列表。</li>
+</ul>
+</li>
+<li>方块谓词
+<ul>
+<li>加入了<code>minecraft:volume_match</code>：检测指定三维体积内的所有方块是否都匹配目标谓词；通过<code>min</code>/<code>max</code>设置相对于检测点的偏移范围，取值区间为<code>-16</code>~<code>16</code>。</li>
+</ul>
+</li>
+</ul>
+<h2>资源包版本96.0</h2>
+<ul>
+<li>移除了核心着色器<code>core/text_background.fsh</code>与<code>core/text_background.vsh</code>，文本显示实体的背景改为由文本着色器统一渲染。</li>
+<li>移除了着色器定义<code>OIT_FORCE_ZERO_DEPTH</code>，透视文本改为在顺序无关透明度（OIT）渲染通道之外单独绘制，修复了深度计算错误。</li>
+</ul>
+<h1>漏洞修复</h1>
+<p>修复了一些漏洞。</p>
+
+</div>
+<div id="original-markdown-data" style="display:none;">
+    <div id="data-title">快照26.3-snapshot-8已发布</div>
+    <div id="data-banner">https://www.minecraft.net/content/dam/minecraftnet/article-asset/2026/minecraft-26-3-snapshot-8/new-article-hero-image.jpg</div>
+    <div id="data-category">麦块版讯</div>
+    <div id="data-content">快照26.3-snapshot-8已发布。&#10;&#10;中国共产党的优秀党员，久经考验的忠诚的共产主义战士，杰出的无产阶级革命家、政治家，党和国家的卓越领导人，中国共产党第十四届、十五届中央政治局常委，国务院原总理朱镕基同志，因病医治无效，于2026年8月12日11时06分在北京逝世，享年98岁。&#10;&#10;让我们沉痛缅怀朱镕基同志。&#10;&#10;本次更新内容如下。&#10;&#10;# 新内容&#10;## 探险地图重命名&#10;对3种探险家地图的名称进行了重命名：&#10;- Buried Ancient City Map&#10;- Buried Mineshaft Map&#10;- Abandoned Camp Map&#10;&#10;## Realms邀请码系统&#10;为Realms加入了邀请码管理能力。&#10;- 每个Realm最多可创建5个邀请码。&#10;- 支持设置邀请码启用与停用状态，或手动删除。&#10;- 可自定义邀请码过期时间。&#10;- 玩家端加入了“加入Realm”界面，直接输入邀请码即可进入服务器。&#10;&#10;# 玩法与机制改动&#10;- 坐垫现在仅在被会造成窒息的方块完全覆盖时才会被破坏，修复了卡透视、异常破坏的问题。&#10;- 村民升级职业解锁的新交易现在无需关闭交易窗口等待，玩家处于交易界面时也会实时更新。&#10;&#10;# 用户界面优化&#10;对世界选项界面做了第二轮迭代，且支持从暂停菜单直接打开。&#10;- 原“游戏模式”按钮重命名为“默认游戏模式”。&#10;- “通用”分类加入了个人游戏模式，显示当前世界你的活跃游戏模式，等价于`/gamemode`命令或F3+F4快捷键。&#10;- “多人游戏”分类加入了强制游戏模式，控制是否将其他玩家的游戏模式强制匹配世界的默认游戏模式。&#10;&#10;# 技术更新&#10;## 数据包版本116.0&#10;- 世界生成&#10;  - 移除了地物类型`minecraft:desert_well`。&#10;  - `minecraft:template`地物加入`processors`字段，支持传入结构处理器列表的命名空间ID或内联定义，对模板结构进行后处理。&#10;- 放置修饰符&#10;  - 加入了`minecraft:randomly_selected`：从给定的修饰符列表中随机选取一个执行放置逻辑，参数`placements`为非空修饰符列表。&#10;- 方块谓词&#10;  - 加入了`minecraft:volume_match`：检测指定三维体积内的所有方块是否都匹配目标谓词；通过`min`/`max`设置相对于检测点的偏移范围，取值区间为`-16`~`16`。&#10;&#10;## 资源包版本96.0&#10;- 移除了核心着色器`core/text_background.fsh`与`core/text_background.vsh`，文本显示实体的背景改为由文本着色器统一渲染。&#10;- 移除了着色器定义`OIT_FORCE_ZERO_DEPTH`，透视文本改为在顺序无关透明度（OIT）渲染通道之外单独绘制，修复了深度计算错误。&#10;&#10;# 漏洞修复&#10;修复了一些漏洞。</div>
+</div>
+<script>
+    function initTheme() {
+        const savedTheme = localStorage.getItem('darkMode');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'true' || (!savedTheme && prefersDark)) {
+            document.body.classList.add('dark-mode');
+            updateThemeIcon(true);
+        } else {
+            updateThemeIcon(false);
+        }
+    }
+
+    function toggleTheme() {
+        const isDark = document.body.classList.toggle('dark-mode');
+        localStorage.setItem('darkMode', isDark);
+        updateThemeIcon(isDark);
+    }
+
+    function updateThemeIcon(isDark) {
+        const icon = document.getElementById('theme-icon');
+        if (isDark) {
+            icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+        } else {
+            icon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
+        }
+    }
+
+    initTheme();
+</script>
+</body>
+</html>

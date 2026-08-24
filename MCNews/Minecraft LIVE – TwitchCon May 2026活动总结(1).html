@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft LIVE – TwitchCon May 2026活动总结</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.7;
+            padding: 20px 15px;
+            max-width: 900px;
+            margin: 0 auto;
+            
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .headerimage img {
+            width: 100%;
+            border-radius: 16px;
+            object-fit: cover;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            margin-bottom: 16px;
+        }
+
+        .title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .headertitle {
+            font-size: 24px;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .headercategory {
+            background-color: #e9f0ff;
+            color: #3a6cf4;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .content {
+            background-color: #fff;
+            padding: 24px;
+            border-radius: 18px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+
+        .content-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .content p {
+            font-size: 16px;
+            margin-bottom: 16px;
+            color: #444;
+        }
+
+        ul {
+            padding-left: 22px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #444;
+        }
+
+        li ul {
+            margin-top: 6px;
+            padding-left: 20px;
+        }
+
+        li ul li {
+            margin-bottom: 6px;
+            color: #555;
+        }
+
+        code {
+            font-family: "SF Mono", "Consolas", "Monaco", monospace;
+            background-color: #f1f3f5;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #d63384;
+            font-weight: 500;
+            word-break: break-all;
+        }
+
+        .content h1 { font-size: 24px; margin: 0.8em 0; color: #222; scroll-margin-top: 20px; }
+        .content h2 { font-size: 22px; margin: 0.8em 0; color: #222; scroll-margin-top: 20px; }
+        .content h3 { font-size: 20px; margin: 0.8em 0; color: #333; scroll-margin-top: 20px; }
+        .content h4 { font-size: 18px; margin: 0.8em 0; color: #333; }
+        .content h5 { font-size: 16px; margin: 0.8em 0; color: #444; }
+        .content h6 { font-size: 14px; margin: 0.8em 0; color: #444; }
+        .content a { color: #3a6cf4; text-decoration: none; }
+        .content a:hover { text-decoration: underline; }
+        .toc {
+            background-color: #f1f5ff;
+            border: 2px solid #3a6cf4;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 16px 0;
+        }
+        .toc h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #3a6cf4;
+            margin: 0 0 12px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #d0daf5;
+        }
+        .toc ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .toc li {
+            margin-bottom: 10px;
+            font-size: 15px;
+            padding-left: 16px;
+            position: relative;
+            transition: padding-left 0.2s ease;
+        }
+        .toc li::before {
+            content: "▸";
+            color: #3a6cf4;
+            position: absolute;
+            left: 0;
+            transition: transform 0.2s ease;
+        }
+        .toc li:hover {
+            padding-left: 24px;
+        }
+        .toc li:hover::before {
+            transform: translateX(8px);
+        }
+        .toc li:last-child {
+            margin-bottom: 0;
+        }
+        .toc a {
+            color: #333;
+            text-decoration: none;
+        }
+        .toc a:hover {
+            color: #3a6cf4;
+            text-decoration: underline;
+        }
+        .content blockquote { border-left: 4px solid #3a6cf4; margin: 1em 0; padding: 0.5em 1em; background: #f9f9f9; color: #666; }
+        .content pre { background: #f5f5f5; color: #333; padding: 15px; border: 2px solid #888; border-radius: 10px; overflow-x: auto; margin: 1em 0; }
+        .content pre code { background: none; padding: 0; color: inherit; border: none; border-radius: 0; font-size: inherit; }
+        .content img { max-width: 100%; height: auto; border-radius: 8px; }
+
+        .countdown {
+            background-color: #fff5f5;
+            border: 2px solid #e53e3e;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            color: #444;
+            font-size: 15px;
+        }
+        .countdown-label {
+            font-weight: 500;
+            color: #333;
+        }
+        .countdown-timer {
+            font-size: 18px;
+            font-weight: 600;
+            color: #e53e3e;
+        }
+        .countdown-ended {
+            font-size: 16px;
+            font-weight: 600;
+            color: #38a169;
+        }
+
+        .info {
+            background-color: #f1f5ff;
+            border: 2px solid #3a6cf4;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            display: none;
+            gap: 12px;
+            align-items: flex-start;
+            color: #444;
+            font-size: 15px;
+        }
+
+        .info::before {
+            content: "ⓘ";
+            font-size: 18px;
+            color: #3a6cf4;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .content .warn {
+            background-color: #fff5f5;
+            border: 2px solid #e53e3e;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: #444;
+            font-size: 15px;
+        }
+
+        .content .warn::before {
+            content: "⚠";
+            font-size: 18px;
+            color: #e53e3e;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .content .mourn {
+            background-color: #333;
+            border: 2px solid #fff;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; background-color: #fff; margin: 20px 0; font-size: 16px; box-shadow: 0 1px 5px rgba(0,0,0,0.05); }
+        thead th { background-color: #f1f5ff; color: #222; font-weight: 500; text-align: left; padding: 12px 16px; border-bottom: 1px solid #eaecef; }
+        tbody td { padding: 12px 16px; color: #444; border-bottom: 1px solid #f0f0f0; }
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:hover { background-color: #f9fbfd; }
+
+        .floating-toc {
+            position: fixed;
+            bottom: 20px;
+            right: 35px;
+            background-color: #f1f5ff;
+            border: 2px solid #3a6cf4;
+            border-radius: 12px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .floating-toc.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .floating-toc-header {
+            padding: 12px 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #3a6cf4;
+            font-size: 15px;
+        }
+        .floating-toc-arrow {
+            font-size: 12px;
+            transition: transform 0.2s ease;
+        }
+        .floating-toc-content {
+            max-height: 0;
+            overflow-y: auto;
+            padding: 0 16px;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .floating-toc-content::-webkit-scrollbar {
+            display: none;
+        }
+        .floating-toc.open .floating-toc-content {
+            max-height: 300px;
+            padding: 0 16px 12px;
+        }
+        .floating-toc-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .floating-toc-content li {
+            margin-bottom: 8px;
+            font-size: 14px;
+            padding-left: 14px;
+            position: relative;
+            transition: padding-left 0.2s ease;
+        }
+        .floating-toc-content li::before {
+            content: "▸";
+            color: #3a6cf4;
+            position: absolute;
+            left: 0;
+            transition: transform 0.2s ease;
+        }
+        .floating-toc-content li:hover {
+            padding-left: 20px;
+        }
+        .floating-toc-content li:hover::before {
+            transform: translateX(6px);
+        }
+        .floating-toc-content a {
+            color: #333;
+            text-decoration: none;
+        }
+        .floating-toc-content a:hover {
+            color: #3a6cf4;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            .headertitle {
+                font-size: 20px;
+            }
+
+            .content h1 { font-size: 20px; }
+            .content h2 { font-size: 18px; }
+            .content h3 { font-size: 16px; }
+            .content h4 { font-size: 15px; }
+            .content h5 { font-size: 14px; }
+            .content h6 { font-size: 13px; }
+
+            .content {
+                padding: 18px 16px;
+                border-radius: 14px;
+            }
+
+            .headerimage img {
+                border-radius: 12px;
+            }
+
+            .info {
+                display: flex;
+            }
+
+            .floating-toc {
+                left: 50%;
+                right: auto;
+                transform: translateX(-50%);
+                bottom: 20px;
+            }
+
+            table { font-size: 15px; border-radius: 8px; }
+            th, td { padding: 10px 12px !important; }
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="headerimage">
+        <img src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/key-art/Minecraft_Live__1170x500.jpg" alt="Minecraft LIVE – TwitchCon May 2026活动总结">
+    </div>
+    <div class="title-row">
+        <div class="headertitle">
+            Minecraft LIVE – TwitchCon May 2026活动总结
+        </div>
+        <div class="headercategory">
+            方块回响
+        </div>
+    </div>
+</div>
+
+<div class="content-container">
+<div class="content">
+    <p>Minecraft LIVE – TwitchCon May 2026已于5月30日圆满播出！本次活动在荷兰鹿特丹阿霍伊会展中心的Twitch对抗赛主场馆举行。未能进入主会场或迟到的观众，也可在Minecraft主题场馆的彻里格罗夫舞台及二楼的诺姆诺姆剧场观看转播。</p>
+<p>本次直播包含预热节目与正式节目，总时长约6小时39分钟。其中，预热节目“The Midoffs: Live”于北京时间5月30日17:30在彻里格罗夫舞台开始，由托比亚斯·詹姆斯·史密斯（Tubbo）主持，时长约6小时，因内容较长，本栏目暂不展开。社区预热环节则在正式节目前约5分钟开始，展示了一批社区创作作品。正式节目于23:30开始，持续约30分钟。</p>
+<p>值得一提的是，直播过程中YouTube横版直播画面曾出现卡顿中断，但Twitch直播及YouTube竖版直播仍正常进行，后续完整录像已重新上传至YouTube平台。</p>
+<p><strong>正式节目主要内容如下：</strong></p>
+<nav class="toc">
+<h2>目录</h2>
+<ul>
+<li><a href="#section-1">活动开场</a></li>
+<li><a href="#section-2">“混沌立方”更新回顾与发布日确认</a></li>
+<li><a href="#section-3">《Minecraft Dungeons II》前瞻</a></li>
+<li><a href="#section-4">社区与合作伙伴内容</a></li>
+<li><a href="#section-5">《A Minecraft Movie Squared》电影消息与建筑挑战赛</a></li>
+<li><a href="#section-6">Minecraft设计哲学与未来展望</a></li>
+<li><a href="#section-7">下一次小更新“斑驳森林”极早期预览</a></li>
+</ul>
+</nav>
+</div>
+<div class="content">
+<h1 id="section-1">活动开场</h1>
+<img src="https://afulai2333.github.io/Images/MCLive26.5/MCL26.5-2.jpg" alt="活动开场">
+<ul>
+<li>由MCC组织者Scott Major和Minecraft游戏总监Agnes Larsson共同主持。这是首场在TwitchCon举办的Minecraft Live。两人回忆起2019年共同主持的趣事，并解释了在常规年度活动外加办此次特别节目的缘由。</li>
+<li>Scott赞扬了玩家社区创造的独特文化，并提及TwitchCon期间丰富的Minecraft相关活动。</li>
+</ul>
+</div>
+<div class="content">
+    <h1 id="section-2">“混沌立方”更新回顾与发布日确认</h1>
+    <img src="https://afulai2333.github.io/Images/MCLive26.5/MCL26.5-9.jpg" alt="“混沌立方”更新回顾与发布日确认">
+<ul>
+<li>主持人谈及正在测试的“混沌立方”小更新，分享了团队对硫黄方块、硫方怪及间歇泉等新内容的喜爱。</li>
+<li>开发团队分享了硫方怪的设计理念：旨在提供真正的沙盒物理互动玩法，其灵感来源于玩家社区的创意（如“踢犰狳”），早期原型曾使用铜傀儡模型测试物理属性。玩法主要分为受现实运动启发的常规类型，以及包含TNT、岩浆块等元素的特殊类型。</li>
+<li>Agnes正式宣布：<strong>“混沌立方”更新将于6月16日发布</strong>。</li>
+</ul>
+<div class="countdown" id="countdown">
+    <span class="countdown-label">距混沌立方正式版发布预计还有：</span>
+    <span class="countdown-timer" id="countdownTimer"></span>
+</div>
+</div>
+<div class="content">
+    <h1 id="section-3">《Minecraft Dungeons II》前瞻</h1>
+    <img src="https://afulai2333.github.io/Images/MCLive26.5/MCL26.5-12.jpg" alt="《Minecraft Dungeons II》前瞻">
+<ul>
+<li>预告了这款全新的动作RPG，将包含全新故事、环境与生物群系，并首次引入深暗之域。</li>
+<li>新Boss名为“扭曲的监守者”（Twisted Warden）。</li>
+<li>强调多人合作，支持包括本地沙发合作在内的更多联机方式。</li>
+<li>游戏计划于<strong>今年晚些时候</strong>推出。</li>
+</ul>
+</div>
+<div class="content">
+    <h1 id="section-4">社区与合作伙伴内容</h1>
+    <img src="https://afulai2333.github.io/Images/MCLive26.5/MCL26.5-14.jpg" alt="社区与合作伙伴内容">
+<ul>
+<li>Tubbo与Minecraft速通社区（MCSR）为基岩版带来了全新的速通附加组件及免费练习地图，即日可下载。</li>
+<li>展示了新的乐高Minecraft套装，并宣布推出一款100%免费的鸡主题附加组件，包含15只可收集、可定制的鸡和一款新的“Jousting”小游戏，现已在游戏内市场开放下载。</li>
+</ul>
+</div>
+<div class="content">
+    <h1 id="section-5">《A Minecraft Movie Squared》电影消息与建筑挑战赛</h1>
+    <img src="https://afulai2333.github.io/Images/MCLive26.5/MCL26.5-16.jpg" alt="《A Minecraft Movie Squared》电影消息与建筑挑战赛">
+<ul>
+<li>导演Jared Hess和Mojang首席创意官Jens从片场发回视频，确认续作片名，并公布了主演阵容：杰克·布莱克、杰森·莫玛、新加盟的马特·贝瑞以及克里斯汀·邓斯特。</li>
+<li>宣布举办史诗级建筑挑战赛。玩家在基于电影生物群系的自定义地图上创作，获胜作品将出现在电影正片或片尾字幕中。电影预计于<strong>明年夏季</strong>上映。</li>
+</ul>
+</div>
+<div class="content">
+    <h1 id="section-6">Minecraft设计哲学与未来展望</h1>
+    <img src="https://afulai2333.github.io/Images/MCLive26.5/MCL26.5-19.jpg" alt="Minecraft设计哲学与未来展望">
+<ul>
+<li>Agnes阐述了Minecraft的设计哲学：确保游戏在持续进化时不丢失核心魔力，成为一款“世代游戏”。未来几年将更聚焦于冒险等高阶玩法领域，创造富有挑战性且意义深刻的体验。</li>
+</ul>
+</div>
+<div class="content">
+    <h1 id="section-7">下一次小更新“斑驳森林”极早期预览</h1>
+    <img src="https://afulai2333.github.io/Images/MCLive26.5/MCL26.5-20.jpg" alt="下一次小更新“斑驳森林”极早期预览">
+<ul>
+<li>小更新团队成员Gustav带来了名为“斑驳森林”（Dappled Forest）的新生物群系预览：
+<ul>
+<li><strong>新树种</strong>：白杨树（Poplar），拥有暖色调树叶。</li>
+<li><strong>新植物</strong>：红灌木丛（Red Shrub）。</li>
+<li><strong>新木材</strong>：白杨木方块组。</li>
+<li><strong>新结构</strong>：废弃营地（Abandoned Camp）。</li>
+<li><strong>新方块</strong>：玩家期待已久的<strong>羊毛楼梯和羊毛台阶</strong>。</li>
+</ul>
+</li>
+<li>该游戏小更新将于<strong>今年夏季晚些时候</strong>开放测试。</li>
+</ul>
+</div>
+<div class="content">
+    <p>详细活动内容请见Minecraft官网总结。</p>
+</div>
+</div>
+
+<div class="floating-toc open" id="floatingToc">
+    <div class="floating-toc-header" onclick="toggleFloatingToc()">
+        <span>目录</span>
+        <span class="floating-toc-arrow">▼</span>
+    </div>
+    <div class="floating-toc-content" id="floatingTocContent">
+        <ul>
+            <li><a href="#section-1">活动开场</a></li>
+            <li><a href="#section-2">“混沌立方”更新回顾与发布日确认</a></li>
+            <li><a href="#section-3">《Minecraft Dungeons II》前瞻</a></li>
+            <li><a href="#section-4">社区与合作伙伴内容</a></li>
+            <li><a href="#section-5">《A Minecraft Movie Squared》电影消息与建筑挑战赛</a></li>
+            <li><a href="#section-6">Minecraft设计哲学与未来展望</a></li>
+            <li><a href="#section-7">下一次小更新“斑驳森林”极早期预览</a></li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    function toggleFloatingToc() {
+        const floatingToc = document.getElementById('floatingToc');
+        const arrow = document.querySelector('.floating-toc-arrow');
+        floatingToc.classList.toggle('open');
+        if (floatingToc.classList.contains('open')) {
+            arrow.textContent = '▼';
+        } else {
+            arrow.textContent = '▲';
+        }
+    }
+
+    function checkTocVisibility() {
+        const toc = document.querySelector('.toc');
+        const floatingToc = document.getElementById('floatingToc');
+        if (!toc || !floatingToc) return;
+
+        const tocRect = toc.getBoundingClientRect();
+        const isVisible = tocRect.top >= 0 && tocRect.bottom <= window.innerHeight;
+
+        if (!isVisible && window.scrollY > tocRect.bottom) {
+            floatingToc.classList.add('show');
+        } else {
+            floatingToc.classList.remove('show');
+        }
+    }
+
+    window.addEventListener('scroll', checkTocVisibility);
+    window.addEventListener('resize', checkTocVisibility);
+    checkTocVisibility();
+
+    function updateCountdown() {
+        const target = new Date('2026-06-16T15:00:00Z').getTime();
+        const now = new Date().getTime();
+        const diff = target - now;
+
+        const timer = document.getElementById('countdownTimer');
+        const label = document.querySelector('.countdown-label');
+        const container = document.getElementById('countdown');
+
+        if (!timer || !label || !container) return;
+
+        if (diff <= 0) {
+            container.innerHTML = '<span class="countdown-ended">混沌立方正式版已发布或即将发布。</span>';
+            return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        label.textContent = '距混沌立方正式版发布预计还有：';
+        timer.textContent = days + '天' + hours + '小时' + minutes + '分钟' + seconds + '秒';
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+</script>
+</body>
+</html>

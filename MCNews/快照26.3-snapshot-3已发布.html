@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快照26.3-snapshot-3已发布</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.7;
+            padding: 20px 15px;
+            max-width: 900px;
+            margin: 0 auto;
+            filter: grayscale(100%);
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .headerimage img {
+            width: 100%;
+            border-radius: 16px;
+            object-fit: cover;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            margin-bottom: 16px;
+        }
+
+        .title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .headertitle {
+            font-size: 24px;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .headercategory {
+            background-color: #e9f0ff;
+            color: #3a6cf4;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .content {
+            background-color: #fff;
+            padding: 24px;
+            border-radius: 18px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+
+        .content p {
+            font-size: 16px;
+            margin-bottom: 16px;
+            color: #444;
+        }
+
+        ul {
+            padding-left: 22px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #444;
+        }
+
+        li ul {
+            margin-top: 6px;
+            padding-left: 20px;
+        }
+
+        li ul li {
+            margin-bottom: 6px;
+            color: #555;
+        }
+
+        code {
+            font-family: "SF Mono", "Consolas", "Monaco", monospace;
+            background-color: #f1f3f5;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #d63384;
+            font-weight: 500;
+            word-break: break-all;
+        }
+
+        .content h1 { font-size: 1.8em; margin: 0.8em 0; color: #222; }
+        .content h2 { font-size: 1.5em; margin: 0.8em 0; color: #222; }
+        .content h3 { font-size: 1.25em; margin: 0.8em 0; color: #333; }
+        .content a { color: #3a6cf4; text-decoration: none; }
+        .content a:hover { text-decoration: underline; }
+        .content blockquote { border-left: 4px solid #3a6cf4; margin: 1em 0; padding: 0.5em 1em; background: #f9f9f9; color: #666; }
+        .content pre { background: #f5f5f5; color: #333; padding: 15px; border: 2px solid #888; border-radius: 10px; overflow-x: auto; margin: 1em 0; }
+        .content pre code { background: none; padding: 0; color: inherit; border: none; border-radius: 0; font-size: inherit; }
+        .content img { max-width: 100%; height: auto; border-radius: 8px; }
+
+        .content .info {
+            background-color: #f1f5ff;
+            border: 2px solid #3a6cf4;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: #444;
+            font-size: 15px;
+        }
+
+        .content .info::before {
+            content: "ⓘ";
+            font-size: 18px;
+            color: #3a6cf4;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .content .warn {
+            background-color: #fff5f5;
+            border: 2px solid #e53e3e;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: #444;
+            font-size: 15px;
+        }
+
+        .content .warn::before {
+            content: "⚠";
+            font-size: 18px;
+            color: #e53e3e;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .content .mourn {
+            background-color: #333;
+            border: 2px solid #fff;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; background-color: #fff; margin: 20px 0; font-size: 16px; box-shadow: 0 1px 5px rgba(0,0,0,0.05); }
+        thead th { background-color: #f1f5ff; color: #222; font-weight: 500; text-align: left; padding: 12px 16px; border-bottom: 1px solid #eaecef; }
+        tbody td { padding: 12px 16px; color: #444; border-bottom: 1px solid #f0f0f0; }
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:hover { background-color: #f9fbfd; }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            .headertitle {
+                font-size: 20px;
+            }
+
+            .content {
+                padding: 18px 16px;
+                border-radius: 14px;
+            }
+
+            .headerimage img {
+                border-radius: 12px;
+            }
+
+            table { font-size: 15px; border-radius: 8px; }
+            th, td { padding: 10px 12px !important; }
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="headerimage">
+        <img src="https://www.minecraft.net/content/dam/minecraftnet/article-asset/2026/minecraft-26-3-snapshot-3/new-article-hero-image.jpg" alt="快照26.3-snapshot-3已发布">
+    </div>
+    <div class="title-row">
+        <div class="headertitle">
+            快照26.3-snapshot-3已发布
+        </div>
+        <div class="headercategory">
+            麦块版讯
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <p>快照26.2-snapshot-3已发布。</p>
+<p>今天是2026年7月7日。89年前的今夜，卢沟桥畔的枪炮骤然划破了夏夜的寂静，蓄谋已久的日军悍然挑起事端，七七事变就此爆发。</p>
+<p>战火从宛平城开始蔓延，山河破碎，生灵流离，中华民族彻底坠入全面抗战的危局之中。往日的市井烟火被硝烟吞噬，无数平民被迫背井离乡，手握简陋武器的将士们挺身而出，以血肉筑起抵御侵略的长城。</p>
+<p>那段屈辱又悲壮的岁月里，没有从天而降的救世主，只有千千万万挺身而出的普通人。一寸山河一寸血，亿万国人放下分歧、并肩奋起，用漫长艰苦的抗争，硬生生守住了民族存续的希望。</p>
+<p>岁月流转，警钟从未远去。今日回望这个夜晚，不是为了沉溺过往的伤痛，而是铭记落后就要挨打，铭记先辈以性命换来的和平何其珍贵。山河早已重归安定繁华，吾辈更当自强，不负先烈热血，守护脚下这片生生不息的土地。</p>
+<p>本次更新内容如下：</p>
+<ul>
+<li><p>加入了坐垫（Cushion）。</p>
+<ul>
+<li>可放置在世界中，玩家交互后可以坐下，拥有16种颜色变种。</li>
+<li>3个同色羊毛台阶可以合成对应颜色的坐垫。</li>
+<li>可放置在任意水平表面，水平方向对齐网格，垂直方向贴合支撑方块的顶面。</li>
+<li>本身不可移动，支撑方块被移除时坐垫会一同被破坏。</li>
+<li>无碰撞体积，可与其他物体重叠，但不能和其他坐垫重叠。</li>
+</ul>
+</li>
+<li><p>加入了草床（Straw Bed）。</p>
+<ul>
+<li>可以用于睡觉度过夜晚，但不会设置玩家重生点。</li>
+<li>一次性物品，使用后会直接被破坏。</li>
+<li>下界、末地维度中无法使用，尝试使用会直接被破坏。</li>
+<li>使用3个干草捆合成可产出4个草床。</li>
+<li>在统计界面中加入了“草床睡觉次数”统计项。</li>
+</ul>
+</li>
+<li><p>加入了哥特语（Gothic）语言支持。</p>
+</li>
+<li><p>数据包版本升至<code>110.0</code>。</p>
+<ul>
+<li>加入了<code>/posteffect</code>命令，用于管理玩家的后处理着色器效果。<ul>
+<li><code>/posteffect add &lt;玩家&gt; &lt;效果&gt;</code>：为玩家添加指定后处理效果。</li>
+<li><code>/posteffect clear &lt;玩家&gt;</code>：清除玩家所有后处理效果。</li>
+<li><code>/posteffect list &lt;目标&gt;</code>：列出玩家当前生效的后处理效果。</li>
+<li><code>/posteffect remove &lt;玩家&gt; &lt;效果&gt;</code>：移除玩家的指定后处理效果。</li>
+<li>后处理效果由客户端资源包定义，服务端无法验证效果是否实际生效；自定义着色器现已完全开放给资源包使用，但相关功能未来可能重构。</li>
+</ul>
+</li>
+<li><code>/place feature</code>子命令现在支持内联定义地物内容。</li>
+<li>环境属性中<code>minecraft:gameplay/bed_rule</code>字段的<code>explodes</code>重命名为<code>destroy_on_use</code>。</li>
+<li>为<code>minecraft:gameplay/bed_rule</code>环境属性加入了<code>destroy_on_leave</code>可选布尔字段：为<code>true</code>时，玩家离开床后床会被破坏，默认值为<code>false</code>。</li>
+<li>加入了<code>minecraft:gameplay/straw_bed_rule</code>环境属性：格式与普通床规则一致，专门用于草床。</li>
+<li>为<code>minecraft:block_transformer</code>数据组件加入了可选字段<code>update_from_neighbors</code>，控制变换后的方块是否响应邻接方块更新，默认值为<code>true</code>。</li>
+<li>加入了<code>minecraft:compostable</code>数据组件：定义物品的堆肥能力与堆肥层数，<code>layers</code>字段指向<code>minecraft:number_provider</code>注册表元素。</li>
+<li>将精准采集、剪刀的战利品判定逻辑改为引用统一谓词，不再重复内联代码。</li>
+<li>加入了如下原版谓词：<ul>
+<li><code>minecraft:tool/can_silk_touch</code>：工具是否具备精准采集。</li>
+<li><code>minecraft:tool/can_shear</code>：工具是否为剪刀。</li>
+</ul>
+</li>
+<li><code>minecraft:potion_contents</code>谓词现在支持按具体药水效果精细匹配，加入了字段：<ul>
+<li><code>potions</code>：匹配药水类型或药水标签。</li>
+<li><code>effects</code>：药水效果集合谓词，支持按效果类型、持续时间、等级、环境属性、可见性等维度匹配，可配置包含规则、数量范围、总数量限制。</li>
+</ul>
+</li>
+<li>加入了<code>minecraft:number_provider</code>注册表。</li>
+<li>加入了5种堆肥相关的原版数字提供器：<ul>
+<li><code>compostable/low</code>：空堆肥桶时返回<code>1</code>，否则30%概率返回<code>1</code>。</li>
+<li><code>compostable/low_medium</code>：空堆肥桶时返回<code>1</code>，否则50%概率返回<code>1</code>。</li>
+<li><code>compostable/medium</code>：空堆肥桶时返回<code>1</code>，否则65%概率返回<code>1</code>。</li>
+<li><code>compostable/medium_high</code>：空堆肥桶时返回<code>1</code>，否则85%概率返回<code>1</code>。</li>
+<li><code>compostable/always_add_one</code>：必定返回<code>1</code>。</li>
+</ul>
+</li>
+<li>加入了3种数字提供器类型：<ul>
+<li><code>number_dispatcher</code>：按顺序匹配条件，返回第一个满足条件的提供器结果，支持默认值。</li>
+<li><code>conditional_value</code>：条件成立返回<code>on_true</code>，否则返回<code>on_false</code>（默认<code>0</code>）。</li>
+<li><code>weighted_list</code>：按权重从多个提供器中随机返回结果。</li>
+</ul>
+</li>
+<li>药水酿造配方改为数据驱动，可通过数据包新增、修改原版酿造配方，配方类型为<code>minecraft:brewing</code>。<ul>
+<li>配方结构包含<code>input</code>（基底物品）、<code>reagent</code>（催化物品）、<code>output</code>（产出物品）三部分，支持任意物品作为酿造原料。</li>
+</ul>
+</li>
+<li>移除了4种硬编码地物类型：<code>coral_mushroom</code>、<code>kelp</code>、<code>seagrass</code>与<code>sea_pickle</code>，改用更灵活的配置化功能实现。</li>
+<li>为<code>coral_claw</code>、<code>coral_tree</code>地物加入了<code>feature</code>字段，可指定在每个目标位置放置的已布置地物。</li>
+<li>加入了2种放置修饰符：<ul>
+<li><code>cuboid</code>：按长方体形状重复放置特性，可配置X、Z或Y轴尺寸、是否包含内部、是否包含边缘。</li>
+<li><code>random_chance</code>：按设定概率触发地物放置。</li>
+</ul>
+</li>
+<li>更新了方块状态提供器：<ul>
+<li><code>copy_properties_provider</code>的<code>source_block_state_provider</code>字段重命名为<code>source</code>。</li>
+<li>加入了<code>random_block_provider</code>：从指定方块或方块标签中随机选择默认状态。</li>
+<li>优化了<code>rotated_block_provider</code>：支持所有带轴向或朝向属性的方块，<code>state</code>改为方块状态提供器，加入了可选的<code>direction</code>字段（省略则随机方向）。</li>
+</ul>
+</li>
+<li>为规则测试加入了：<ul>
+<li><code>any_of</code>：多个规则中任一满足即返回<code>true</code>。</li>
+<li><code>not</code>：返回指定规则的否定结果。</li>
+</ul>
+</li>
+<li>加入并重命名了一些方块、物品与结构标签。</li>
+</ul>
+</li>
+<li><p>资源包版本升至<code>91.0</code>。</p>
+<ul>
+<li>为方块模型元素加入了可选字段<code>shade_direction_override</code>，支持6个基础朝向，可覆盖默认的定向着色逻辑。</li>
+<li>移除了方块与物品模型的<code>shade</code>字段，使用<code>shade_direction_override: &quot;up&quot;</code>可实现原<code>shade: false</code>的效果。</li>
+<li>着色器与后处理：<ul>
+<li>资源包现在可定义<code>minecraft:end_of_frame</code>后效果，在所有其他后效果之前应用。</li>
+<li>该效果随资源包加载自动生效，无法通过<code>/posteffect</code>命令控制；多资源包冲突时，排序最后的包生效。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>修复了一些漏洞。</p>
+</li>
+</ul>
+<p>详细内容请见Minecraft官网更新日志，部分译名仅供参考。</p>
+
+</div>
+</body>
+</html>

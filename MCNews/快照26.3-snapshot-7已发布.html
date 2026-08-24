@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快照26.3-snapshot-7已发布</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+        :root {
+            --bg-primary: #f8f9fa;
+            --bg-content: #fff;
+            --text-primary: #333;
+            --text-secondary: #666;
+            --text-heading: #222;
+            --accent-color: #3a6cf4;
+            --shadow: rgba(0,0,0,0.05);
+            --code-bg: #f1f3f5;
+            --code-color: #d63384;
+            --blockquote-bg: #f9f9f9;
+            --table-header-bg: #f1f5ff;
+            --info-bg: #f1f5ff;
+            --warn-bg: #fff5f5;
+            --img-brightness: 1;
+            --mourn-bg: #333;
+            --border-color: #f0f0f0;
+        }
+
+        .dark-mode {
+            --bg-primary: #1a1a2e;
+            --bg-content: #16213e;
+            --text-primary: #e0e0e0;
+            --text-secondary: #999;
+            --text-heading: #f0f0f0;
+            --accent-color: #6b9eff;
+            --shadow: rgba(0,0,0,0.3);
+            --code-bg: #2d3748;
+            --code-color: #e53e3e;
+            --blockquote-bg: #2d3a4f;
+            --table-header-bg: #0f3460;
+            --info-bg: #1a365d;
+            --warn-bg: #4a1a1a;
+            --img-brightness: 0.8;
+            --mourn-bg: #1a1a1a;
+            --border-color: #2d3a4f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding: 20px 15px;
+            max-width: 900px;
+            margin: 0 auto;
+            
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body img {
+            filter: brightness(var(--img-brightness));
+            transition: filter 0.3s ease;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: none;
+            background-color: var(--bg-content);
+            color: var(--text-secondary);
+            box-shadow: 0 2px 10px var(--shadow);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            color: var(--accent-color);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .headerimage img {
+            width: 100%;
+            border-radius: 16px;
+            object-fit: cover;
+            box-shadow: 0 2px 12px var(--shadow);
+            margin-bottom: 16px;
+        }
+
+        .title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .headertitle {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-heading);
+        }
+
+        .headercategory {
+            background-color: rgba(58, 108, 244, 0.15);
+            color: var(--accent-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .content {
+            background-color: var(--bg-content);
+            padding: 24px;
+            border-radius: 18px;
+            box-shadow: 0 2px 15px var(--shadow);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .content p {
+            font-size: 16px;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        ul {
+            padding-left: 22px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: var(--text-primary);
+        }
+
+        li ul {
+            margin-top: 6px;
+            padding-left: 20px;
+        }
+
+        li ul li {
+            margin-bottom: 6px;
+            color: var(--text-secondary);
+        }
+
+        li ul ul {
+            margin-top: 4px;
+            padding-left: 16px;
+        }
+
+        li ul ul li {
+            margin-bottom: 5px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        li ul ul ul {
+            margin-top: 4px;
+            padding-left: 14px;
+        }
+
+        li ul ul ul li {
+            margin-bottom: 4px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        li ul ul ul ul {
+            margin-top: 3px;
+            padding-left: 12px;
+        }
+
+        li ul ul ul ul li {
+            margin-bottom: 4px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        li ul ul ul ul ul {
+            margin-top: 3px;
+            padding-left: 10px;
+        }
+
+        li ul ul ul ul ul li {
+            margin-bottom: 3px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        ol {
+            padding-left: 22px;
+            margin-bottom: 16px;
+            list-style-type: decimal;
+        }
+
+        ol li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: var(--text-primary);
+        }
+
+        ol ol {
+            margin-top: 6px;
+            padding-left: 20px;
+            list-style-type: lower-alpha;
+        }
+
+        ol ol li {
+            margin-bottom: 6px;
+            color: var(--text-secondary);
+        }
+
+        ol ol ol {
+            margin-top: 4px;
+            padding-left: 18px;
+            list-style-type: lower-roman;
+        }
+
+        ol ol ol li {
+            margin-bottom: 5px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        ol ol ol ol {
+            margin-top: 4px;
+            padding-left: 16px;
+            list-style-type: upper-alpha;
+        }
+
+        ol ol ol ol li {
+            margin-bottom: 4px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        ol ol ol ol ol {
+            margin-top: 3px;
+            padding-left: 14px;
+            list-style-type: upper-roman;
+        }
+
+        ol ol ol ol ol li {
+            margin-bottom: 4px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        ol ol ol ol ol ol {
+            margin-top: 3px;
+            padding-left: 12px;
+            list-style-type: decimal;
+        }
+
+        ol ol ol ol ol ol li {
+            margin-bottom: 3px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        code {
+            font-family: "SF Mono", "Consolas", "Monaco", monospace;
+            background-color: var(--code-bg);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: var(--code-color);
+            font-weight: 500;
+            word-break: break-all;
+        }
+
+        .content h1 { font-size: 1.8em; margin: 0.8em 0; color: var(--text-heading); }
+        .content h2 { font-size: 1.5em; margin: 0.8em 0; color: var(--text-heading); }
+        .content h3 { font-size: 1.25em; margin: 0.8em 0; color: var(--text-primary); }
+        .content a { color: var(--accent-color); text-decoration: none; }
+        .content a:hover { text-decoration: underline; }
+        .content blockquote { border-left: 4px solid var(--accent-color); margin: 1em 0; padding: 0.5em 1em; background: var(--blockquote-bg); color: var(--text-secondary); }
+        .content pre { background: var(--code-bg); color: var(--text-primary); padding: 15px; border: 2px solid var(--border-color); border-radius: 10px; overflow-x: auto; margin: 1em 0; }
+        .content pre code { background: none; padding: 0; color: inherit; border: none; border-radius: 0; font-size: inherit; }
+        .content img { max-width: 100%; height: auto; border-radius: 8px; }
+
+        .content .info {
+            background-color: var(--info-bg);
+            border: 2px solid var(--accent-color);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: var(--text-primary);
+            font-size: 15px;
+        }
+
+        .content .info::before {
+            content: "ⓘ";
+            font-size: 18px;
+            color: var(--accent-color);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .content .warn {
+            background-color: var(--warn-bg);
+            border: 2px solid #e53e3e;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: var(--text-primary);
+            font-size: 15px;
+        }
+
+        .content .warn::before {
+            content: "⚠";
+            font-size: 18px;
+            color: #e53e3e;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .content .mourn {
+            background-color: var(--mourn-bg);
+            border: 2px solid #666;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .content .trivia {
+            background-color: var(--trivia-bg);
+            border: 2px solid #34A853;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: var(--text-primary);
+            font-size: 15px;
+        }
+
+        .content .trivia::before {
+            content: "?";
+            font-size: 18px;
+            color: #34A853;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; background-color: var(--bg-content); margin: 20px 0; font-size: 16px; box-shadow: 0 1px 5px var(--shadow); }
+        thead th { background-color: var(--table-header-bg); color: var(--text-heading); font-weight: 500; text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--border-color); }
+        tbody td { padding: 12px 16px; color: var(--text-primary); border-bottom: 1px solid var(--border-color); }
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:hover { background-color: rgba(255,255,255,0.05); }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            .theme-toggle {
+                width: 40px;
+                height: 40px;
+                top: 15px;
+                right: 15px;
+            }
+
+            .headertitle {
+                font-size: 20px;
+            }
+
+            .content {
+                padding: 18px 16px;
+                border-radius: 14px;
+            }
+
+            .headerimage img {
+                border-radius: 12px;
+            }
+
+            table { font-size: 15px; border-radius: 8px; }
+            th, td { padding: 10px 12px !important; }
+        }
+    </style>
+</head>
+<body>
+<button class="theme-toggle" onclick="toggleTheme()" id="theme-toggle" title="切换深色模式">
+    <svg id="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+</button>
+<div class="header">
+    <div class="headerimage">
+        <img src="https://www.minecraft.net/content/dam/minecraftnet/article-asset/2026/minecraft-26-3-snapshot-7/new-article-hero-image.jpg" alt="快照26.3-snapshot-7已发布">
+    </div>
+    <div class="title-row">
+        <div class="headertitle">
+            快照26.3-snapshot-7已发布
+        </div>
+        <div class="headercategory">
+            麦块版讯
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <p>快照26.3-snapshot-7已发布。本次更新内容如下。</p>
+<h1>新内容</h1>
+<h2>建筑方块</h2>
+<p>为全部16种颜色的混凝土方块加入了对应的混凝土楼梯与混凝土台阶。</p>
+<p><s>所以什么时候加入竖半砖？</s></p>
+<h2>废弃营地加入探险家地图</h2>
+<p>在废弃营地的战利品中加入了两类定向探险家地图：</p>
+<ul>
+<li>生物群系废弃营地地图：可指向竹林、樱花树林、桦木森林、斑驳森林、繁花森林、苍白之原、沼泽、风袭森林共8种生物群系内的其他废弃营地。</li>
+<li>结构指向地图：可指向远古城市、试炼密室、废弃矿井、沙漠神殿、丛林神殿、暖水海洋海底废墟、林地府邸共7种结构。</li>
+</ul>
+<h1>玩法与机制调整</h1>
+<h2>方块与战利品</h2>
+<ul>
+<li>坐垫放置、破坏、交互时不再阻止振动信号传播。</li>
+<li>更新了废弃营地木桶的战利品表；废弃营地箱子的战利品中，烟花火箭被替换为火药。</li>
+</ul>
+<h2>地图机制</h2>
+<ul>
+<li>地图上的玩家图标现在会始终显示玩家的朝向。</li>
+<li>为Realms加入了未来服务器区域支持：加拿大、墨西哥、南非、美国亚利桑那州。</li>
+</ul>
+<h2>探险家地图重构</h2>
+<p>探险家地图从重命名的普通填充地图改为独立物品，每个种类拥有独有图标与独立ID：</p>
+<ul>
+<li>加入了数个独立地图物品。</li>
+<li>普通空地图、填充地图同步更新了物品图标。</li>
+<li>所有探险家地图无法在创造模式物品栏中直接获取。</li>
+<li>旧存档中已有的探险家地图加载时会自动转换为对应新物品。</li>
+<li>探险家地图仍可在工作台中复制，副本保留自身的物品类型。</li>
+<li>探险家地图与埋藏的宝藏地图不再支持在工作台或制图台缩放；只有带有<code>#minecraft:extendable_maps</code>标签的地图可进行缩放操作。</li>
+</ul>
+<h1>数据包相关</h1>
+<p>数据包版本升至<code>115.0</code>。</p>
+<div class="trivia"><ul>
+<li><strong>你知道吗：</strong>
+<ul>
+<li>在上个快照（snapshot-6）中，数据包版本号为<code>113.0</code>。此次数据包版本升级错误地跳过了<code>114.0</code>。</li>
+</ul>
+</li>
+</ul>
+</div>
+<h2>方块状态与标签</h2>
+<ul>
+<li>方块状态字段重命名：<code>Name</code>改为<code>id</code>，<code>Properties</code>改为<code>properties</code>；方块默认状态可直接通过方块ID以紧凑形式引用。</li>
+<li>加入了方块/物品标签：<code>#concrete_stairs</code>（所有混凝土楼梯）、<code>#concrete_slabs</code>（所有混凝土台阶）。</li>
+<li>加入了物品标签：<code>#cloneable_maps</code>（可用于复制配方的地图，包含填充地图、所有探险家地图、埋藏的宝藏地图）、<code>#extendable_maps</code>（可缩放的地图）。</li>
+</ul>
+<h2>命令与数据组件</h2>
+<ul>
+<li><code>/swing</code>命令优化：对玩家使用时不再重置攻击强度；加入了动画类型参数（<code>whack</code>挥击/<code>stab</code>刺击，默认<code>whack</code>）；加入了动画持续时间参数（单位为游戏刻，默认6刻）。</li>
+<li>加入了<code>minecraft:attack_animation</code>组件：定义物品攻击时的动画类型与时长。</li>
+<li>加入了<code>minecraft:interact_animation</code>组件：定义物品交互时的动画类型与时长。</li>
+<li>移除了<code>minecraft:swing_animation</code>组件，由上述两个新组件替代；<code>none</code>动画类型被移除，世界内已有物品会自动迁移为默认的<code>whack</code>类型。</li>
+<li>移除了<code>minecraft:map_color</code>组件：地图不再采用着色覆盖层的绘制逻辑，旧地图加载时会自动剥离该组件。</li>
+</ul>
+<h2>战利品函数</h2>
+<p>对<code>minecraft:exploration_map</code>战利品函数进行了大幅调整：</p>
+<ul>
+<li>移除了<code>map_color</code>字段。</li>
+<li>不再修改作用物品的类型，仅为现有物品添加地图数据；此前逻辑为“输入空地图、输出填充地图”，现在输出物品由战利品条目/村民交易自行定义，相关数据包需将物品从<code>minecraft:map</code>改为<code>minecraft:filled_map</code>或对应探险家地图物品。</li>
+<li>若未找到匹配结构，物品不会携带<code>map_id</code>，需配合<code>minecraft:filtered</code>与<code>minecraft:discard_item</code>丢弃无效物品（原版战利品表与村民交易已完成适配）。</li>
+</ul>
+<h2>密度函数</h2>
+<p>密度函数与噪声的计算精度，从双精度浮点数改为单精度浮点数，且影响所有中间计算步骤。</p>
+<div class="info"><p>该改动可能影响部分依赖浮点精度的自定义数据包，若出现无法适配的场景可向官方反馈。</p>
+</div>
+<h1>资源包相关</h1>
+<p>资源包版本升至<code>95.0</code>。</p>
+<ul>
+<li>物品贴图：移除了<code>item/filled_map_markings.png</code>。</li>
+<li>地图贴图：加入了废弃营地、远古城市、沙漠神殿、废弃矿井、暖水海洋海底废墟的独有地图纹理。</li>
+<li>玩家地图图标：<code>player.png</code>、<code>player_off_limits.png</code>、<code>player_off_map.png</code>更新，支持显示玩家朝向。</li>
+<li>着色源：移除了<code>minecraft:map_color</code>着色源，与数据组件的移除对应。</li>
+<li>OIT（顺序无关透明度）着色器重命名：<code>WAVELET_RANK</code>改为<code>OIT_WAVELET_RANK</code>、<code>COEFF_COUNT</code>改为<code>OIT_COEFF_COUNT</code>、<code>COEFF_ATTACHMENT_COUNT</code>改为<code>OIT_COEFF_ATTACHMENT_COUNT</code>。</li>
+</ul>
+<h1>其他技术性调整</h1>
+<ul>
+<li><code>level.dat</code>文件加入了<code>version_history</code>列表，记录该文件的历史数据版本。</li>
+</ul>
+<h1>漏洞修复</h1>
+<p>修复了一些漏洞。</p>
+<br>
+<p>详细更新内容请见Minecraft官网更新日志。</p>
+
+</div>
+<div id="original-markdown-data" style="display:none;">
+    <div id="data-title">快照26.3-snapshot-7已发布</div>
+    <div id="data-banner">https://www.minecraft.net/content/dam/minecraftnet/article-asset/2026/minecraft-26-3-snapshot-7/new-article-hero-image.jpg</div>
+    <div id="data-category">麦块版讯</div>
+    <div id="data-content">快照26.3-snapshot-7已发布。本次更新内容如下。&#10;&#10;# 新内容&#10;## 建筑方块&#10;为全部16种颜色的混凝土方块加入了对应的混凝土楼梯与混凝土台阶。&#10;&#10;~~所以什么时候加入竖半砖？~~&#10;&#10;## 废弃营地加入探险家地图&#10;在废弃营地的战利品中加入了两类定向探险家地图：&#10;- 生物群系废弃营地地图：可指向竹林、樱花树林、桦木森林、斑驳森林、繁花森林、苍白之原、沼泽、风袭森林共8种生物群系内的其他废弃营地。&#10;- 结构指向地图：可指向远古城市、试炼密室、废弃矿井、沙漠神殿、丛林神殿、暖水海洋海底废墟、林地府邸共7种结构。&#10;&#10;# 玩法与机制调整&#10;## 方块与战利品&#10;- 坐垫放置、破坏、交互时不再阻止振动信号传播。&#10;- 更新了废弃营地木桶的战利品表；废弃营地箱子的战利品中，烟花火箭被替换为火药。&#10;&#10;## 地图机制&#10;- 地图上的玩家图标现在会始终显示玩家的朝向。&#10;- 为Realms加入了未来服务器区域支持：加拿大、墨西哥、南非、美国亚利桑那州。&#10;&#10;## 探险家地图重构&#10;探险家地图从重命名的普通填充地图改为独立物品，每个种类拥有独有图标与独立ID：&#10;- 加入了数个独立地图物品。&#10;- 普通空地图、填充地图同步更新了物品图标。&#10;- 所有探险家地图无法在创造模式物品栏中直接获取。&#10;- 旧存档中已有的探险家地图加载时会自动转换为对应新物品。&#10;- 探险家地图仍可在工作台中复制，副本保留自身的物品类型。&#10;- 探险家地图与埋藏的宝藏地图不再支持在工作台或制图台缩放；只有带有`#minecraft:extendable_maps`标签的地图可进行缩放操作。&#10;&#10;# 数据包相关&#10;数据包版本升至`115.0`。&#10;&#10;&lt;trivia&gt;&#10;- **你知道吗：**&#10;  - 在上个快照（snapshot-6）中，数据包版本号为`113.0`。此次数据包版本升级错误地跳过了`114.0`。&#10;&lt;/trivia&gt;&#10;&#10;## 方块状态与标签&#10;- 方块状态字段重命名：`Name`改为`id`，`Properties`改为`properties`；方块默认状态可直接通过方块ID以紧凑形式引用。&#10;- 加入了方块/物品标签：`#concrete_stairs`（所有混凝土楼梯）、`#concrete_slabs`（所有混凝土台阶）。&#10;- 加入了物品标签：`#cloneable_maps`（可用于复制配方的地图，包含填充地图、所有探险家地图、埋藏的宝藏地图）、`#extendable_maps`（可缩放的地图）。&#10;&#10;## 命令与数据组件&#10;- `/swing`命令优化：对玩家使用时不再重置攻击强度；加入了动画类型参数（`whack`挥击/`stab`刺击，默认`whack`）；加入了动画持续时间参数（单位为游戏刻，默认6刻）。&#10;- 加入了`minecraft:attack_animation`组件：定义物品攻击时的动画类型与时长。&#10;- 加入了`minecraft:interact_animation`组件：定义物品交互时的动画类型与时长。&#10;- 移除了`minecraft:swing_animation`组件，由上述两个新组件替代；`none`动画类型被移除，世界内已有物品会自动迁移为默认的`whack`类型。&#10;- 移除了`minecraft:map_color`组件：地图不再采用着色覆盖层的绘制逻辑，旧地图加载时会自动剥离该组件。&#10;&#10;## 战利品函数&#10;对`minecraft:exploration_map`战利品函数进行了大幅调整：&#10;- 移除了`map_color`字段。&#10;- 不再修改作用物品的类型，仅为现有物品添加地图数据；此前逻辑为“输入空地图、输出填充地图”，现在输出物品由战利品条目/村民交易自行定义，相关数据包需将物品从`minecraft:map`改为`minecraft:filled_map`或对应探险家地图物品。&#10;- 若未找到匹配结构，物品不会携带`map_id`，需配合`minecraft:filtered`与`minecraft:discard_item`丢弃无效物品（原版战利品表与村民交易已完成适配）。&#10;&#10;## 密度函数&#10;密度函数与噪声的计算精度，从双精度浮点数改为单精度浮点数，且影响所有中间计算步骤。&#10;&#10;&lt;info&gt;&#10;该改动可能影响部分依赖浮点精度的自定义数据包，若出现无法适配的场景可向官方反馈。&#10;&lt;/info&gt;&#10;&#10;# 资源包相关&#10;资源包版本升至`95.0`。&#10;- 物品贴图：移除了`item/filled_map_markings.png`。&#10;- 地图贴图：加入了废弃营地、远古城市、沙漠神殿、废弃矿井、暖水海洋海底废墟的独有地图纹理。&#10;- 玩家地图图标：`player.png`、`player_off_limits.png`、`player_off_map.png`更新，支持显示玩家朝向。&#10;- 着色源：移除了`minecraft:map_color`着色源，与数据组件的移除对应。&#10;- OIT（顺序无关透明度）着色器重命名：`WAVELET_RANK`改为`OIT_WAVELET_RANK`、`COEFF_COUNT`改为`OIT_COEFF_COUNT`、`COEFF_ATTACHMENT_COUNT`改为`OIT_COEFF_ATTACHMENT_COUNT`。&#10;&#10;# 其他技术性调整&#10;- `level.dat`文件加入了`version_history`列表，记录该文件的历史数据版本。&#10;&#10;# 漏洞修复&#10;修复了一些漏洞。&#10;&#10;&lt;br&gt;&#10;&#10;详细更新内容请见Minecraft官网更新日志。</div>
+</div>
+<script>
+    function initTheme() {
+        const savedTheme = localStorage.getItem('darkMode');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'true' || (!savedTheme && prefersDark)) {
+            document.body.classList.add('dark-mode');
+            updateThemeIcon(true);
+        } else {
+            updateThemeIcon(false);
+        }
+    }
+
+    function toggleTheme() {
+        const isDark = document.body.classList.toggle('dark-mode');
+        localStorage.setItem('darkMode', isDark);
+        updateThemeIcon(isDark);
+    }
+
+    function updateThemeIcon(isDark) {
+        const icon = document.getElementById('theme-icon');
+        if (isDark) {
+            icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+        } else {
+            icon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
+        }
+    }
+
+    initTheme();
+</script>
+</body>
+</html>

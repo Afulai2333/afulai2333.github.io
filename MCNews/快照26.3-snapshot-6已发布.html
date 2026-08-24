@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快照26.3-snapshot-6已发布</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+        :root {
+            --bg-primary: #f8f9fa;
+            --bg-content: #fff;
+            --text-primary: #333;
+            --text-secondary: #666;
+            --text-heading: #222;
+            --accent-color: #3a6cf4;
+            --shadow: rgba(0,0,0,0.05);
+            --code-bg: #f1f3f5;
+            --code-color: #d63384;
+            --blockquote-bg: #f9f9f9;
+            --table-header-bg: #f1f5ff;
+            --info-bg: #f1f5ff;
+            --warn-bg: #fff5f5;
+            --img-brightness: 1;
+            --mourn-bg: #333;
+            --border-color: #f0f0f0;
+        }
+
+        .dark-mode {
+            --bg-primary: #1a1a2e;
+            --bg-content: #16213e;
+            --text-primary: #e0e0e0;
+            --text-secondary: #999;
+            --text-heading: #f0f0f0;
+            --accent-color: #6b9eff;
+            --shadow: rgba(0,0,0,0.3);
+            --code-bg: #2d3748;
+            --code-color: #e53e3e;
+            --blockquote-bg: #2d3a4f;
+            --table-header-bg: #0f3460;
+            --info-bg: #1a365d;
+            --warn-bg: #4a1a1a;
+            --img-brightness: 0.8;
+            --mourn-bg: #1a1a1a;
+            --border-color: #2d3a4f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding: 20px 15px;
+            max-width: 900px;
+            margin: 0 auto;
+            
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body img {
+            filter: brightness(var(--img-brightness));
+            transition: filter 0.3s ease;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: none;
+            background-color: var(--bg-content);
+            color: var(--text-secondary);
+            box-shadow: 0 2px 10px var(--shadow);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            color: var(--accent-color);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .headerimage img {
+            width: 100%;
+            border-radius: 16px;
+            object-fit: cover;
+            box-shadow: 0 2px 12px var(--shadow);
+            margin-bottom: 16px;
+        }
+
+        .title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .headertitle {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-heading);
+        }
+
+        .headercategory {
+            background-color: rgba(58, 108, 244, 0.15);
+            color: var(--accent-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .content {
+            background-color: var(--bg-content);
+            padding: 24px;
+            border-radius: 18px;
+            box-shadow: 0 2px 15px var(--shadow);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .content p {
+            font-size: 16px;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        ul {
+            padding-left: 22px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: var(--text-primary);
+        }
+
+        li ul {
+            margin-top: 6px;
+            padding-left: 20px;
+        }
+
+        li ul li {
+            margin-bottom: 6px;
+            color: var(--text-secondary);
+        }
+
+        li ul ul {
+            margin-top: 4px;
+            padding-left: 16px;
+        }
+
+        li ul ul li {
+            margin-bottom: 5px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        li ul ul ul {
+            margin-top: 4px;
+            padding-left: 14px;
+        }
+
+        li ul ul ul li {
+            margin-bottom: 4px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        li ul ul ul ul {
+            margin-top: 3px;
+            padding-left: 12px;
+        }
+
+        li ul ul ul ul li {
+            margin-bottom: 4px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        li ul ul ul ul ul {
+            margin-top: 3px;
+            padding-left: 10px;
+        }
+
+        li ul ul ul ul ul li {
+            margin-bottom: 3px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        ol {
+            padding-left: 22px;
+            margin-bottom: 16px;
+            list-style-type: decimal;
+        }
+
+        ol li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: var(--text-primary);
+        }
+
+        ol ol {
+            margin-top: 6px;
+            padding-left: 20px;
+            list-style-type: lower-alpha;
+        }
+
+        ol ol li {
+            margin-bottom: 6px;
+            color: var(--text-secondary);
+        }
+
+        ol ol ol {
+            margin-top: 4px;
+            padding-left: 18px;
+            list-style-type: lower-roman;
+        }
+
+        ol ol ol li {
+            margin-bottom: 5px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        ol ol ol ol {
+            margin-top: 4px;
+            padding-left: 16px;
+            list-style-type: upper-alpha;
+        }
+
+        ol ol ol ol li {
+            margin-bottom: 4px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        ol ol ol ol ol {
+            margin-top: 3px;
+            padding-left: 14px;
+            list-style-type: upper-roman;
+        }
+
+        ol ol ol ol ol li {
+            margin-bottom: 4px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        ol ol ol ol ol ol {
+            margin-top: 3px;
+            padding-left: 12px;
+            list-style-type: decimal;
+        }
+
+        ol ol ol ol ol ol li {
+            margin-bottom: 3px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        code {
+            font-family: "SF Mono", "Consolas", "Monaco", monospace;
+            background-color: var(--code-bg);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: var(--code-color);
+            font-weight: 500;
+            word-break: break-all;
+        }
+
+        .content h1 { font-size: 1.8em; margin: 0.8em 0; color: var(--text-heading); }
+        .content h2 { font-size: 1.5em; margin: 0.8em 0; color: var(--text-heading); }
+        .content h3 { font-size: 1.25em; margin: 0.8em 0; color: var(--text-primary); }
+        .content a { color: var(--accent-color); text-decoration: none; }
+        .content a:hover { text-decoration: underline; }
+        .content blockquote { border-left: 4px solid var(--accent-color); margin: 1em 0; padding: 0.5em 1em; background: var(--blockquote-bg); color: var(--text-secondary); }
+        .content pre { background: var(--code-bg); color: var(--text-primary); padding: 15px; border: 2px solid var(--border-color); border-radius: 10px; overflow-x: auto; margin: 1em 0; }
+        .content pre code { background: none; padding: 0; color: inherit; border: none; border-radius: 0; font-size: inherit; }
+        .content img { max-width: 100%; height: auto; border-radius: 8px; }
+
+        .content .info {
+            background-color: var(--info-bg);
+            border: 2px solid var(--accent-color);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: var(--text-primary);
+            font-size: 15px;
+        }
+
+        .content .info::before {
+            content: "ⓘ";
+            font-size: 18px;
+            color: var(--accent-color);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .content .warn {
+            background-color: var(--warn-bg);
+            border: 2px solid #e53e3e;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: var(--text-primary);
+            font-size: 15px;
+        }
+
+        .content .warn::before {
+            content: "⚠";
+            font-size: 18px;
+            color: #e53e3e;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .content .mourn {
+            background-color: var(--mourn-bg);
+            border: 2px solid #666;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .content .trivia {
+            background-color: var(--trivia-bg);
+            border: 2px solid #34A853;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: var(--text-primary);
+            font-size: 15px;
+        }
+
+        .content .trivia::before {
+            content: "?";
+            font-size: 18px;
+            color: #34A853;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; background-color: var(--bg-content); margin: 20px 0; font-size: 16px; box-shadow: 0 1px 5px var(--shadow); }
+        thead th { background-color: var(--table-header-bg); color: var(--text-heading); font-weight: 500; text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--border-color); }
+        tbody td { padding: 12px 16px; color: var(--text-primary); border-bottom: 1px solid var(--border-color); }
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:hover { background-color: rgba(255,255,255,0.05); }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            .theme-toggle {
+                width: 40px;
+                height: 40px;
+                top: 15px;
+                right: 15px;
+            }
+
+            .headertitle {
+                font-size: 20px;
+            }
+
+            .content {
+                padding: 18px 16px;
+                border-radius: 14px;
+            }
+
+            .headerimage img {
+                border-radius: 12px;
+            }
+
+            table { font-size: 15px; border-radius: 8px; }
+            th, td { padding: 10px 12px !important; }
+        }
+    </style>
+</head>
+<body>
+<button class="theme-toggle" onclick="toggleTheme()" id="theme-toggle" title="切换深色模式">
+    <svg id="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+</button>
+<div class="header">
+    <div class="headerimage">
+        <img src="https://www.minecraft.net/content/dam/minecraftnet/article-asset/2026/minecraft-26-3-snapshot-6/new-article-hero-image.jpg" alt="快照26.3-snapshot-6已发布">
+    </div>
+    <div class="title-row">
+        <div class="headertitle">
+            快照26.3-snapshot-6已发布
+        </div>
+        <div class="headercategory">
+            麦块版讯
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="info"><p>该版本于2026年7月28日（两天前）发布。</p>
+</div>
+<p>快照26.3-snapshot-6已发布。本次更新内容如下。</p>
+<h1>结构改动</h1>
+<h2>废弃营地1. 为每个生物群系加入了一个废弃营地变种。</h2>
+<ol start="2">
+<li>对现有废弃营地的整体结构进行了小幅细节调整。</li>
+</ol>
+<h1>界面与交互改动</h1>
+<h2>Realm修复</h2>
+<p>修复了Realm所有者无法将“自动区域偏好”设置为自身领域区域的问题。</p>
+<h2>世界选项界面重构</h2>
+<ul>
+<li>世界选项按钮从原位置移至暂停菜单中“对局域网开放”按钮的原有位置。</li>
+<li>整体拆分为“通用”和“多人游戏”两个板块：
+<ul>
+<li>通用：旧版世界选项界面的全部设置项。</li>
+<li>多人游戏：加入了3项独立设置：
+<ul>
+<li>局域网：当前世界的多人游戏可见范围。</li>
+<li>命令权限：加入局域网世界的玩家是否可使用命令。</li>
+<li>端口：对局域网开放世界时使用的端口号。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>在线选项入口</h2>
+<p>原用于进入在线选项界面的按钮现在始终显示在选项菜单中，不再隐藏。</p>
+<h1>数据包相关</h1>
+<p>数据包版本升至<code>113.0</code>。</p>
+<h2>命令</h2>
+<ul>
+<li>调整了<code>/publish</code>命令：移除了其中的<code>gamemode</code>参数。</li>
+<li>世界默认游戏模式现在需通过<code>/defaultgamemode</code>命令或世界选项界面的“游戏模式”按钮设置。
+<ul>
+<li>玩家个人的游戏模式仍通过<code>/gamemode</code>命令单独设置。</li>
+</ul>
+</li>
+</ul>
+<h2>数据组件</h2>
+<p>为三个组件加入了内联数字定义支持，简化了配置写法：</p>
+<div class="info"><p>该版本于2026年7月28日（两天前）发布。</p>
+</div>
+<p>快照26.3-snapshot-6已发布。本次更新内容如下。</p>
+<h1>结构改动</h1>
+<h2>废弃营地1. 为每个生物群系加入了一个废弃营地变种。</h2>
+<ol start="2">
+<li>对现有废弃营地的整体结构进行了小幅细节调整。</li>
+</ol>
+<h1>界面与交互改动</h1>
+<h2>Realm修复</h2>
+<p>修复了Realm所有者无法将“自动区域偏好”设置为自身领域区域的问题。</p>
+<h2>世界选项界面重构</h2>
+<ul>
+<li>世界选项按钮从原位置移至暂停菜单中“对局域网开放”按钮的原有位置。</li>
+<li>整体拆分为“通用”和“多人游戏”两个板块：
+<ul>
+<li>通用：旧版世界选项界面的全部设置项。</li>
+<li>多人游戏：加入了3项独立设置：
+<ul>
+<li>局域网：当前世界的多人游戏可见范围。</li>
+<li>命令权限：加入局域网世界的玩家是否可使用命令。</li>
+<li>端口：对局域网开放世界时使用的端口号。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>在线选项入口</h2>
+<p>原用于进入在线选项界面的按钮现在始终显示在选项菜单中，不再隐藏。</p>
+<h1>数据包相关</h1>
+<p>数据包版本升至<code>113.0</code>。</p>
+<h2>命令</h2>
+<ul>
+<li>调整了<code>/publish</code>命令：移除了其中的<code>gamemode</code>参数。</li>
+<li>世界默认游戏模式现在需通过<code>/defaultgamemode</code>命令或世界选项界面的“游戏模式”按钮设置。
+<ul>
+<li>玩家个人的游戏模式仍通过<code>/gamemode</code>命令单独设置。</li>
+</ul>
+</li>
+</ul>
+<h2>数据组件</h2>
+<p>为三个组件加入了内联数字定义支持，简化了配置写法：</p>
+<ul>
+<li><code>minecraft:cooking_fuel</code>：<code>burn_time</code>和<code>speed_multiplier</code>现在可直接用内联数字定义。</li>
+<li><code>minecraft:brewing_fuel</code>：<code>uses</code>和<code>speed_multiplier</code>现在可直接用内联数字定义。</li>
+<li><code>minecraft:compostable</code>：<code>layers</code>现在可直接用内联数字定义。</li>
+</ul>
+<h2>实体数据</h2>
+<p>加入了<code>invulnerable_time</code>标签，可指定游戏刻时长，让生物在对应时间内暂时处于无敌状态。</p>
+<h2>战利品表</h2>
+<p>在<code>minecraft:block_interact</code>类型的战利品表上下文中加入了<code>origin</code>参数，代表被交互方块的中心坐标。</p>
+<h2>噪声格式重构</h2>
+<p>噪声配置升级为基于分形布朗运动（fBm）的新标准。</p>
+<h3>基础特性</h3>
+<ul>
+<li>输出值近似正态分布，默认振幅范围为<code>[-1, 1]</code>（99.7%的样本落在此区间内）。</li>
+<li>默认参数：<code>persistence=0.5</code>、<code>lacunarity=2.0</code>（每升高一个倍频程，振幅减半、频率翻倍）。</li>
+<li>种子机制稳定，增减单个倍频程不会影响其余倍频程的结果。</li>
+</ul>
+<h3>字段调整</h3>
+<ul>
+<li><code>firstOctave</code>重命名为<code>base_octave</code>。</li>
+<li>加入了<code>base_amplitude</code>：非负浮点数，噪声输出的全局缩放系数，默认值<code>1.0</code>。</li>
+<li>加入了<code>octave_count</code>：1~32的整数，指定采样的倍频程数量。</li>
+<li>加入了<code>normalize</code>：控制振幅归一化逻辑，支持三种取值。
+<ul>
+<li><code>true</code>（默认）：<code>base_amplitude</code>为输出的预期振幅。</li>
+<li><code>false</code>：<code>base_amplitude</code>仅为第一个倍频程的振幅。</li>
+<li><code>&quot;legacy&quot;</code>：继承旧版格式的归一化行为，输出范围通常小于预期。</li>
+</ul>
+</li>
+<li><code>amplitudes</code>重命名为<code>amplitude_modifiers</code>：浮点列表，为每个倍频程单独设置缩放系数，元素数量需与<code>octave_count</code>一致；该字段不再必填，默认全为<code>1.0</code>，且其缩放效果会绕开归一化直接影响最终输出。</li>
+</ul>
+<h2>密度函数</h2>
+<p>加入了多个密度函数类型，同时优化了现有函数：</p>
+<ul>
+<li>加入了<code>pow</code>：计算底数的指定次幂，包含<code>base</code>（底数）、<code>exponent</code>（指数）两个密度函数字段。</li>
+<li>加入了<code>sqrt</code>：计算输入值的平方根。</li>
+<li>加入了<code>log</code>：计算输入值的自然对数。</li>
+<li>加入了<code>sign</code>：返回输入值的符号（正数返回<code>1</code>、0返回<code>0</code>、负数返回<code>-1</code>）。</li>
+<li>加入了<code>distance_to_point</code>：计算到三维固定点的距离，支持4种距离度量：欧几里得、欧几里得平方、曼哈顿、切比雪夫。</li>
+<li>更新了<code>gradient</code>（原<code>y_clamped_gradient</code>重命名）：支持<code>x</code>/<code>y</code>/<code>z</code>任意轴，加入了<code>clamp_to_edge</code>（边界截断）、<code>repeat</code>（重复）、<code>mirrored_repeat</code>（镜像重复）三种平铺模式，可自定义起止坐标与对应数值。</li>
+<li>加入了<code>slice</code>：沿指定轴的固定坐标取截面，降低输入域的维度。</li>
+<li>改动了<code>end_outer_islands</code>：由原<code>end_islands</code>重命名而来，不再计算末地主岛的密度。</li>
+</ul>
+<h2>结构池元素</h2>
+<p><code>minecraft:feature_pool_element</code>现在可以连接任意目标名称的拼图块，不再仅支持<code>minecraft:bottom</code> 。</p>
+<h1>资源包相关</h1>
+<p>资源包版本升至<code>94.0</code>。</p>
+<h2>着色器与后处理</h2>
+<ul>
+<li>重构了<code>terrain.vsh</code>与<code>terrain.fsh</code>地形着色器，适配了多绘制（multi-draw）渲染。</li>
+<li>调整了<code>Globals</code>与<code>DynamicTransforms</code>的成员布局，减少统一变量块的内存占用。</li>
+<li>加入了宏定义<code>RENDERPEARL_EXPLICIT_DEPTH_INVARIANCE</code>：标记OIT着色器需显式输出深度值，解决了部分设备隐式深度计算偏差的问题。</li>
+</ul>
+<h2>装备纹饰系统</h2>
+<ul>
+<li>原<code>trim_palette_replacements</code>字段替换为<code>trim_overrides</code>，功能从仅替换调色板升级为可替换纹理和调色板。</li>
+<li>配置规则：
+<ul>
+<li>每条覆盖规则包含<code>when</code>（匹配条件）、<code>texture</code>（可选，替换纹理）、<code>palette</code>（可选，替换调色板）。</li>
+<li><code>when</code>可指定<code>material</code>（纹饰材质）和/或<code>pattern</code>（纹饰图案），同时指定时需全部匹配才生效。</li>
+<li>按顺序匹配，第一条符合条件的规则生效；<code>texture</code>与<code>palette</code>至少需定义一个。</li>
+</ul>
+</li>
+</ul>
+<h1>其他技术性更改</h1>
+<p>在支持的硬件设备上，地形方块现在启用<code>MultiDrawIndirect</code>方式渲染，以提升地形绘制效率。</p>
+<h1>漏洞修复</h1>
+<p>修复了一些漏洞。其中包括知名的“末地环”漏洞。</p>
+<br>
+<p>详细更新内容请见Minecraft官网更新日志。</p>
+
+</div>
+<div id="original-markdown-data" style="display:none;">
+    <div id="data-title">快照26.3-snapshot-6已发布</div>
+    <div id="data-banner">https://www.minecraft.net/content/dam/minecraftnet/article-asset/2026/minecraft-26-3-snapshot-6/new-article-hero-image.jpg</div>
+    <div id="data-category">麦块版讯</div>
+    <div id="data-content">&lt;info&gt;&#10;该版本于2026年7月28日（两天前）发布。&#10;&lt;/info&gt;&#10;&#10;快照26.3-snapshot-6已发布。本次更新内容如下。&#10;&#10;# 结构改动&#10;## 废弃营地1. 为每个生物群系加入了一个废弃营地变种。&#10;2. 对现有废弃营地的整体结构进行了小幅细节调整。&#10;&#10;# 界面与交互改动&#10;## Realm修复&#10;修复了Realm所有者无法将“自动区域偏好”设置为自身领域区域的问题。&#10;&#10;## 世界选项界面重构&#10;- 世界选项按钮从原位置移至暂停菜单中“对局域网开放”按钮的原有位置。&#10;- 整体拆分为“通用”和“多人游戏”两个板块：&#10;  - 通用：旧版世界选项界面的全部设置项。&#10;  - 多人游戏：加入了3项独立设置：&#10;    - 局域网：当前世界的多人游戏可见范围。&#10;    - 命令权限：加入局域网世界的玩家是否可使用命令。&#10;    - 端口：对局域网开放世界时使用的端口号。&#10;&#10;## 在线选项入口&#10;原用于进入在线选项界面的按钮现在始终显示在选项菜单中，不再隐藏。&#10;&#10;# 数据包相关&#10;数据包版本升至`113.0`。&#10;&#10;## 命令&#10;- 调整了`/publish`命令：移除了其中的`gamemode`参数。&#10;- 世界默认游戏模式现在需通过`/defaultgamemode`命令或世界选项界面的“游戏模式”按钮设置。&#10;  - 玩家个人的游戏模式仍通过`/gamemode`命令单独设置。&#10;&#10;## 数据组件&#10;为三个组件加入了内联数字定义支持，简化了配置写法：&#10;&lt;info&gt;&#10;该版本于2026年7月28日（两天前）发布。&#10;&lt;/info&gt;&#10;&#10;快照26.3-snapshot-6已发布。本次更新内容如下。&#10;&#10;# 结构改动&#10;## 废弃营地1. 为每个生物群系加入了一个废弃营地变种。&#10;2. 对现有废弃营地的整体结构进行了小幅细节调整。&#10;&#10;# 界面与交互改动&#10;## Realm修复&#10;修复了Realm所有者无法将“自动区域偏好”设置为自身领域区域的问题。&#10;&#10;## 世界选项界面重构&#10;- 世界选项按钮从原位置移至暂停菜单中“对局域网开放”按钮的原有位置。&#10;- 整体拆分为“通用”和“多人游戏”两个板块：&#10;  - 通用：旧版世界选项界面的全部设置项。&#10;  - 多人游戏：加入了3项独立设置：&#10;    - 局域网：当前世界的多人游戏可见范围。&#10;    - 命令权限：加入局域网世界的玩家是否可使用命令。&#10;    - 端口：对局域网开放世界时使用的端口号。&#10;&#10;## 在线选项入口&#10;原用于进入在线选项界面的按钮现在始终显示在选项菜单中，不再隐藏。&#10;&#10;# 数据包相关&#10;数据包版本升至`113.0`。&#10;&#10;## 命令&#10;- 调整了`/publish`命令：移除了其中的`gamemode`参数。&#10;- 世界默认游戏模式现在需通过`/defaultgamemode`命令或世界选项界面的“游戏模式”按钮设置。&#10;  - 玩家个人的游戏模式仍通过`/gamemode`命令单独设置。&#10;&#10;## 数据组件&#10;为三个组件加入了内联数字定义支持，简化了配置写法：&#10;- `minecraft:cooking_fuel`：`burn_time`和`speed_multiplier`现在可直接用内联数字定义。&#10;- `minecraft:brewing_fuel`：`uses`和`speed_multiplier`现在可直接用内联数字定义。&#10;- `minecraft:compostable`：`layers`现在可直接用内联数字定义。&#10;&#10;## 实体数据&#10;加入了`invulnerable_time`标签，可指定游戏刻时长，让生物在对应时间内暂时处于无敌状态。&#10;&#10;## 战利品表&#10;在`minecraft:block_interact`类型的战利品表上下文中加入了`origin`参数，代表被交互方块的中心坐标。&#10;&#10;## 噪声格式重构&#10;噪声配置升级为基于分形布朗运动（fBm）的新标准。&#10;&#10;### 基础特性&#10;- 输出值近似正态分布，默认振幅范围为`[-1, 1]`（99.7%的样本落在此区间内）。&#10;- 默认参数：`persistence=0.5`、`lacunarity=2.0`（每升高一个倍频程，振幅减半、频率翻倍）。&#10;- 种子机制稳定，增减单个倍频程不会影响其余倍频程的结果。&#10;&#10;### 字段调整&#10;- `firstOctave`重命名为`base_octave`。&#10;- 加入了`base_amplitude`：非负浮点数，噪声输出的全局缩放系数，默认值`1.0`。&#10;- 加入了`octave_count`：1~32的整数，指定采样的倍频程数量。&#10;- 加入了`normalize`：控制振幅归一化逻辑，支持三种取值。&#10;  - `true`（默认）：`base_amplitude`为输出的预期振幅。&#10;  - `false`：`base_amplitude`仅为第一个倍频程的振幅。&#10;  - `"legacy"`：继承旧版格式的归一化行为，输出范围通常小于预期。&#10;- `amplitudes`重命名为`amplitude_modifiers`：浮点列表，为每个倍频程单独设置缩放系数，元素数量需与`octave_count`一致；该字段不再必填，默认全为`1.0`，且其缩放效果会绕开归一化直接影响最终输出。&#10;&#10;## 密度函数&#10;加入了多个密度函数类型，同时优化了现有函数：&#10;- 加入了`pow`：计算底数的指定次幂，包含`base`（底数）、`exponent`（指数）两个密度函数字段。&#10;- 加入了`sqrt`：计算输入值的平方根。&#10;- 加入了`log`：计算输入值的自然对数。&#10;- 加入了`sign`：返回输入值的符号（正数返回`1`、0返回`0`、负数返回`-1`）。&#10;- 加入了`distance_to_point`：计算到三维固定点的距离，支持4种距离度量：欧几里得、欧几里得平方、曼哈顿、切比雪夫。&#10;- 更新了`gradient`（原`y_clamped_gradient`重命名）：支持`x`/`y`/`z`任意轴，加入了`clamp_to_edge`（边界截断）、`repeat`（重复）、`mirrored_repeat`（镜像重复）三种平铺模式，可自定义起止坐标与对应数值。&#10;- 加入了`slice`：沿指定轴的固定坐标取截面，降低输入域的维度。&#10;- 改动了`end_outer_islands`：由原`end_islands`重命名而来，不再计算末地主岛的密度。&#10;&#10;## 结构池元素&#10;`minecraft:feature_pool_element`现在可以连接任意目标名称的拼图块，不再仅支持`minecraft:bottom` 。&#10;&#10;# 资源包相关&#10;资源包版本升至`94.0`。&#10;&#10;## 着色器与后处理&#10;- 重构了`terrain.vsh`与`terrain.fsh`地形着色器，适配了多绘制（multi-draw）渲染。&#10;- 调整了`Globals`与`DynamicTransforms`的成员布局，减少统一变量块的内存占用。&#10;- 加入了宏定义`RENDERPEARL_EXPLICIT_DEPTH_INVARIANCE`：标记OIT着色器需显式输出深度值，解决了部分设备隐式深度计算偏差的问题。&#10;&#10;## 装备纹饰系统&#10;- 原`trim_palette_replacements`字段替换为`trim_overrides`，功能从仅替换调色板升级为可替换纹理和调色板。&#10;- 配置规则：&#10;  - 每条覆盖规则包含`when`（匹配条件）、`texture`（可选，替换纹理）、`palette`（可选，替换调色板）。&#10;  - `when`可指定`material`（纹饰材质）和/或`pattern`（纹饰图案），同时指定时需全部匹配才生效。&#10;  - 按顺序匹配，第一条符合条件的规则生效；`texture`与`palette`至少需定义一个。&#10;&#10;# 其他技术性更改&#10;在支持的硬件设备上，地形方块现在启用`MultiDrawIndirect`方式渲染，以提升地形绘制效率。&#10;&#10;# 漏洞修复&#10;修复了一些漏洞。其中包括知名的“末地环”漏洞。&#10;&#10;&lt;br&gt;&#10;&#10;详细更新内容请见Minecraft官网更新日志。</div>
+</div>
+<script>
+    function initTheme() {
+        const savedTheme = localStorage.getItem('darkMode');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'true' || (!savedTheme && prefersDark)) {
+            document.body.classList.add('dark-mode');
+            updateThemeIcon(true);
+        } else {
+            updateThemeIcon(false);
+        }
+    }
+
+    function toggleTheme() {
+        const isDark = document.body.classList.toggle('dark-mode');
+        localStorage.setItem('darkMode', isDark);
+        updateThemeIcon(isDark);
+    }
+
+    function updateThemeIcon(isDark) {
+        const icon = document.getElementById('theme-icon');
+        if (isDark) {
+            icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+        } else {
+            icon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
+        }
+    }
+
+    initTheme();
+</script>
+</body>
+</html>

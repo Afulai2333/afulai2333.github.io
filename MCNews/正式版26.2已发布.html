@@ -1,0 +1,2099 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正式版26.2已发布</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.7;
+            padding: 20px 15px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .headerimage img {
+            width: 100%;
+            border-radius: 16px;
+            object-fit: cover;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            margin-bottom: 16px;
+        }
+
+        .title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .headertitle {
+            font-size: 24px;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .headercategory {
+            background-color: #e9f0ff;
+            color: #3a6cf4;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .content {
+            background-color: #fff;
+            padding: 24px;
+            border-radius: 18px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+
+        .content-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .content p {
+            font-size: 16px;
+            margin-bottom: 16px;
+            color: #444;
+        }
+
+        ul {
+            padding-left: 22px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #444;
+        }
+
+        li ul {
+            margin-top: 6px;
+            padding-left: 20px;
+        }
+
+        li ul li {
+            margin-bottom: 6px;
+            color: #555;
+        }
+
+        code {
+            font-family: "SF Mono", "Consolas", "Monaco", monospace;
+            background-color: #f1f3f5;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #d63384;
+            font-weight: 500;
+            word-break: break-all;
+        }
+
+        .content h1 { font-size: 24px; margin: 0.8em 0; color: #222; scroll-margin-top: 20px; }
+        .content h2 { font-size: 22px; margin: 0.8em 0; color: #222; scroll-margin-top: 20px; }
+        .content h3 { font-size: 20px; margin: 0.8em 0; color: #333; scroll-margin-top: 20px; }
+        .content h4 { font-size: 18px; margin: 0.8em 0; color: #333; }
+        .content h5 { font-size: 16px; margin: 0.8em 0; color: #444; }
+        .content h6 { font-size: 14px; margin: 0.8em 0; color: #444; }
+        .content a { color: #3a6cf4; text-decoration: none; }
+        .content a:hover { text-decoration: underline; }
+        .toc {
+            background-color: #f1f5ff;
+            border: 2px solid #3a6cf4;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 16px 0;
+        }
+        .toc h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #3a6cf4;
+            margin: 0 0 12px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #d0daf5;
+        }
+        .toc ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .toc li {
+            margin-bottom: 10px;
+            font-size: 15px;
+            padding-left: 16px;
+            position: relative;
+            transition: padding-left 0.2s ease;
+        }
+        .toc li::before {
+            content: "▸";
+            color: #3a6cf4;
+            position: absolute;
+            left: 0;
+            transition: transform 0.2s ease;
+        }
+        .toc li:hover {
+            padding-left: 24px;
+        }
+        .toc li:hover::before {
+            transform: translateX(8px);
+        }
+        .toc li:last-child {
+            margin-bottom: 0;
+        }
+        .toc a {
+            color: #333;
+            text-decoration: none;
+        }
+        .toc a:hover {
+            color: #3a6cf4;
+            text-decoration: underline;
+        }
+        .content blockquote { border-left: 4px solid #3a6cf4; margin: 1em 0; padding: 0.5em 1em; background: #f9f9f9; color: #666; }
+        .content pre { background: #f5f5f5; color: #333; padding: 15px; border: 2px solid #888; border-radius: 10px; overflow-x: auto; margin: 1em 0; }
+        .content pre code { background: none; padding: 0; color: inherit; border: none; border-radius: 0; font-size: inherit; }
+        .content img { max-width: 100%; height: auto; border-radius: 8px; }
+
+        .floating-toc {
+            position: fixed;
+            bottom: 20px;
+            right: 35px;
+            background-color: #f1f5ff;
+            border: 2px solid #3a6cf4;
+            border-radius: 12px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .floating-toc.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .floating-toc-header {
+            padding: 12px 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #3a6cf4;
+            font-size: 15px;
+        }
+        .floating-toc-arrow {
+            font-size: 12px;
+            transition: transform 0.2s ease;
+        }
+        .floating-toc-content {
+            max-height: 0;
+            overflow-y: auto;
+            padding: 0 16px;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .floating-toc-content::-webkit-scrollbar {
+            display: none;
+        }
+        .floating-toc.open .floating-toc-content {
+            max-height: 300px;
+            padding: 0 16px 12px;
+        }
+        .floating-toc-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .floating-toc-content li {
+            margin-bottom: 8px;
+            font-size: 14px;
+            padding-left: 14px;
+            position: relative;
+            transition: padding-left 0.2s ease;
+        }
+        .floating-toc-content li::before {
+            content: "▸";
+            color: #3a6cf4;
+            position: absolute;
+            left: 0;
+            transition: transform 0.2s ease;
+        }
+        .floating-toc-content li:hover {
+            padding-left: 20px;
+        }
+        .floating-toc-content li:hover::before {
+            transform: translateX(6px);
+        }
+        .floating-toc-content a {
+            color: #333;
+            text-decoration: none;
+        }
+        .floating-toc-content a:hover {
+            color: #3a6cf4;
+        }
+
+        .content .info {
+            background-color: #f1f5ff;
+            border: 2px solid #3a6cf4;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: #444;
+            font-size: 15px;
+        }
+
+        .content .info::before {
+            content: "ⓘ";
+            font-size: 18px;
+            color: #3a6cf4;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .content .warn {
+            background-color: #fff5f5;
+            border: 2px solid #e53e3e;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: #444;
+            font-size: 15px;
+        }
+
+        .content .warn::before {
+            content: "⚠";
+            font-size: 18px;
+            color: #e53e3e;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .subsection {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 16px;
+        }
+
+        .version-boxes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 12px;
+            margin-bottom: 16px;
+        }
+
+        .version-box {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 12px 24px;
+            text-align: center;
+            width: 240px;
+        }
+
+        .version-box-label {
+            font-size: 16px;
+            color: #64748b;
+            margin-bottom: 4px;
+        }
+
+        .version-change {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1e40af;
+        }
+
+        .old-version {
+            color: #64748b;
+        }
+
+        .arrow {
+            color: #f59e0b;
+            margin: 0 4px;
+        }
+
+        .new-version {
+            color: #16a34a;
+        }
+
+        .card-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 16px;
+        }
+
+        .item-card {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 2px solid #3b82f6;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            max-width: 300px;
+            flex: 1 1 250px;
+        }
+
+        .item-card img {
+            width: 80px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 16px;
+        }
+
+        .card-button {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .card-button:hover {
+            background-color: #2563eb;
+        }
+
+        .large-item-box {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 2px solid #3b82f6;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        .large-item-box img {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .large-item-box .card-title {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .advancement-box {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 2px solid #3b82f6;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        .advancement-box img {
+            width: 120px;
+            height: 120px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border: 3px solid #3b82f6;
+        }
+
+        .advancement-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .advancement-desc {
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .prototype-searcher {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 2px solid #3b82f6;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .prototype-searcher h3 {
+            margin-top: 0;
+            margin-bottom: 16px;
+            color: #1e40af;
+            text-align: center;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 16px;
+            transition: all 0.4s ease;
+        }
+
+        .search-box input {
+            padding: 12px 16px;
+            border: 2px solid #3b82f6;
+            border-radius: 8px;
+            font-size: 14px;
+            width: 60%;
+            max-width: 300px;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:hover {
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        .search-box button {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-box button:hover {
+            background-color: #2563eb;
+        }
+
+        .search-box button:active {
+            transform: scale(0.98);
+        }
+
+        .search-result {
+            text-align: center;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 16px;
+            min-height: 0;
+            max-height: 0;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.4s ease;
+            overflow: hidden;
+            margin-bottom: 0;
+        }
+
+        .search-result.show {
+            min-height: 54px;
+            max-height: 200px;
+            opacity: 1;
+            transform: translateY(0);
+            margin-bottom: 16px;
+        }
+
+        .search-result.found {
+            background-color: #dcfce7;
+            color: #166534;
+            border: 2px solid #22c55e;
+        }
+
+        .search-result.not-found {
+            background-color: #fef2f2;
+            color: #991b1b;
+            border: 2px solid #ef4444;
+        }
+
+        .music-player-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 16px;
+        }
+
+        .music-player-card {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 2px solid #3b82f6;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            max-width: 280px;
+            flex: 1 1 250px;
+        }
+
+        .music-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .music-progress-container {
+            margin-bottom: 12px;
+            padding: 0 8px;
+        }
+
+        .music-progress-bar {
+            position: relative;
+            height: 6px;
+            background-color: #cbd5e1;
+            border-radius: 3px;
+            overflow: visible;
+        }
+
+        .music-progress-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background-color: #3b82f6;
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .music-progress-slider {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            height: 6px;
+            margin: 0;
+            padding: 0;
+            opacity: 0;
+            cursor: pointer;
+            transform: translateY(-50%);
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        .music-progress-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            background-color: #3b82f6;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 1;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .music-progress-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            background-color: #2563eb;
+        }
+
+        .music-progress-slider::-moz-range-thumb {
+            width: 14px;
+            height: 14px;
+            background-color: #3b82f6;
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .music-progress-slider::-moz-range-thumb:hover {
+            transform: scale(1.2);
+            background-color: #2563eb;
+        }
+
+        .music-time {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .music-play-btn {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .music-play-btn:hover {
+            background-color: #2563eb;
+        }
+
+        .modal-overlay {
+            opacity: 0;
+            visibility: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background-color: #fff;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            overflow: hidden;
+        }
+
+        .modal-overlay.show .modal {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 8px;
+            transition: background-color 0.2s;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 16px 20px;
+            border-radius: 20px 20px 0 0;
+            flex-shrink: 0;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .modal-content {
+            padding: 16px 20px 20px;
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .modal-content::-webkit-scrollbar {
+            display: none;
+        }
+
+        .content .mourn {
+            background-color: #333;
+            border: 2px solid #fff;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; background-color: #fff; margin: 20px 0; font-size: 16px; box-shadow: 0 1px 5px rgba(0,0,0,0.05); }
+        thead th { background-color: #f1f5ff; color: #222; font-weight: 500; text-align: left; padding: 12px 16px; border-bottom: 1px solid #eaecef; }
+        tbody td { padding: 12px 16px; color: #444; border-bottom: 1px solid #f0f0f0; }
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:hover { background-color: #f9fbfd; }
+
+        .dev-versions {
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .version-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .section-title {
+            background: linear-gradient(135deg, #3a6cf4 0%, #2563eb 100%);
+            color: white;
+            padding: 12px 16px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .version-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            transition: background-color 0.2s ease;
+        }
+
+        .version-item:last-child {
+            border-bottom: none;
+        }
+
+        .version-item:hover {
+            background-color: rgba(58, 108, 244, 0.08);
+        }
+
+        .version-label {
+            background-color: #fff;
+            border: 1px solid #3a6cf4;
+            border-radius: 8px;
+            padding: 4px 10px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #3a6cf4;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .version-desc {
+            font-size: 15px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            .headertitle {
+                font-size: 20px;
+            }
+
+            .content h1 { font-size: 20px; }
+            .content h2 { font-size: 18px; }
+            .content h3 { font-size: 16px; }
+            .content h4 { font-size: 15px; }
+            .content h5 { font-size: 14px; }
+            .content h6 { font-size: 13px; }
+
+            .content {
+                padding: 18px 16px;
+                border-radius: 14px;
+            }
+
+            .headerimage img {
+                border-radius: 12px;
+            }
+
+            table { font-size: 15px; border-radius: 8px; }
+            th, td { padding: 10px 12px !important; }
+
+            .floating-toc {
+                left: 50%;
+                right: auto;
+                transform: translateX(-50%);
+                bottom: 20px;
+            }
+        }
+
+        .exam-wish {
+            background-color: #c41e3a;
+            color: #ffd700;
+            font-family: "Ma Shan Zheng", "MaLiTi", "STKaiti", "KaiTi", serif;
+            font-size: 48px;
+            font-weight: bold;
+            text-align: center;
+            padding: 30px 40px;
+            border-radius: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            letter-spacing: 8px;
+        }
+
+        .simple-card-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 16px;
+        }
+
+        .simple-card {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 2px solid #3b82f6;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            max-width: 300px;
+            flex: 1 1 250px;
+        }
+
+        .simple-card img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 12px;
+        }
+
+        .simple-card-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .simple-card-desc {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .simple-card-desc ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .simple-card-desc li {
+            margin: 8px 0;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .simple-card-desc li::before {
+            content: "•";
+            color: #3b82f6;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .play-music-btn {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 16px;
+            transition: background-color 0.2s;
+        }
+
+        .play-music-btn:hover {
+            background-color: #2563eb;
+        }
+
+        .progress-container {
+            margin-top: 12px;
+            padding: 0 8px;
+        }
+
+        .progress-bar {
+            position: relative;
+            height: 6px;
+            background-color: #cbd5e1;
+            border-radius: 3px;
+            overflow: visible;
+        }
+
+        .progress-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background-color: #3b82f6;
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .progress-slider {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            height: 6px;
+            margin: 0;
+            padding: 0;
+            opacity: 0;
+            cursor: pointer;
+            transform: translateY(-50%);
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        .progress-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            background-color: #3b82f6;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 1;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .progress-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            background-color: #2563eb;
+        }
+
+        .progress-slider::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            background-color: #3b82f6;
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .progress-slider::-moz-range-thumb:hover {
+            transform: scale(1.2);
+            background-color: #2563eb;
+        }
+
+        .progress-time {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 12px;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="headerimage">
+        <img src="https://www.minecraft.net/content/dam/minecraftnet/article-asset/2026/minecraft-26-2/new-article-hero-image.jpg" alt="正式版26.2已发布">
+    </div>
+    <div class="title-row">
+        <div class="headertitle">
+            正式版26.2已发布
+        </div>
+        <div class="headercategory">
+            麦块版讯
+        </div>
+    </div>
+</div>
+
+<div class="content-container">
+<div class="content">
+    <p>Java版正式版26.2已发布，这是“混沌立方”（Chaos Cubed）的首个Java版正式版。此版本主要加入了硫黄洞穴、硫黄、朱砂和硫方怪等内容，并修复了一系列漏洞。该版本是首个支持Vulkan渲染的Java版正式版，为后续更新引入Java版灵动视效（Vibrant Visuals）奠定了重要基础。</p>
+<p>该正式版的开发阶段共经历了以下开发版本。</p>
+
+<div class="dev-versions">
+    <div class="version-section">
+        <div class="section-title">快照</div>
+        <div class="version-item">
+            <span class="version-label">26.2-snapshot-1</span>
+            <span class="version-desc">首个快照，加入硫黄洞穴、硫方怪和Vulkan渲染支持。</span>
+        </div>
+        <div class="version-item">
+            <span class="version-label">26.2-snapshot-2</span>
+            <span class="version-desc">修复退出进程卡死、Vulkan崩溃等漏洞。</span>
+        </div>
+        <div class="version-item">
+            <span class="version-label">26.2-snapshot-3</span>
+            <span class="version-desc">加入硫黄尖锥方块，调整纹理。</span>
+        </div>
+        <div class="version-item">
+            <span class="version-label">26.2-snapshot-4</span>
+            <span class="version-desc">加入名称标签可见距离属性，新增图形能力遥测事件。</span>
+        </div>
+        <div class="version-item">
+            <span class="version-label">26.2-snapshot-5</span>
+            <span class="version-desc">硫方怪加入TNT爆炸原型，烈性硫黄生成间歇泉。</span>
+        </div>
+        <div class="version-item">
+            <span class="version-label">26.2-snapshot-6</span>
+            <span class="version-desc">硫方怪加入缓慢弹性和高温原型，调整世界生成。</span>
+        </div>
+        <div class="version-item">
+            <span class="version-label">26.2-snapshot-7</span>
+            <span class="version-desc">加入点对点联机、好友列表、五首新音乐和唱片Bounce。</span>
+        </div>
+        <div class="version-item">
+            <span class="version-label">26.2-snapshot-8</span>
+            <span class="version-desc">最后一个快照，默认图形API改回OpenGL，修复多个漏洞。</span>
+        </div>
+    </div>
+
+    <div class="version-section">
+        <div class="section-title">预发布版</div>
+        <div class="version-item">
+            <span class="version-label">26.2-pre-1</span>
+            <span class="version-desc">首个预发布版，暂时移除点对点联机，修复崩溃问题。</span>
+        </div>
+        <div class="version-item">
+            <span class="version-label">26.2-pre-2</span>
+            <span class="version-desc">修复信标切换效果踢出玩家、Mac启动崩溃等漏洞。</span>
+        </div>
+        <div class="version-item">
+            <span class="version-label">26.2-pre-3</span>
+            <span class="version-desc">调整硫方怪隐身显示，修复好友列表与Vulkan相关漏洞。</span>
+        </div>
+        <div class="version-item">
+            <span class="version-label">26.2-pre-4</span>
+            <span class="version-desc">加入不受间歇泉影响的实体标签，优化粒子渲染。</span>
+        </div>
+        <div class="version-item">
+            <span class="version-label">26.2-pre-5</span>
+            <span class="version-desc">图形API崩溃自动降级，修复极限模式游戏模式更改问题。</span>
+        </div>
+        <div class="version-item">
+            <span class="version-label">26.2-pre-6</span>
+            <span class="version-desc">最后一个预发布版，修复极限模式旁观重生后区块生成规则。</span>
+        </div>
+    </div>
+
+    <div class="version-section">
+        <div class="section-title">发布候选</div>
+        <div class="version-item">
+            <span class="version-label">26.2-rc-1</span>
+            <span class="version-desc">首个发布候选，修复好友列表按键失效问题。</span>
+        </div>
+        <div class="version-item">
+            <span class="version-label">26.2-rc-2</span>
+            <span class="version-desc">第二个发布候选，修复玩家被困硫方怪洞及高空重生延迟问题。</span>
+        </div>
+    </div>
+</div>
+
+<nav class="toc">
+<h2>目录</h2>
+<ul>
+<li><a href="#section-1">新内容与物品</a>
+    <ul>
+    <li><a href="#section-1-1">新方块</a></li>
+    <li><a href="#section-1-2">新物品</a></li>
+    <li><a href="#section-1-3">新生物</a></li>
+    <li><a href="#section-1-4">新世界生成</a></li>
+    <li><a href="#section-1-5">新音乐</a></li>
+    <li><a href="#section-1-6">新进度</a></li>
+    </ul>
+</li>
+<li><a href="#section-2">游戏机制与战斗调整</a>
+    <ul>
+    <li><a href="#section-2-1">硫方怪的原型与物理机制</a></li>
+    <li><a href="#section-2-2">好友列表</a></li>
+    <li><a href="#section-2-3">其他生物行为调整</a></li>
+    </ul>
+</li>
+<li><a href="#section-3">技术性更新与数据驱动</a>
+    <ul>
+    <li><a href="#section-3-1">图形与性能</a></li>
+    <li><a href="#section-3-2">数据包与资源包</a></li>
+    <li><a href="#section-3-3">新属性</a></li>
+    <li><a href="#section-3-4">新命令与格式</a></li>
+    <li><a href="#section-3-5">标签</a></li>
+    </ul>
+</li>
+<li><a href="#section-4">用户界面与体验</a>
+    <ul>
+    <li><a href="#section-4-1">好友列表按钮</a></li>
+    <li><a href="#section-4-2">对局域网开放</a></li>
+    <li><a href="#section-4-3">全景图</a></li>
+    </ul>
+</li>
+<li><a href="#section-5">漏洞修复</a></li>
+</ul>
+</nav>
+
+<p>至此，若无严重漏洞，“混沌立方”小更新的开发已告结束，敬请期待下一个小更新的首个快照！</p>
+<p>距离南京市中考还有4天，祝各位考生：</p>
+<div class="exam-wish">
+    金榜题名
+</div>
+<p>更新内容如下文所述。</p>
+
+</div>
+<div class="content">
+    <h1 id="section-1">新内容与物品</h1>
+    <div class="subsection">
+        <h2 id="section-1-1">新方块</h2>
+        <div class="card-row">
+            <div class="item-card">
+                <img src="https://afulai2333.github.io/Images/26.2Release/Sulfur_JE1_BE1.png" alt="硫黄">
+                <div class="card-title"><strong>硫黄系列方块</strong></div>
+                <button class="card-button" onclick="openModal('sulfurModal')">查看详情</button>
+            </div>
+            <div class="item-card">
+                <img src="https://afulai2333.github.io/Images/26.2Release/Potent_Sulfur_JE1_BE1.png" alt="烈性硫黄">
+                <div class="card-title"><strong>烈性硫黄</strong></div>
+                <button class="card-button" onclick="openModal('potentSulfurModal')">查看详情</button>
+            </div>
+            <div class="item-card">
+                <img src="https://afulai2333.github.io/Images/26.2Release/Cinnabar_JE1_BE1.png" alt="朱砂">
+                <div class="card-title"><strong>朱砂系列方块</strong></div>
+                <button class="card-button" onclick="openModal('cinnabarModal')">查看详情</button>
+            </div>
+            <div class="item-card">
+                <img src="https://afulai2333.github.io/Images/26.2Release/Sulfur_Spike_Tip_%28U%29_JE1_BE1.png" alt="硫黄尖锥">
+                <div class="card-title"><strong>硫黄尖锥</strong></div>
+                <button class="card-button" onclick="openModal('sulfurSpikeModal')">查看详情</button>
+            </div>
+        </div>
+    </div>
+    <div class="subsection">
+        <h2 id="section-1-2">新物品</h2>
+        <div class="simple-card-row">
+            <div class="simple-card">
+                <img src="https://afulai2333.github.io/Images/26.2Release/Bucket_of_Sulfur_Cube_JE1_BE1.png" alt="硫方怪桶">
+                <div class="simple-card-title">硫方怪桶</div>
+                <div class="simple-card-desc">
+                    <ul>
+                        <li>通过对中型硫方怪使用铁桶获得。</li>
+                        <li>对方块使用时会将硫方怪释放出来。</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="simple-card">
+                <img src="https://afulai2333.github.io/Images/26.2Release/Music_Disc_Bounce_JE1_BE1.png" alt="音乐唱片Bounce">
+                <div class="simple-card-title">音乐唱片Bounce</div>
+                <div class="simple-card-desc">
+                    <ul>
+                        <li>加入了新的音乐唱片《Bounce》。</li>
+                        <li>音乐作者为fingerspit。</li>
+                        <li>可以在硫黄洞穴中的废弃矿井内的运输矿车中找到。</li>
+                        <li>稀有度为少见。</li>
+                        <li>通过红石比较器输出的红石信号强度为8。</li>
+                    </ul>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="bounce-progress"></div>
+                        <input type="range" class="progress-slider" id="bounce-slider" min="0" max="100" value="0" step="0.1">
+                    </div>
+                    <div class="progress-time">
+                        <span id="bounce-current-time">0:00</span>
+                        <span id="bounce-total-time">0:00</span>
+                    </div>
+                </div>
+                <button class="play-music-btn" id="bounce-play-btn" onclick="toggleMusic()">播放音乐</button>
+            </div>
+            <div class="simple-card">
+                <img src="https://afulai2333.github.io/Images/26.2Release/Sulfur_Cube_Spawn_Egg_JE1_BE1.png" alt="硫方怪刷怪蛋">
+                <div class="simple-card-title">硫方怪刷怪蛋</div>
+                <div class="simple-card-desc">
+                    <ul>
+                        <li>加入了硫方怪刷怪蛋。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="subsection">
+        <h2 id="section-1-3">新生物</h2>
+        <div class="card-row">
+            <div class="item-card">
+                <img src="https://afulai2333.github.io/Images/26.2Release/Sulfur_Cube_JE2.png" alt="硫方怪">
+                <div class="card-title"><strong>硫方怪</strong></div>
+                <button class="card-button" onclick="openModal('sulfurCubeModal')">查看详情</button>
+            </div>
+        </div>
+    </div>
+    <div class="subsection">
+        <h2 id="section-1-4">新世界生成</h2>
+        <div class="large-item-box">
+            <img src="https://afulai2333.github.io/Images/26.2Release/Sulfur%20Caves.png" alt="硫黄洞穴">
+            <div class="card-title"><strong>硫黄洞穴</strong></div>
+            <button class="card-button" onclick="openModal('sulfurCavesModal')">查看详情</button>
+        </div>
+        <div class="large-item-box">
+            <img src="https://afulai2333.github.io/Images/26.2Release/Sulfur%20Spring.png" alt="硫黄涌泉">
+            <div class="card-title"><strong>硫黄涌泉</strong></div>
+            <button class="card-button" onclick="openModal('sulfurSpringModal')">查看详情</button>
+        </div>
+    </div>
+    <div class="subsection">
+        <h2 id="section-1-5">新音乐</h2>
+        <p>加入了由fingerspit创作的5首新音乐：</p>
+        <div class="music-player-row">
+            <div class="music-player-card">
+                <div class="music-title">Ebb</div>
+                <div class="music-progress-container">
+                    <div class="music-progress-bar">
+                        <div class="music-progress-fill" id="ebb-progress"></div>
+                        <input type="range" class="music-progress-slider" id="ebb-slider" min="0" max="100" value="0" step="0.1">
+                    </div>
+                    <div class="music-time">
+                        <span id="ebb-current-time">0:00</span>
+                        <span id="ebb-total-time">0:00</span>
+                    </div>
+                </div>
+                <button class="music-play-btn" id="ebb-play-btn" onclick="toggleMusicPlayer('ebb')">播放</button>
+            </div>
+            <div class="music-player-card">
+                <div class="music-title">Home</div>
+                <div class="music-progress-container">
+                    <div class="music-progress-bar">
+                        <div class="music-progress-fill" id="home-progress"></div>
+                        <input type="range" class="music-progress-slider" id="home-slider" min="0" max="100" value="0" step="0.1">
+                    </div>
+                    <div class="music-time">
+                        <span id="home-current-time">0:00</span>
+                        <span id="home-total-time">0:00</span>
+                    </div>
+                </div>
+                <button class="music-play-btn" id="home-play-btn" onclick="toggleMusicPlayer('home')">播放</button>
+            </div>
+            <div class="music-player-card">
+                <div class="music-title">Memories</div>
+                <div class="music-progress-container">
+                    <div class="music-progress-bar">
+                        <div class="music-progress-fill" id="memories-progress"></div>
+                        <input type="range" class="music-progress-slider" id="memories-slider" min="0" max="100" value="0" step="0.1">
+                    </div>
+                    <div class="music-time">
+                        <span id="memories-current-time">0:00</span>
+                        <span id="memories-total-time">0:00</span>
+                    </div>
+                </div>
+                <button class="music-play-btn" id="memories-play-btn" onclick="toggleMusicPlayer('memories')">播放</button>
+            </div>
+            <div class="music-player-card">
+                <div class="music-title">Nightly</div>
+                <div class="music-progress-container">
+                    <div class="music-progress-bar">
+                        <div class="music-progress-fill" id="nightly-progress"></div>
+                        <input type="range" class="music-progress-slider" id="nightly-slider" min="0" max="100" value="0" step="0.1">
+                    </div>
+                    <div class="music-time">
+                        <span id="nightly-current-time">0:00</span>
+                        <span id="nightly-total-time">0:00</span>
+                    </div>
+                </div>
+                <button class="music-play-btn" id="nightly-play-btn" onclick="toggleMusicPlayer('nightly')">播放</button>
+            </div>
+            <div class="music-player-card">
+                <div class="music-title">Shores</div>
+                <div class="music-progress-container">
+                    <div class="music-progress-bar">
+                        <div class="music-progress-fill" id="shores-progress"></div>
+                        <input type="range" class="music-progress-slider" id="shores-slider" min="0" max="100" value="0" step="0.1">
+                    </div>
+                    <div class="music-time">
+                        <span id="shores-current-time">0:00</span>
+                        <span id="shores-total-time">0:00</span>
+                    </div>
+                </div>
+                <button class="music-play-btn" id="shores-play-btn" onclick="toggleMusicPlayer('shores')">播放</button>
+            </div>
+        </div>
+    </div>
+    <div class="subsection">
+        <h2 id="section-1-6">新进度</h2>
+        <div class="advancement-box">
+            <img src="https://afulai2333.github.io/Images/26.2Release/TNT_JE3_BE2.png" alt="坏了">
+            <div class="advancement-title"><strong>坏了（Uh Oh）</strong></div>
+            <div class="advancement-desc">让硫方怪吸收TNT获得。</div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <h1 id="section-2">游戏机制与战斗调整</h1>
+    <div class="subsection">
+        <h2 id="section-2-1">硫方怪的原型与物理机制</h2>
+        <p>硫方怪在吸收不同种类的方块后，会进入物体形态并获得对应的“原型”。原型由击中后的速度、弹性、地面摩擦力、空气阻力和浮力等物理属性区分，每种原型都有独特的受击和推动音效。</p>
+        <ul>
+            <li><strong>常规原型（7种）</strong>：
+                <ul>
+                    <li><strong>普通</strong>（吸收泥土类）：中等速度，中等弹性，中等地面摩擦力，低空气阻力，具有浮力。</li>
+                    <li><strong>弹性</strong>（吸收木头类）：高速度，高弹性，中等地面摩擦力，低空气阻力，具有浮力。</li>
+                    <li><strong>缓慢弹性</strong>（吸收石头和矿物类）：低速度，高弹性，中等地面摩擦力，中等空气阻力。</li>
+                    <li><strong>缓慢平移</strong>（吸收金属类）：低速度，低弹性，中等地面摩擦力，中等空气阻力。</li>
+                    <li><strong>快速平移</strong>（吸收有机类）：高速度，低弹性，中等地面摩擦力，低空气阻力。</li>
+                    <li><strong>轻盈</strong>（吸收羊毛类）：低速度，高弹性，中等地面摩擦力，高空气阻力，具有浮力。</li>
+                    <li><strong>快速滑行</strong>（吸收冰类）：高速度，无弹性，低地面摩擦力，低空气阻力。</li>
+                    <li><strong>缓慢滑行</strong>（吸收蘑菇类）：低速度，无弹性，低地面摩擦力，低空气阻力。</li>
+                </ul>
+            </li>
+            <li><strong>特殊原型（5种）</strong>：
+                <ul>
+                    <li><strong>高阻力</strong>（吸收灵魂沙/土）：速度极慢，低弹性，极高的地面摩擦力，低空气阻力。</li>
+                    <li><strong>黏性</strong>（吸收蜜脾块）：速度与快速平移相同，但具有极高地面摩擦力且无弹性。</li>
+                    <li><strong>爆炸</strong>（吸收TNT）：属性类似普通原型。可被红石、火源或爆炸点燃，分别会延迟6秒或0.75-3秒后爆炸。点燃后无法装桶、无法用剪刀移除方块、免疫大部分伤害，且爆炸后不会分裂成小型硫方怪。</li>
+                    <li><strong>高温</strong>（吸收岩浆块）：属性类似普通原型，但会像岩浆块一样伤害接触它的实体。</li>
+                </ul>
+            </li>
+        </ul>
+        <div class="prototype-searcher">
+            <h3>硫方怪原型查询</h3>
+            <div class="search-box">
+                <input type="text" id="blockInput" placeholder="输入方块名称……" onkeypress="if(event.key==='Enter')searchPrototype()">
+                <button onclick="searchPrototype()">搜索</button>
+            </div>
+            <div class="search-result" id="searchResult"></div>
+        </div>
+    </div>
+    <div class="subsection">
+        <h2 id="section-2-2">好友列表</h2>
+        <p>加入了好友列表功能，可通过主菜单或暂停菜单的“好友”按钮、或快捷键（默认为O键）打开。</p>
+        <ul>
+            <li>界面包含“好友”和“请求”两个标签页。可以添加、移除好友，发送、接受、拒绝好友请求。</li>
+            <li>好友列表中会显示对方的在线状态，包括：离线、在线、在世界中、在可加入的世界中。</li>
+            <li>好友请求的发送、接收和被接受，都会以弹窗形式通知玩家。</li>
+            <li>在“在线选项”中加入了好友清单的相关设置，包括是否启用通知、是否允许他人发送请求，以及控制自己在线状态可见度的选项。</li>
+        </ul>
+    </div>
+    <div class="subsection">
+        <h2 id="section-2-3">其他生物行为调整</h2>
+        <ul>
+            <li>流浪商人现在会出售硫黄尖锥。</li>
+            <li>调整了疣猪兽与僵尸疣猪兽的幼年个体的模型尺寸和骑乘位置，以匹配基岩版。</li>
+            <li>疣猪兽不再在和平难度下生成，并会在和平难度下消失。</li>
+            <li>对包括美西螈、骆驼、鸡、牛、山羊、海豚、猫、豹猫、狐狸、熊猫、猪、北极熊、绵羊、鱿鱼、狼、炽足兽等在内的多种生物的幼年个体的碰撞箱、视平线高度或骑乘位置进行了微调。</li>
+        </ul>
+    </div>
+</div>
+<div class="content">
+    <h1 id="section-3">技术性更新与数据驱动</h1>
+    <div class="subsection">
+        <h2 id="section-3-1">图形与性能</h2>
+        <ul>
+            <li>在视频设置中加入了“图形API”选项，可选择优先使用Vulkan、优先使用OpenGL或默认（当前为OpenGL）。Vulkan渲染为实验性功能，需设备支持Vulkan 1.2。</li>
+            <li>当粒子数量过多时，游戏不再移除现有粒子，而是随机选择一些粒子不渲染，以保持在性能上限以下。</li>
+        </ul>
+    </div>
+    <div class="subsection">
+        <h2 id="section-3-2">数据包与资源包</h2>
+        <div class="version-boxes">
+            <div class="version-box">
+                <div class="version-box-label">数据包版本</div>
+                <div class="version-change"><span class="old-version">101.1</span> <span class="arrow">→</span> <span class="new-version">107.1</span></div>
+            </div>
+            <div class="version-box">
+                <div class="version-box-label">资源包版本</div>
+                <div class="version-change"><span class="old-version">84.0</span> <span class="arrow">→</span> <span class="new-version">88.0</span></div>
+            </div>
+        </div>
+        <ul>
+            <li>加入了<code>minecraft:sulfur_cube_archetype</code>注册表，用于定义硫方怪的原型及其物理、声音和爆炸等属性。</li>
+            <li>加入了<code>sulfur_cube_content</code>组件，用于标识硫方怪内部吸收的物品。</li>
+            <li>加入了<code>sequence</code>（按顺序生成地物）、<code>template</code>（从给定权重的模板中随机放置）和<code>weighted_random_selector</code>（按权重随机选择一个地物生成）三种新地物类型。</li>
+            <li>将原有的滴水石锥地物类型重命名为更通用的<code>speleothem</code>（洞穴堆积物），并增加了可配置字段，使其可以同时支持滴水石锥和硫黄尖锥的生成。</li>
+            <li>告示牌和悬挂式告示牌现在使用方块模型，纹理可通过自动化工具<a href="https://github.com/Mojang/slicer/releases">Slicer</a>辅助升级。</li>
+        </ul>
+    </div>
+    <div class="subsection">
+        <h2 id="section-3-3">新属性</h2>
+        <ul>
+            <li>弹性：决定实体与方块或实体碰撞后速度恢复的比例，范围0.0~1.0。</li>
+            <li>摩擦力修正系数：影响实体在地面的摩擦力，范围0.0~2048.0。默认1.0，小于1.0时地面更滑，大于1.0则更粘。</li>
+            <li>空气阻力修正系数：影响实体在空气中移动时受到的阻力，范围0.0~2048.0。默认1.0，数值越高阻力越大。</li>
+            <li>名称标签距离：控制实体名称标签的可见距离，范围0.0~512.0，默认64格。</li>
+            <li>名称标签记分板距离：控制<code>below_name</code>记分板显示模式的可见距离，范围0.0~512.0，默认10格。</li>
+        </ul>
+    </div>
+    <div class="subsection">
+        <h2 id="section-3-4">新命令与格式</h2>
+        <ul>
+            <li>加入了<code>/unpublish</code>命令，如果当前为局域网开放世界，则取消开放。</li>
+            <li>加入了<code>minecraft:entity_tags</code>实体子谓词，可用于检测实体的标签（由<code>/tag</code>命令设置）。整个实体谓词格式重构为更清晰的组件式结构。</li>
+        </ul>
+    </div>
+    <div class="subsection">
+        <h2 id="section-3-5">标签</h2>
+        <ul>
+            <li>加入了如<code>#speleothems</code>（洞穴堆积物）、<code>#causes_periodic_geyser_eruptions</code>（导致间歇泉周期性喷发）、<code>#shears_extreme_breaking_speed</code>（剪刀破坏速度15倍）等一系列功能性方块标签。</li>
+            <li>加入了定义硫方怪可吸收物品及其对应原型的物品标签，如<code>#sulfur_cube_swallowable</code>和<code>#sulfur_cube_archetype/bouncy</code>等。</li>
+            <li>加入了<code>#not_affected_by_geysers</code>实体类型标签，标记不受间歇泉影响的实体。</li>
+            <li>加入了<code>sulfur_cube_with_block_immune_to</code>伤害类型标签，定义物体形态硫方怪免疫的伤害。</li>
+        </ul>
+    </div>
+</div>
+<div class="content">
+    <h1 id="section-4">用户界面与体验</h1>
+    <div class="subsection">
+        <h2 id="section-4-1">好友列表按钮</h2>
+        <p>在主菜单和暂停菜单加入了“好友”按钮，按钮上会显示未处理的好友请求数量角标。</p>
+    </div>
+    <div class="subsection">
+        <h2 id="section-4-2">对局域网开放</h2>
+        <p>替换了原有“对局域网开放”屏幕，新的屏幕允许房主为其他加入的玩家单独配置游戏模式和允许命令的权限。</p>
+    </div>
+    <div class="subsection">
+        <h2 id="section-4-3">全景图</h2>
+        <p>更新了主菜单的全景图背景，以匹配“混沌立方”小更新的主题。</p>
+    </div>
+</div>
+<div class="content">
+    <h1 id="section-5">漏洞修复</h1>
+    <p>本次更新共修复了超过100个漏洞：</p>
+    <ul>
+        <li>修复了数个导致游戏帧率严重下降或游戏崩溃的问题，并优化了旧世界的升级速度。</li>
+        <li>修正了大量幼年生物（如疣猪兽、美西螈、骆驼等）碰撞箱尺寸和骑乘位置不正确、纹理错误等问题，并调整了部分生物（如豹猫、猪灵）在和平难度下的生成与消失逻辑。</li>
+        <li>解决了包括钓鱼竿纹理显示、绊线重复触发、营火影响蜜蜂工作效率、某些情况下物品复制或世界边界重置等游戏机制错误。</li>
+        <li>纠正了多处界面文本大小写不一致、缺少冠词或连字符的拼写和语法问题，并修复了一些菜单元素显示或动画效果异常。</li>
+        <li>修复了床放置延迟、水下迷雾渲染错误、发光效果失效、粒子效果消失等视觉和方块更新相关的问题。</li>
+    </ul>
+</div>
+</div>
+</div>
+
+<div class="floating-toc open" id="floatingToc">
+    <div class="floating-toc-header" onclick="toggleFloatingToc()">
+        <span>目录</span>
+        <span class="floating-toc-arrow">▼</span>
+    </div>
+    <div class="floating-toc-content" id="floatingTocContent">
+        <ul>
+            <li><a href="#section-1">新内容与物品</a>
+                <ul>
+                <li><a href="#section-1-1">新方块</a></li>
+                <li><a href="#section-1-2">新物品</a></li>
+                <li><a href="#section-1-3">新生物</a></li>
+                <li><a href="#section-1-4">新世界生成</a></li>
+                <li><a href="#section-1-5">新音乐</a></li>
+                <li><a href="#section-1-6">新进度</a></li>
+                </ul>
+            </li>
+            <li><a href="#section-2">游戏机制与战斗调整</a>
+                <ul>
+                <li><a href="#section-2-1">硫方怪的原型与物理机制</a></li>
+                <li><a href="#section-2-2">好友列表</a></li>
+                <li><a href="#section-2-3">其他生物行为调整</a></li>
+                </ul>
+            </li>
+            <li><a href="#section-3">技术性更新与数据驱动</a>
+                <ul>
+                <li><a href="#section-3-1">图形与性能</a></li>
+                <li><a href="#section-3-2">数据包与资源包</a></li>
+                <li><a href="#section-3-3">新属性</a></li>
+                <li><a href="#section-3-4">新命令与格式</a></li>
+                <li><a href="#section-3-5">标签</a></li>
+                </ul>
+            </li>
+            <li><a href="#section-4">用户界面与体验</a>
+                <ul>
+                <li><a href="#section-4-1">好友列表按钮</a></li>
+                <li><a href="#section-4-2">对局域网开放</a></li>
+                <li><a href="#section-4-3">全景图</a></li>
+                </ul>
+            </li>
+            <li><a href="#section-5">漏洞修复</a></li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    const blockPrototypes = {
+        "弹性": ["橡木原木", "云杉原木", "白桦原木", "丛林原木", "金合欢原木", "深色橡木原木", "红树原木", "樱花原木", "苍白橡木原木", "绯红菌柄", "诡异菌柄", "去皮橡木原木", "去皮云杉原木", "去皮白桦原木", "去皮丛林原木", "去皮金合欢原木", "去皮深色橡木原木", "去皮红树原木", "去皮樱花原木", "去皮苍白橡木原木", "去皮绯红菌柄", "去皮诡异菌柄", "竹块", "去皮竹块", "橡木", "云杉木", "白桦木", "丛林木", "金合欢木", "深色橡木", "红树木", "樱花木", "苍白橡木", "绯红菌核", "诡异菌核", "去皮橡木", "去皮云杉木", "去皮白桦木", "去皮丛林木", "去皮金合欢木", "去皮深色橡木", "去皮红树木", "去皮樱花木", "去皮苍白橡木", "去皮绯红菌核", "去皮诡异菌核", "橡木木板", "云杉木板", "白桦木板", "丛林木板", "金合欢木板", "深色橡木木板", "红树木板", "樱花木板", "竹板", "苍白橡木木板", "绯红木板", "诡异木板", "竹马赛克"],
+        "普通": ["泥土", "砂土", "缠根泥土", "灰化土", "草方块", "煤炭块", "黏土", "白色混凝土粉末", "淡灰色混凝土粉末", "灰色混凝土粉末", "黑色混凝土粉末", "棕色混凝土粉末", "红色混凝土粉末", "橙色混凝土粉末", "黄色混凝土粉末", "黄绿色混凝土粉末", "绿色混凝土粉末", "青色混凝土粉末", "淡蓝色混凝土粉末", "蓝色混凝土粉末", "紫色混凝土粉末", "品红色混凝土粉末", "粉红色混凝土粉末", "泥巴", "泥坯", "沾泥的红树根", "骨块"],
+        "缓慢平移": ["铁矿石", "深层铁矿石", "粗铁块", "铁块", "金矿石", "深层金矿石", "下界金矿石", "粗金块", "金块", "铜矿石", "深层铜矿石", "粗铜块", "铜块", "斑驳的铜块", "锈蚀的铜块", "氧化的铜块", "涂蜡的铜块", "涂蜡的斑驳铜块", "涂蜡的锈蚀铜块", "涂蜡的氧化铜块", "切制铜块", "斑驳的切制铜块", "锈蚀的切制铜块", "氧化的切制铜块", "涂蜡的切制铜块", "涂蜡的斑驳切制铜块", "涂蜡的锈蚀切制铜块", "涂蜡的氧化切制铜块", "雕纹铜块", "斑驳的雕纹铜块", "锈蚀的雕纹铜块", "氧化的雕纹铜块", "涂蜡的雕纹铜块", "涂蜡的斑驳雕纹铜块", "涂蜡的锈蚀雕纹铜块", "涂蜡的氧化雕纹铜块", "铜灯", "斑驳的铜灯", "锈蚀的铜灯", "氧化的铜灯", "涂蜡的铜灯", "涂蜡的斑驳铜灯", "涂蜡的锈蚀铜灯", "涂蜡的氧化铜灯", "下界合金块", "远古残骸"],
+        "快速平移": ["管珊瑚块", "脑纹珊瑚块", "气泡珊瑚块", "火珊瑚块", "鹿角珊瑚块", "失活的管珊瑚块", "失活的脑纹珊瑚块", "失活的气泡珊瑚块", "失活的火珊瑚块", "失活的鹿角珊瑚块", "南瓜", "雕刻南瓜", "西瓜", "干海带块", "干草捆", "苔藓块", "苍白苔藓块", "赭黄蛙明灯", "青翠蛙明灯", "珠光蛙明灯", "海绵", "湿海绵", "南瓜灯", "树脂块", "树脂砖块", "雕纹树脂砖块"],
+        "轻盈": ["白色羊毛", "淡灰色羊毛", "灰色羊毛", "黑色羊毛", "棕色羊毛", "红色羊毛", "橙色羊毛", "黄色羊毛", "黄绿色羊毛", "绿色羊毛", "青色羊毛", "淡蓝色羊毛", "蓝色羊毛", "紫色羊毛", "品红色羊毛", "粉红色羊毛"],
+        "快速滑行": ["浮冰", "蓝冰", "雪块"],
+        "缓慢滑行": ["蘑菇柄", "棕色蘑菇方块", "红色蘑菇方块", "下界疣块", "诡异疣块", "菌光体", "菌丝体"],
+        "缓慢弹性": ["石头", "石砖", "裂纹石砖", "雕纹石砖", "苔石砖", "平滑石头", "花岗岩", "磨制花岗岩", "闪长岩", "磨制闪长岩", "安山岩", "磨制安山岩", "圆石", "苔石", "煤矿石", "深层煤矿石", "钻石矿石", "深层钻石矿石", "钻石块", "绿宝石矿石", "深层绿宝石矿石", "绿宝石块", "青金石矿石", "深层青金石矿石", "青金石块", "红石矿石", "深层红石矿石", "深板岩", "深板岩圆石", "磨制深板岩", "雕纹深板岩", "深板岩砖", "裂纹深板岩砖", "深板岩瓦", "砂岩", "雕纹砂岩", "平滑砂岩", "切制砂岩", "红砂岩", "雕纹红砂岩", "平滑红砂岩", "切制红砂岩", "陶瓦", "白色陶瓦", "淡灰色陶瓦", "灰色陶瓦", "黑色陶瓦", "棕色陶瓦", "红色陶瓦", "橙色陶瓦", "黄色陶瓦", "黄绿色陶瓦", "绿色陶瓦", "青色陶瓦", "淡蓝色陶瓦", "蓝色陶瓦", "紫色陶瓦", "品红色陶瓦", "粉红色陶瓦", "白色带釉陶瓦", "淡灰色带釉陶瓦", "灰色带釉陶瓦", "黑色带釉陶瓦", "棕色带釉陶瓦", "红色带釉陶瓦", "橙色带釉陶瓦", "黄色带釉陶瓦", "黄绿色带釉陶瓦", "绿色带釉陶瓦", "青色带釉陶瓦", "淡蓝色带釉陶瓦", "蓝色带釉陶瓦", "紫色带釉陶瓦", "品红色带釉陶瓦", "粉红色带釉陶瓦", "白色混凝土", "淡灰色混凝土", "灰色混凝土", "黑色混凝土", "棕色混凝土", "红色混凝土", "橙色混凝土", "黄色混凝土", "黄绿色混凝土", "绿色混凝土", "青色混凝土", "淡蓝色混凝土", "蓝色混凝土", "紫色混凝土", "品红色混凝土", "粉红色混凝土", "红砖块", "泥砖", "滴水石块", "紫水晶块", "方解石", "凝灰岩", "凝灰岩砖", "磨制凝灰岩", "雕纹凝灰岩", "雕纹凝灰岩砖", "海晶石", "暗海晶石", "海晶石砖", "海晶灯", "硫黄", "硫黄砖", "磨制硫黄", "雕纹硫黄", "朱砂", "朱砂砖", "磨制朱砂", "雕纹朱砂", "下界岩", "黑石", "镶金黑石", "磨制黑石", "雕纹磨制黑石", "磨制黑石砖", "裂纹磨制黑石砖", "黑曜石", "哭泣的黑曜石", "下界砖块", "裂纹下界砖块", "雕纹下界砖块", "红色下界砖块", "荧石", "玄武岩", "平滑玄武岩", "磨制玄武岩", "下界石英矿石", "石英块", "雕纹石英块", "石英柱", "平滑石英块", "石英砖", "绯红菌岩", "诡异菌岩", "末地石", "末地石砖", "紫珀块", "紫珀柱", "侦测器", "红石灯"],
+        "黏性": ["蜜脾块"],
+        "高阻力": ["灵魂沙", "灵魂土"],
+        "爆炸": ["TNT"],
+        "高温": ["岩浆块"]
+    };
+
+    function searchPrototype() {
+        const input = document.getElementById('blockInput');
+        const result = document.getElementById('searchResult');
+        const searchText = input.value.trim();
+
+        if (!searchText) {
+            result.classList.remove('show');
+            setTimeout(() => {
+                result.className = 'search-result not-found';
+                result.textContent = '请输入方块名称。';
+                result.classList.add('show');
+            }, 200);
+            return;
+        }
+
+        let foundPrototype = null;
+        for (const [prototype, blocks] of Object.entries(blockPrototypes)) {
+            if (blocks.includes(searchText)) {
+                foundPrototype = prototype;
+                break;
+            }
+        }
+
+        result.classList.remove('show');
+        setTimeout(() => {
+            if (foundPrototype) {
+                result.className = 'search-result found';
+                result.innerHTML = `<strong>${searchText}</strong>对应的原型是：<strong>${foundPrototype}</strong>。`;
+            } else {
+                result.className = 'search-result not-found';
+                result.textContent = '未找到该方块，请检查输入或该方块无法放入硫方怪。';
+            }
+            result.classList.add('show');
+        }, 200);
+    }
+
+    function toggleFloatingToc() {
+        const floatingToc = document.getElementById('floatingToc');
+        const arrow = document.querySelector('.floating-toc-arrow');
+        floatingToc.classList.toggle('open');
+        if (floatingToc.classList.contains('open')) {
+            arrow.textContent = '▼';
+        } else {
+            arrow.textContent = '▲';
+        }
+    }
+
+    function checkTocVisibility() {
+        const toc = document.querySelector('.toc');
+        const floatingToc = document.getElementById('floatingToc');
+        if (!toc || !floatingToc) return;
+
+        const tocRect = toc.getBoundingClientRect();
+        const isVisible = tocRect.top >= 0 && tocRect.bottom <= window.innerHeight;
+
+        if (!isVisible) {
+            floatingToc.classList.add('show');
+        } else {
+            floatingToc.classList.remove('show');
+        }
+    }
+
+    function checkTocVisibility() {
+        const toc = document.querySelector('.toc');
+        const floatingToc = document.getElementById('floatingToc');
+        if (!toc || !floatingToc) return;
+
+        const tocRect = toc.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        const isVisible = tocRect.top < windowHeight && tocRect.bottom > 0;
+
+        if (!isVisible) {
+            floatingToc.classList.add('show');
+        } else {
+            floatingToc.classList.remove('show');
+        }
+    }
+
+    window.addEventListener('scroll', checkTocVisibility);
+    window.addEventListener('resize', checkTocVisibility);
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        checkTocVisibility();
+    });
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', checkTocVisibility);
+    } else {
+        checkTocVisibility();
+    }
+
+    function openModal(modalId) {
+        document.getElementById(modalId).classList.add('show');
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).classList.remove('show');
+    }
+
+    let bounceAudio = null;
+    let bounceSlider = null;
+    let bounceProgress = null;
+    let bounceCurrentTime = null;
+    let bounceTotalTime = null;
+
+    function initAudioPlayer() {
+        bounceSlider = document.getElementById('bounce-slider');
+        bounceProgress = document.getElementById('bounce-progress');
+        bounceCurrentTime = document.getElementById('bounce-current-time');
+        bounceTotalTime = document.getElementById('bounce-total-time');
+
+        if (bounceSlider) {
+            bounceSlider.addEventListener('input', function() {
+                if (bounceAudio) {
+                    const percentage = parseFloat(this.value) / 100;
+                    bounceAudio.currentTime = percentage * bounceAudio.duration;
+                    updateProgress();
+                }
+            });
+        }
+    }
+
+    function formatTime(seconds) {
+        if (isNaN(seconds) || !isFinite(seconds)) {
+            return '0:00';
+        }
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return mins + ':' + (secs < 10 ? '0' + secs : secs);
+    }
+
+    function updateProgress() {
+        if (bounceAudio && bounceProgress && bounceCurrentTime) {
+            const percentage = (bounceAudio.currentTime / bounceAudio.duration) * 100;
+            bounceProgress.style.width = percentage + '%';
+            bounceCurrentTime.textContent = formatTime(bounceAudio.currentTime);
+            if (bounceSlider) {
+                bounceSlider.value = percentage;
+            }
+        }
+    }
+
+    function toggleMusic() {
+        const btn = document.getElementById('bounce-play-btn');
+        
+        if (bounceAudio && !bounceAudio.paused) {
+            bounceAudio.pause();
+            btn.textContent = '播放音乐';
+        } else {
+            stopAllAudioPlayers();
+            if (!bounceAudio) {
+                bounceAudio = new Audio('https://afulai2333.github.io/Files/Bounce.mp3');
+                
+                bounceAudio.addEventListener('loadedmetadata', function() {
+                    if (bounceTotalTime) {
+                        bounceTotalTime.textContent = formatTime(bounceAudio.duration);
+                    }
+                });
+
+                bounceAudio.addEventListener('timeupdate', updateProgress);
+
+                bounceAudio.addEventListener('ended', function() {
+                    if (btn) {
+                        btn.textContent = '播放音乐';
+                    }
+                    if (bounceProgress) {
+                        bounceProgress.style.width = '0%';
+                    }
+                    if (bounceSlider) {
+                        bounceSlider.value = '0';
+                    }
+                    if (bounceCurrentTime) {
+                        bounceCurrentTime.textContent = '0:00';
+                    }
+                });
+
+                bounceAudio.addEventListener('canplaythrough', function() {
+                    if (btn.textContent === '加载中……') {
+                        bounceAudio.play().catch(err => {
+                            console.log('播放失败:', err);
+                            btn.textContent = '播放音乐';
+                        });
+                        btn.textContent = '暂停播放';
+                    }
+                });
+
+                bounceAudio.addEventListener('error', function() {
+                    if (btn) {
+                        btn.textContent = '播放失败';
+                    }
+                });
+            }
+
+            if (bounceAudio.readyState >= 4) {
+                bounceAudio.play().catch(err => {
+                    console.log('播放失败:', err);
+                });
+                btn.textContent = '暂停播放';
+            } else {
+                btn.textContent = '加载中……';
+            }
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAudioPlayer);
+    } else {
+        initAudioPlayer();
+    }
+
+    const audioPlayers = {};
+    const musicFiles = {
+        ebb: 'Ebb.mp3',
+        home: 'Home.mp3',
+        memories: 'Memories.mp3',
+        nightly: 'Nightly.mp3',
+        shores: 'Shores.mp3'
+    };
+
+    function toggleMusicPlayer(playerId) {
+        const btn = document.getElementById(playerId + '-play-btn');
+        const progress = document.getElementById(playerId + '-progress');
+        const slider = document.getElementById(playerId + '-slider');
+        const currentTime = document.getElementById(playerId + '-current-time');
+        const totalTime = document.getElementById(playerId + '-total-time');
+
+        if (!audioPlayers[playerId]) {
+            audioPlayers[playerId] = {
+                audio: new Audio('http://afulai2333.github.io/Files/' + musicFiles[playerId]),
+                progress: progress,
+                slider: slider,
+                currentTime: currentTime,
+                totalTime: totalTime,
+                btn: btn
+            };
+
+            const player = audioPlayers[playerId];
+
+            player.audio.addEventListener('loadedmetadata', function() {
+                if (player.totalTime) {
+                    player.totalTime.textContent = formatTime(player.audio.duration);
+                }
+            });
+
+            player.audio.addEventListener('timeupdate', function() {
+                if (player.audio && player.progress && player.currentTime) {
+                    const percentage = (player.audio.currentTime / player.audio.duration) * 100;
+                    player.progress.style.width = percentage + '%';
+                    player.currentTime.textContent = formatTime(player.audio.currentTime);
+                    if (player.slider) {
+                        player.slider.value = percentage;
+                    }
+                }
+            });
+
+            player.audio.addEventListener('ended', function() {
+                if (player.btn) {
+                    player.btn.textContent = '播放';
+                }
+                if (player.progress) {
+                    player.progress.style.width = '0%';
+                }
+                if (player.slider) {
+                    player.slider.value = '0';
+                }
+                if (player.currentTime) {
+                    player.currentTime.textContent = '0:00';
+                }
+            });
+
+            player.slider.addEventListener('input', function() {
+                if (player.audio) {
+                    const percentage = parseFloat(this.value) / 100;
+                    player.audio.currentTime = percentage * player.audio.duration;
+                }
+            });
+
+            player.audio.addEventListener('canplaythrough', function() {
+                if (player.btn.textContent === '加载中……') {
+                    player.audio.play().catch(err => {
+                        console.log('播放失败:', err);
+                        player.btn.textContent = '播放';
+                    });
+                    player.btn.textContent = '暂停';
+                }
+            });
+
+            player.audio.addEventListener('error', function() {
+                if (player.btn) {
+                    player.btn.textContent = '播放失败';
+                }
+            });
+        }
+
+        const player = audioPlayers[playerId];
+
+        if (player.audio && !player.audio.paused) {
+            player.audio.pause();
+            btn.textContent = '播放';
+        } else {
+            stopAllAudioPlayers();
+            stopBounceAudio();
+
+            if (player.audio.readyState >= 4) {
+                player.audio.play().catch(err => {
+                    console.log('播放失败:', err);
+                });
+                btn.textContent = '暂停';
+            } else {
+                btn.textContent = '加载中……';
+            }
+        }
+    }
+
+    function stopAllAudioPlayers() {
+        for (const id in audioPlayers) {
+            if (audioPlayers[id].audio && !audioPlayers[id].audio.paused) {
+                audioPlayers[id].audio.pause();
+                audioPlayers[id].btn.textContent = '播放';
+                audioPlayers[id].progress.style.width = '0%';
+                audioPlayers[id].slider.value = '0';
+                audioPlayers[id].currentTime.textContent = '0:00';
+            }
+        }
+    }
+
+    function stopBounceAudio() {
+        if (bounceAudio && !bounceAudio.paused) {
+            bounceAudio.pause();
+            const btn = document.getElementById('bounce-play-btn');
+            if (btn) btn.textContent = '播放音乐';
+            if (bounceProgress) bounceProgress.style.width = '0%';
+            if (bounceSlider) bounceSlider.value = '0';
+            if (bounceCurrentTime) bounceCurrentTime.textContent = '0:00';
+        }
+    }
+</script>
+<div class="modal-overlay" id="sulfurModal" onclick="closeModal('sulfurModal')">
+    <div class="modal" onclick="event.stopPropagation()">
+        <button class="modal-close" onclick="closeModal('sulfurModal')">×</button>
+        <div class="modal-header">
+            <h3>硫黄系列方块</h3>
+        </div>
+        <div class="modal-content">
+            <p><strong>硫黄（Sulfur）</strong>是构成硫黄洞穴生物群系的主要建筑方块，整个系列以它为基础展开。</p>
+            <ul>
+                <li><strong>基础方块</strong>：
+                    <ul>
+                        <li><strong>硫黄</strong>：在硫黄洞穴中自然生成的岩石类方块。使用镐进行挖掘。</li>
+                        <li><strong>磨制硫黄</strong>：由硫黄加工而成，表面更加光滑。</li>
+                        <li><strong>硫黄砖</strong>：由硫黄加工而成，呈现出砖块的纹路。</li>
+                        <li><strong>雕纹硫黄</strong>：由硫黄加工而成，表面带有独特的雕纹图案。</li>
+                    </ul>
+                </li>
+                <li><strong>变种方块</strong>：
+                    <ul>
+                        <li>上述基础方块中，<strong>硫黄、磨制硫黄和硫黄砖</strong>这三种方块，各自都拥有对应的<strong>楼梯、台阶和墙</strong>变种，为建筑提供了丰富的形状选择。</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="potentSulfurModal" onclick="closeModal('potentSulfurModal')">
+    <div class="modal" onclick="event.stopPropagation()">
+        <button class="modal-close" onclick="closeModal('potentSulfurModal')">×</button>
+        <div class="modal-header">
+            <h3>烈性硫黄</h3>
+        </div>
+        <div class="modal-content">
+            <p><strong>烈性硫黄（Potent Sulfur）</strong>是一种具有特殊功能的方块，它既是硫黄洞穴景观的一部分，也是一个能产生气泡柱和间歇泉的活动组件。</p>
+            <ul>
+                <li><p><strong>生成与获取</strong></p>
+                    <ul>
+                        <li><strong>自然生成</strong>：在硫黄洞穴生物群系内的硫黄池及硫黄涌泉地物中自然生成。</li>
+                        <li><strong>合成</strong>：可由9个硫黄合成获得。</li>
+                    </ul>
+                </li>
+                <li><p><strong>外观与功能：气泡柱</strong></p>
+                    <ul>
+                        <li>当烈性硫黄上方存在水源时，它会向外释放气泡，形成类似气泡柱的效果。</li>
+                        <li><strong>特殊效果</strong>：如果上方的水源不超过4格，气泡会直达水面，并在半径3格的水面范围内产生黄色粒子效果。进入该区域的玩家会获得反胃状态效果。</li>
+                    </ul>
+                </li>
+                <li><p><strong>间歇泉</strong></p>
+                    <ul>
+                        <li>烈性硫黄在满足特定条件时，能将上方的静水转变为周期或持续喷发的<strong>间歇泉</strong>，向上推动实体。</li>
+                        <li><strong>触发条件</strong>：烈性硫黄必须放置在<strong>岩浆块</strong>或<strong>熔岩</strong>的上方，且其上方的<strong>1到4格</strong>范围内均为水源方块。同时，水面的最上方一格必须是<strong>空气</strong>或无碰撞体积的方块。</li>
+                        <li><strong>喷发模式</strong>：
+                            <ul>
+                                <li><strong>周期性喷发</strong>：当烈性硫黄放置在岩浆块上方时，间歇泉会周期性地喷发和停歇，其节奏由方块的具体位置决定。</li>
+                                <li><strong>持续性喷发</strong>：当烈性硫黄直接放置在熔岩源上方时，间歇泉会持续不断地喷发，但其发出的声音相比前者稍弱。</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="cinnabarModal" onclick="closeModal('cinnabarModal')">
+    <div class="modal" onclick="event.stopPropagation()">
+        <button class="modal-close" onclick="closeModal('cinnabarModal')">×</button>
+        <div class="modal-header">
+            <h3>朱砂系列方块</h3>
+        </div>
+        <div class="modal-content">
+            <p><strong>朱砂（Cinnabar）</strong>是构成硫黄洞穴生物群系的另一种主要岩石方块，与硫黄系列共同构成了该群系的独特景观。该系列同样拥有完整的建筑方块变种。</p>
+            <ul>
+                <li><strong>基础方块</strong>：
+                    <ul>
+                        <li><strong>朱砂</strong>：在硫黄洞穴中自然生成，是朱砂系列的基础材质。需要使用镐进行挖掘。</li>
+                        <li><strong>磨制朱砂</strong>：由朱砂加工而成，表面更加光滑。</li>
+                        <li><strong>朱砂砖</strong>：由朱砂加工而成，呈现出砖块的纹路。</li>
+                        <li><strong>雕纹朱砂</strong>：由朱砂加工而成，表面带有独特的雕纹图案。</li>
+                    </ul>
+                </li>
+                <li><strong>变种方块</strong>：
+                    <ul>
+                        <li>与硫黄系列一致，<strong>朱砂、磨制朱砂和朱砂砖</strong>这三种方块，也各自都拥有对应的<strong>楼梯、台阶和墙</strong>变种，提供了多样化的建筑选择。</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="sulfurSpikeModal" onclick="closeModal('sulfurSpikeModal')">
+    <div class="modal" onclick="event.stopPropagation()">
+        <button class="modal-close" onclick="closeModal('sulfurSpikeModal')">×</button>
+        <div class="modal-header">
+            <h3>硫黄尖锥</h3>
+        </div>
+        <div class="modal-content">
+            <p><strong>硫黄尖锥（Sulfur Spike）</strong>是一种在硫黄洞穴中自然生成的新方块，其形态和行为与滴水石锥类似，但又有许多独特之处。</p>
+            <ul>
+                <li><strong>生成与获取</strong>
+                    <ul>
+                        <li><strong>自然生成</strong>：在<strong>硫黄洞穴</strong>生物群系中的<strong>硫黄</strong>方块上自然生成。</li>
+                        <li><strong>交易获取</strong>：可向<strong>流浪商人</strong>购买获得。</li>
+                    </ul>
+                </li>
+                <li><strong>形态与放置</strong>
+                    <ul>
+                        <li><strong>钟乳石形态</strong>：放置在方块的下表面时形成，向下生长。</li>
+                        <li><strong>石笋形态</strong>：放置在方块的上表面时形成，向上生长。</li>
+                        <li><strong>石柱形态</strong>：当相邻的钟乳石末端和石笋末端接触时，会自动连接形成石柱。但如果在潜行状态下放置，则不会触发此连接。</li>
+                    </ul>
+                </li>
+                <li><strong>生长机制</strong>
+                    <ul>
+                        <li>当钟乳石形态的上方是<strong>硫黄</strong>方块时，它会缓慢向下生长（最多两格高）。</li>
+                        <li>同时，其正下方的方块上也会开始缓慢向上生长出石笋。</li>
+                    </ul>
+                </li>
+                <li><strong>破坏与掉落</strong>
+                    <ul>
+                        <li><strong>石笋形态</strong>：当下方没有方块支撑时，会被破坏并掉落。</li>
+                        <li><strong>钟乳石形态</strong>：当上方没有方块支撑时，会变成<strong>下落的方块</strong>，砸到实体会造成<strong>较大伤害</strong>。</li>
+                        <li><strong>远程破坏</strong>：可被<strong>三叉戟</strong>击中破坏。</li>
+                    </ul>
+                </li>
+                <li><strong>与滴水石锥的差异</strong>
+                    <ul>
+                        <li><strong>无摔落伤害</strong>：玩家摔落到石笋尖端<strong>不会</strong>增加摔落伤害，这点与致命的滴水石锥完全不同。</li>
+                        <li><strong>无液体滴落</strong>：钟乳石形态<strong>不会</strong>像滴水石锥那样滴落水或熔岩粒子。</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="modal-overlay" id="sulfurCubeModal" onclick="closeModal('sulfurCubeModal')">
+    <div class="modal" onclick="event.stopPropagation()">
+        <button class="modal-close" onclick="closeModal('sulfurCubeModal')">×</button>
+        <div class="modal-header">
+            <h3>硫方怪</h3>
+        </div>
+        <div class="modal-content">
+            <p><b>硫方怪（Sulfur Cube）</b>是新的友好生物，在硫黄洞穴中自然生成。</p>
+            <ul>
+                <li><strong>吸收方块</strong>：玩家手持方块时与其交互，它会吸收该方块并禁用自身AI，变成一个可由玩家推动的物理物体。</li>
+                <li><strong>移除方块</strong>：玩家手持剪刀时与内含方块的硫方怪交互，可以剪下方块并使其重新启用AI。</li>
+                <li><strong>跟随行为</strong>：会跟随手持自己能吸收方块的玩家。</li>
+                <li><strong>拾取行为</strong>：会寻找附近的方块物品实体，并向其移动以吸收它们。</li>
+                <li><strong>分裂机制</strong>：死亡时分裂成两个小型硫方怪。</li>
+                <li><strong>成长机制</strong>：小型硫方怪可以用黏液球吸引和喂食，长成中型硫方怪。</li>
+                <li><strong>物体形态</strong>：内含方块时，其是一个可被玩家通过攻击和推动来与之交互的物体，且不会受到摔落伤害或来自玩家的伤害。</li>
+                <li><strong>工具交互</strong>：中型硫方怪可以用铁桶装起。发射器可以为其吸收、更换方块，也可以用剪刀移除其内含的方块，还可以用硫方怪桶生成一个硫方怪。</li>
+                <li><strong>原型系统</strong>：内含方块的硫方怪拥有13种不同的原型，决定了其物理属性。</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="modal-overlay" id="sulfurCavesModal" onclick="closeModal('sulfurCavesModal')">
+    <div class="modal" onclick="event.stopPropagation()">
+        <button class="modal-close" onclick="closeModal('sulfurCavesModal')">×</button>
+        <div class="modal-header">
+            <h3>硫黄洞穴</h3>
+        </div>
+        <div class="modal-content">
+            <p><b>硫黄洞穴（Sulfur Caves）</b>是新的洞穴类生物群系。</p>
+            <ul>
+                <li>会在主世界非河流生物群系的地下或地表生成，但更少生成于海洋、丘陵或山地下方。</li>
+                <li>由硫黄和朱砂系列方块构成。</li>
+                <li>内部会生成硫黄池（包含少量烈性硫黄）和硫黄尖锥簇。</li>
+                <li>硫方怪和洞穴蜘蛛会在其中生成。</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="modal-overlay" id="sulfurSpringModal" onclick="closeModal('sulfurSpringModal')">
+    <div class="modal" onclick="event.stopPropagation()">
+        <button class="modal-close" onclick="closeModal('sulfurSpringModal')">×</button>
+        <div class="modal-header">
+            <h3>硫黄涌泉</h3>
+        </div>
+        <div class="modal-content">
+            <p><b>硫黄涌泉（Sulfur Spring）</b>是新的地物，在硫黄洞穴生物群系上方生成。</p>
+            <ul>
+                <li>由硫黄、烈性硫黄、石头、花岗岩、凝灰岩和岩浆块组成。</li>
+                <li>拥有小型、中型、大型、特大型4个不同尺寸的变种。</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

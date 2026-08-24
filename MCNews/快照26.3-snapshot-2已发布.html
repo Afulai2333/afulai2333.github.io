@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快照26.3-snapshot-2已发布</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.7;
+            padding: 20px 15px;
+            max-width: 900px;
+            margin: 0 auto;
+            
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .headerimage img {
+            width: 100%;
+            border-radius: 16px;
+            object-fit: cover;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            margin-bottom: 16px;
+        }
+
+        .title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .headertitle {
+            font-size: 24px;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .headercategory {
+            background-color: #e9f0ff;
+            color: #3a6cf4;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .content {
+            background-color: #fff;
+            padding: 24px;
+            border-radius: 18px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+
+        .content p {
+            font-size: 16px;
+            margin-bottom: 16px;
+            color: #444;
+        }
+
+        ul {
+            padding-left: 22px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #444;
+        }
+
+        li ul {
+            margin-top: 6px;
+            padding-left: 20px;
+        }
+
+        li ul li {
+            margin-bottom: 6px;
+            color: #555;
+        }
+
+        code {
+            font-family: "SF Mono", "Consolas", "Monaco", monospace;
+            background-color: #f1f3f5;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #d63384;
+            font-weight: 500;
+            word-break: break-all;
+        }
+
+        .content h1 { font-size: 1.8em; margin: 0.8em 0; color: #222; }
+        .content h2 { font-size: 1.5em; margin: 0.8em 0; color: #222; }
+        .content h3 { font-size: 1.25em; margin: 0.8em 0; color: #333; }
+        .content a { color: #3a6cf4; text-decoration: none; }
+        .content a:hover { text-decoration: underline; }
+        .content blockquote { border-left: 4px solid #3a6cf4; margin: 1em 0; padding: 0.5em 1em; background: #f9f9f9; color: #666; }
+        .content pre { background: #f5f5f5; color: #333; padding: 15px; border: 2px solid #888; border-radius: 10px; overflow-x: auto; margin: 1em 0; }
+        .content pre code { background: none; padding: 0; color: inherit; border: none; border-radius: 0; font-size: inherit; }
+        .content img { max-width: 100%; height: auto; border-radius: 8px; }
+
+        .content .info {
+            background-color: #f1f5ff;
+            border: 2px solid #3a6cf4;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: #444;
+            font-size: 15px;
+        }
+
+        .content .info::before {
+            content: "ⓘ";
+            font-size: 18px;
+            color: #3a6cf4;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .content .warn {
+            background-color: #fff5f5;
+            border: 2px solid #e53e3e;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: #444;
+            font-size: 15px;
+        }
+
+        .content .warn::before {
+            content: "⚠";
+            font-size: 18px;
+            color: #e53e3e;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .content .mourn {
+            background-color: #333;
+            border: 2px solid #fff;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; background-color: #fff; margin: 20px 0; font-size: 16px; box-shadow: 0 1px 5px rgba(0,0,0,0.05); }
+        thead th { background-color: #f1f5ff; color: #222; font-weight: 500; text-align: left; padding: 12px 16px; border-bottom: 1px solid #eaecef; }
+        tbody td { padding: 12px 16px; color: #444; border-bottom: 1px solid #f0f0f0; }
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:hover { background-color: #f9fbfd; }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            .headertitle {
+                font-size: 20px;
+            }
+
+            .content {
+                padding: 18px 16px;
+                border-radius: 14px;
+            }
+
+            .headerimage img {
+                border-radius: 12px;
+            }
+
+            table { font-size: 15px; border-radius: 8px; }
+            th, td { padding: 10px 12px !important; }
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="headerimage">
+        <img src="https://www.minecraft.net/content/dam/minecraftnet/article-asset/2026/minecraft-26-3-snapshot-2/new-article-hero-image.jpg" alt="快照26.3-snapshot-2已发布">
+    </div>
+    <div class="title-row">
+        <div class="headertitle">
+            快照26.3-snapshot-2已发布
+        </div>
+        <div class="headercategory">
+            麦块版讯
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <p>快照26.3-snapshot-2已发布。</p>
+<div class="info">
+
+<ul>
+<li><strong>已知问题：</strong><ul>
+<li>macOS系统下使用Vulkan渲染时，世界无法正常渲染，会出现粉色屏幕。</li>
+<li>实体光照表现异常，例如实体顶部渲染偏暗。</div></li>
+</ul>
+</li>
+</ul>
+<p>本次更新内容如下：</p>
+<ul>
+<li>持久化生物（如被命名、被玩家驯服的生物）在玩家不在附近时，其随机行走、随机游泳的行为现在会自动停用，与非持久化生物的逻辑保持一致，以降低闲置状态下的性能消耗。</li>
+<li>玩家同时手持锄、锹与盾牌时，举盾操作的优先级现在高于锄地、铺设土径的交互。</li>
+<li>当玩家距离在3格以内时，手持三叉戟的溺尸现在会切换为近战攻击，不再远程投掷三叉戟。</li>
+<li>用全新的OIT算法彻底替换了原有的“改进透明显示”渲染方案。<ul>
+<li>传统半透明渲染需要将几何体从后往前排序，性能开销极高；即便三角面排序完美，相交的三角面也无法正确渲染。旧版“改进透明显示”是将不同类型的半透明对象（实体、粒子、水等）分层渲染再合成，虽然解决了部分问题，但仍存在新的视觉瑕疵，且有一定性能损耗。</li>
+<li>新OIT算法：<ul>
+<li>无需对几何体进行排序，即可按任意顺序渲染半透明物体。</li>
+<li>修复了绝大多数主流半透明视觉漏洞（例如透过半透明物体看其他对象会消失的问题）。</li>
+<li>属于近似算法，会引入少量轻微的新视觉瑕疵，例如透过多层半透明表面观察云时颜色存在小幅偏差。</li>
+<li>性能开销高于旧版“改进透明显示”方案。</li>
+<li>关闭“改进透明显示”选项时，渲染逻辑无实质变化，仍优先保证性能、按需排序几何体。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><div class="info">官方特别感谢Rubén Osorio López、Jozufozu及Minecraft模组社区提供的技术参考。</div></p>
+<ul>
+<li>数据包版本升级至<code>109.0</code>。<ul>
+<li>加入了<code>minecraft:block_transformer</code>数据组件，支持配置物品在玩家交互时将方块转化为其他方块，可配置字段包括：<ul>
+<li><code>block_state_provider</code>：转化后方块的状态提供器，规则与世界生成的状态提供器通用。</li>
+<li><code>sound</code>：交互时播放的音效（可选，默认无音效）。</li>
+<li><code>particle</code>：交互时生成的粒子效果（可选，默认无）。</li>
+<li><code>disallowed_faces</code>：禁止交互的方块面列表，点击禁用面时会自动尝试下一条转化规则。</li>
+<li><code>loot</code>：转化成功时的掉落物战利品表（可选）。</li>
+<li><code>drop_strategy</code>：掉落物生成位置，支持从方块中心掉落、从被点击面掉落，默认中心掉落。</li>
+<li><code>transform_type</code>：转化影响范围，支持单方块、大型铜箱子同时转换。</li>
+<li><code>consume_on_use</code>：是否消耗物品（仅对可堆叠物品生效，默认开启）。</li>
+<li><code>item_damage_per_use</code>：每次使用消耗的耐久值（仅对不可堆叠物品生效，默认1点）。</li>
+</ul>
+</li>
+<li>加入了<code>till/rooted_dirt</code>战利品表，对应使用锄头开垦缠根泥土时的掉落物。</li>
+<li>下界洞穴现在不再生成洞穴空气。</li>
+<li>加入了方块状态提供器<code>minecraft:copy_properties_provider</code>，可复制目标位置方块的共有状态属性。</li>
+<li>原<code>basalt_columns</code>地物类型重命名为<code>stepped_column_cluster</code>，加入了方块类型、可替换方块、延续方块、禁止放置基底、列数量、生成范围等配置项。</li>
+<li>原<code>basalt_pillar</code>地物类型重命名为<code>single_block_pillar</code>，加入了方块类型、可替换方块、生长方向、延续概率、顶部装饰地物等配置项。</li>
+<li>原<code>glowstone_blob</code>地物类型重命名为<code>random_neighbor_spread</code>，加入了方块类型、有效毗邻判定、可替换方块、放置尝试次数、坐标偏移等配置项。</li>
+<li>加入了<code>minecraft:overlay</code>地物类型：在同一位置放置多个地物，单个地物放置失败不影响其他地物。</li>
+<li>加入了<code>minecraft:projected_random_patchy_square</code>地物类型：生成中心密度高、边缘密度低的随机方块区域，支持向下投影穿透空气方块放置。</li>
+<li>原<code>random_offset</code>修饰器重命名为<code>offset</code>，改为分X、Y、Z三个轴独立配置偏移量，替换原有的整体偏移参数。</li>
+<li>更新了<code>spawn_target</code>生成目标字段，支持调用任意密度函数，通过计算候选位置到目标超立方体的欧氏距离判定生成适配度。</li>
+<li>加入了方块谓词<code>minecraft:height_range</code>，用于检测位置高度是否在指定区间内。</li>
+<li>为垂直锚点加入了<code>relative_to_sea_level</code>选项，可基于维度海平面设置高度偏移。</li>
+<li>雕刻器注册表从<code>worldgen/configured_carver</code>重命名为<code>worldgen/carver</code>。</li>
+<li>对洞穴雕刻器进行了配置项扁平化，加入了隧道数量、垂直半径乘数、隧道厚度等参数；移除了可替换方块、熔岩高度、调试设置字段，流体统一由含水层与海平面配置决定。</li>
+<li>对峡谷雕刻器进行了配置项扁平化，同步移除了可替换方块、熔岩高度、调试设置。</li>
+<li>移除了下界洞穴雕刻器<code>nether_cave</code>，下界统一使用通用洞穴雕刻器。</li>
+<li>加入了整数提供器<code>minecraft:very_biased_to_bottom</code>，随机取值且二次偏向最小值。</li>
+<li>为方块标签加入了<code>#turns_into_dirt_path</code>；移除了两个洞穴可替换方块标签。</li>
+<li>为物品标签加入了<code>#dowses_campfires</code>。</li>
+<li>将服务器属性中的<code>white-list</code>默认值改为<code>true</code>。</li>
+<li>移除了数据生成报告中<code>blocks.json</code>中的<code>definition</code>字段。</li>
+</ul>
+</li>
+<li>资源包版本升级至<code>90.0</code>。<ul>
+<li>更新了层孔菇的方块纹理。</li>
+<li>加入了<code>shelf_mushroom_particle.png</code>粒子纹理。</li>
+<li>着色器与后处理：<ul>
+<li>加入了OIT相关着色器文件，包括合成着色器与多个功能头文件。</li>
+<li>地形着色器的纹理采样逻辑抽离为独立文件。</li>
+<li>重命名了云、世界边界相关的核心着色器。</li>
+<li>加入了十余个OIT相关着色器宏定义，批量更新了核心着色器以适配OIT算法。</li>
+<li>移除了旧版透明度后处理链的全部相关文件。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><div class="info">官方声明：覆盖核心着色器属于不受官方支持的行为，未来会提供合规的替代方案。</div></p>
+<ul>
+<li>修复了一些漏洞。<ul>
+<li>关于详细的漏洞列表，欢迎使用<a href="https://github.com/Afulai2333/mojira-jql-client">Mojira JQL Search Client</a>项目！</li>
+</ul>
+</li>
+</ul>
+<p>详细更新内容请见Minecraft官网更新日志。</p>
+<p><div class="info">上期【麦块版讯】栏目中的“层架蘑菇”（Shelf Mushroom）的简体中文译名已定为“层孔菇”。其他译名均与当时栏目中的相同。</div></p>
+
+</div>
+</body>
+</html>

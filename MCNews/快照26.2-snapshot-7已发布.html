@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快照26.2-snapshot-7已发布</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.7;
+            padding: 20px 15px;
+            max-width: 900px;
+            margin: 0 auto;
+            filter: grayscale(100%);
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .headerimage img {
+            width: 100%;
+            border-radius: 16px;
+            object-fit: cover;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            margin-bottom: 16px;
+        }
+
+        .title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .headertitle {
+            font-size: 24px;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .headercategory {
+            background-color: #e9f0ff;
+            color: #3a6cf4;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .content {
+            background-color: #fff;
+            padding: 24px;
+            border-radius: 18px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+
+        .content p {
+            font-size: 16px;
+            margin-bottom: 16px;
+            color: #444;
+        }
+
+        ul {
+            padding-left: 22px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #444;
+        }
+
+        li ul {
+            margin-top: 6px;
+            padding-left: 20px;
+        }
+
+        li ul li {
+            margin-bottom: 6px;
+            color: #555;
+        }
+
+        code {
+            font-family: "SF Mono", "Consolas", "Monaco", monospace;
+            background-color: #f1f3f5;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #d63384;
+            font-weight: 500;
+            word-break: break-all;
+        }
+
+        .content h1 { font-size: 1.8em; margin: 0.8em 0; color: #222; }
+        .content h2 { font-size: 1.5em; margin: 0.8em 0; color: #222; }
+        .content h3 { font-size: 1.25em; margin: 0.8em 0; color: #333; }
+        .content a { color: #3a6cf4; text-decoration: none; }
+        .content a:hover { text-decoration: underline; }
+        .content blockquote { border-left: 4px solid #3a6cf4; margin: 1em 0; padding: 0.5em 1em; background: #f9f9f9; color: #666; }
+        .content pre { background: #f5f5f5; color: #333; padding: 15px; border: 2px solid #888; border-radius: 10px; overflow-x: auto; margin: 1em 0; }
+        .content pre code { background: none; padding: 0; color: inherit; border: none; border-radius: 0; font-size: inherit; }
+        .content img { max-width: 100%; height: auto; border-radius: 8px; }
+
+        .content .info {
+            background-color: #f1f5ff;
+            border: 2px solid #3a6cf4;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: #444;
+            font-size: 15px;
+        }
+
+        .content .info::before {
+            content: "ⓘ";
+            font-size: 18px;
+            color: #3a6cf4;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .content .warn {
+            background-color: #fff5f5;
+            border: 2px solid #e53e3e;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: #444;
+            font-size: 15px;
+        }
+
+        .content .warn::before {
+            content: "⚠";
+            font-size: 18px;
+            color: #e53e3e;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .content .mourn {
+            background-color: #333;
+            border: 2px solid #fff;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; background-color: #fff; margin: 20px 0; font-size: 16px; box-shadow: 0 1px 5px rgba(0,0,0,0.05); }
+        thead th { background-color: #f1f5ff; color: #222; font-weight: 500; text-align: left; padding: 12px 16px; border-bottom: 1px solid #eaecef; }
+        tbody td { padding: 12px 16px; color: #444; border-bottom: 1px solid #f0f0f0; }
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:hover { background-color: #f9fbfd; }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            .headertitle {
+                font-size: 20px;
+            }
+
+            .content {
+                padding: 18px 16px;
+                border-radius: 14px;
+            }
+
+            .headerimage img {
+                border-radius: 12px;
+            }
+
+            table { font-size: 15px; border-radius: 8px; }
+            th, td { padding: 10px 12px !important; }
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="headerimage">
+        <img src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/screenshots/26.2-snapshot-7%201170x500.jpg" alt="快照26.2-snapshot-7已发布">
+    </div>
+    <div class="title-row">
+        <div class="headertitle">
+            快照26.2-snapshot-7已发布
+        </div>
+        <div class="headercategory">
+            麦块版讯
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <p>快照26.2-snapshot-7已发布。</p>
+<p><div class="mourn">深切缅怀汶川大地震遇难者，愿逝者安息。</div></p>
+<p>本次更新内容如下：</p>
+<ul>
+<li><strong>加入了好友列表系统</strong><ul>
+<li><strong>入口与操作</strong>：在标题界面与暂停菜单中加入“好友”按钮，默认快捷键为<code>O</code>。首次使用需弹窗确认开启。</li>
+<li><strong>界面结构</strong>：采用双标签页设计。<ul>
+<li>“好友”页：显示已添加的好友，支持删除好友、通过玩家档案名发送好友请求。</li>
+<li>“待处理”页：显示可接受/拒绝的<strong>入站请求</strong>，以及可取消的<strong>出站请求</strong>。</li>
+</ul>
+</li>
+<li><strong>在线状态</strong>：显示四种状态：离线、在线、在世界中、在可加入的世界中。</li>
+<li><strong>通知机制</strong>：<ul>
+<li>好友按钮会显示未读请求的徽章提示（最多显示5个，超出则显示“更多”）。</li>
+<li>收发好友请求、请求被接受时会弹出带对方皮肤头像的弹窗通知。</li>
+<li>可在游戏设置中关闭这些弹窗通知。</li>
+</ul>
+</li>
+<li><strong>更新与同步</strong>：打开好友列表时每分钟刷新一次，后台每5分钟刷新一次。</li>
+<li><strong>隐私与安全</strong>：<ul>
+<li>可在在线选项中开关好友列表功能，以及设置是否允许他人发送好友请求。</li>
+<li>支持设置在线状态可见性：全部（默认，可被请求加入）、仅在线/离线、完全隐藏（对他人显示为离线）。</li>
+<li>集成Xbox账户隐私与安全设置入口；当Xbox聊天设为“仅好友”时，玩家只能看到好友发送的聊天消息。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="info">
+<ul>
+<li><strong>已知问题</strong>：<ul>
+<li>取消发出的好友请求可能导致接收方的入站列表不同步，对方若接受，会变成其发出的出站请求。</li>
+<li>拒绝收到的好友请求可能导致发送方的出站列表不同步，需发送方手动取消请求才能恢复同步。</li>
+<li>开启好友列表但关闭“允许请求”时，他人将无法接受你发出的好友请求。</li>
+<li>当Xbox聊天设置为“仅好友”时，玩家在游戏内将看不到自己发送的聊天消息。</li>
+</ul>
+</li>
+</ul>
+</div>
+<ul>
+<li><p><strong>跨网P2P联机功能</strong></p>
+<ul>
+<li>原“对局域网开放”界面已被<strong>多人游戏选项</strong>界面替代，现支持三种联机范围：<ul>
+<li>关闭（默认）：无人可加入。</li>
+<li>本地：仅局域网玩家可加入（即原对局域网开放功能）。</li>
+<li>在线：可邀请任意好友跨网加入。</li>
+</ul>
+</li>
+<li>提供两种联机交互方式：<ul>
+<li>房主邀请：主动向好友发送世界邀请，对方可选择接受或拒绝。</li>
+<li>加入请求：好友可向开启了“在线”联机的房主发送加入申请，由房主审批。</li>
+</ul>
+</li>
+<li>加入了<code>p2p_connection</code>可选遥测事件，用于记录连接成功率、失败阶段、网络路径类型及各阶段耗时等数据。</li>
+</ul>
+</li>
+<li><p><strong>加入了音乐唱片“Bounce”</strong></p>
+<ul>
+<li>获取方式：可在硫黄洞穴生物群系的废弃矿井箱子矿车中找到。</li>
+<li>播放效果：在唱片机中播放时，比较器会输出信号强度8。</li>
+</ul>
+</li>
+<li><p><strong>加入了5首背景音乐</strong></p>
+<ul>
+<li>新曲目为：Shores、Memories、Nightly、Home和Ebb，其中包含硫黄洞穴的专属生物群系音乐。</li>
+</ul>
+</li>
+<li><p><strong>烈性硫黄机制重做</strong></p>
+<ul>
+<li>间歇泉的喷发与冷却时间<strong>基于方块位置进行随机化</strong>，替换方块后时间不变。</li>
+<li>加入了新的触发方式：在下方放置<strong>熔岩方块</strong>可触发<strong>持续喷发</strong>，其音效比岩浆块触发的略柔和。</li>
+<li>毒气与喷发效果增强：毒气可穿过非碰撞的含水方块及其他非碰撞方块；喷发的气流与烟雾也可穿过非碰撞方块。</li>
+<li>实用改动：脚手架可替代铜格栅使用；站在喷发的强效硫黄上方时，不再会受到毒气影响。</li>
+</ul>
+</li>
+<li><p>缓慢弹性硫方怪不再具有浮力。</p>
+</li>
+<li><p>硫黄洞穴的草颜色饱和度降低，视觉上更贴合洞穴环境。</p>
+</li>
+<li><p>更新了主菜单的背景全景图。</p>
+</li>
+<li><p><strong>UI与设置变更</strong></p>
+<ul>
+<li>为标题界面、暂停菜单加入了好友按钮。</li>
+<li>多人游戏选项界面集成了原局域网设置，同时支持游戏模式、命令开关配置。</li>
+<li>在线选项中加入了：好友列表开关、游戏内通知开关、允许好友请求开关、Xbox设置入口和在线状态可见性选项。</li>
+</ul>
+</li>
+<li><p>数据包版本升至105.1，资源包版本升至87.0。</p>
+</li>
+<li><p>加入了两个方块标签：</p>
+<ul>
+<li><code>#causes_periodic_geyser_eruptions</code>：可触发强效硫黄周期性喷发的方块。</li>
+<li><code>#causes_continuous_geyser_eruptions</code>：可触发强效硫黄持续喷发的方块。</li>
+</ul>
+</li>
+<li><p>告示牌、悬挂式告示牌现改用<strong>方块模型</strong>替代实体模型，移除了<code>minecraft:standing_sign</code>、<code>minecraft:hanging_sign</code>特殊模型。</p>
+</li>
+<li><p>移除了<code>minecraft:signs</code>纹理图集，相关纹理路径变更为<code>block/&lt;木材类型&gt;_sign.png</code>、<code>block/&lt;木材类型&gt;_hanging_sign.png</code>。</p>
+</li>
+<li><p>官方提供了自动切片工具，以辅助创作者升级床、告示牌相关的旧纹理。</p>
+</li>
+<li><p>修复了一些漏洞。</p>
+</li>
+</ul>
+<p>详细更新内容请见Minecraft官网更新日志。</p>
+
+</div>
+</body>
+</html>

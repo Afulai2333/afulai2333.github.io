@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快照26.3-snapshot-4已发布</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+        :root {
+            --bg-primary: #f8f9fa;
+            --bg-content: #fff;
+            --text-primary: #333;
+            --text-secondary: #666;
+            --text-heading: #222;
+            --accent-color: #3a6cf4;
+            --shadow: rgba(0,0,0,0.05);
+            --code-bg: #f1f3f5;
+            --code-color: #d63384;
+            --blockquote-bg: #f9f9f9;
+            --table-header-bg: #f1f5ff;
+            --info-bg: #f1f5ff;
+            --warn-bg: #fff5f5;
+            --img-brightness: 1;
+            --mourn-bg: #333;
+            --border-color: #f0f0f0;
+        }
+
+        .dark-mode {
+            --bg-primary: #1a1a2e;
+            --bg-content: #16213e;
+            --text-primary: #e0e0e0;
+            --text-secondary: #999;
+            --text-heading: #f0f0f0;
+            --accent-color: #6b9eff;
+            --shadow: rgba(0,0,0,0.3);
+            --code-bg: #2d3748;
+            --code-color: #e53e3e;
+            --blockquote-bg: #2d3a4f;
+            --table-header-bg: #0f3460;
+            --info-bg: #1a365d;
+            --warn-bg: #4a1a1a;
+            --img-brightness: 0.8;
+            --mourn-bg: #1a1a1a;
+            --border-color: #2d3a4f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding: 20px 15px;
+            max-width: 900px;
+            margin: 0 auto;
+            
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body img {
+            filter: brightness(var(--img-brightness));
+            transition: filter 0.3s ease;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: none;
+            background-color: var(--bg-content);
+            color: var(--text-secondary);
+            box-shadow: 0 2px 10px var(--shadow);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            color: var(--accent-color);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .headerimage img {
+            width: 100%;
+            border-radius: 16px;
+            object-fit: cover;
+            box-shadow: 0 2px 12px var(--shadow);
+            margin-bottom: 16px;
+        }
+
+        .title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .headertitle {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-heading);
+        }
+
+        .headercategory {
+            background-color: rgba(58, 108, 244, 0.15);
+            color: var(--accent-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .content {
+            background-color: var(--bg-content);
+            padding: 24px;
+            border-radius: 18px;
+            box-shadow: 0 2px 15px var(--shadow);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .content p {
+            font-size: 16px;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        ul {
+            padding-left: 22px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: var(--text-primary);
+        }
+
+        li ul {
+            margin-top: 6px;
+            padding-left: 20px;
+        }
+
+        li ul li {
+            margin-bottom: 6px;
+            color: var(--text-secondary);
+        }
+
+        li ul ul {
+            margin-top: 4px;
+            padding-left: 16px;
+        }
+
+        li ul ul li {
+            margin-bottom: 5px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        li ul ul ul {
+            margin-top: 4px;
+            padding-left: 14px;
+        }
+
+        li ul ul ul li {
+            margin-bottom: 4px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        li ul ul ul ul {
+            margin-top: 3px;
+            padding-left: 12px;
+        }
+
+        li ul ul ul ul li {
+            margin-bottom: 4px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        li ul ul ul ul ul {
+            margin-top: 3px;
+            padding-left: 10px;
+        }
+
+        li ul ul ul ul ul li {
+            margin-bottom: 3px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        ol {
+            padding-left: 22px;
+            margin-bottom: 16px;
+            list-style-type: decimal;
+        }
+
+        ol li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: var(--text-primary);
+        }
+
+        ol ol {
+            margin-top: 6px;
+            padding-left: 20px;
+            list-style-type: lower-alpha;
+        }
+
+        ol ol li {
+            margin-bottom: 6px;
+            color: var(--text-secondary);
+        }
+
+        ol ol ol {
+            margin-top: 4px;
+            padding-left: 18px;
+            list-style-type: lower-roman;
+        }
+
+        ol ol ol li {
+            margin-bottom: 5px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        ol ol ol ol {
+            margin-top: 4px;
+            padding-left: 16px;
+            list-style-type: upper-alpha;
+        }
+
+        ol ol ol ol li {
+            margin-bottom: 4px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        ol ol ol ol ol {
+            margin-top: 3px;
+            padding-left: 14px;
+            list-style-type: upper-roman;
+        }
+
+        ol ol ol ol ol li {
+            margin-bottom: 4px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        ol ol ol ol ol ol {
+            margin-top: 3px;
+            padding-left: 12px;
+            list-style-type: decimal;
+        }
+
+        ol ol ol ol ol ol li {
+            margin-bottom: 3px;
+            color: var(--text-secondary);
+            opacity: 1;
+        }
+
+        code {
+            font-family: "SF Mono", "Consolas", "Monaco", monospace;
+            background-color: var(--code-bg);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: var(--code-color);
+            font-weight: 500;
+            word-break: break-all;
+        }
+
+        .content h1 { font-size: 1.8em; margin: 0.8em 0; color: var(--text-heading); }
+        .content h2 { font-size: 1.5em; margin: 0.8em 0; color: var(--text-heading); }
+        .content h3 { font-size: 1.25em; margin: 0.8em 0; color: var(--text-primary); }
+        .content a { color: var(--accent-color); text-decoration: none; }
+        .content a:hover { text-decoration: underline; }
+        .content blockquote { border-left: 4px solid var(--accent-color); margin: 1em 0; padding: 0.5em 1em; background: var(--blockquote-bg); color: var(--text-secondary); }
+        .content pre { background: var(--code-bg); color: var(--text-primary); padding: 15px; border: 2px solid var(--border-color); border-radius: 10px; overflow-x: auto; margin: 1em 0; }
+        .content pre code { background: none; padding: 0; color: inherit; border: none; border-radius: 0; font-size: inherit; }
+        .content img { max-width: 100%; height: auto; border-radius: 8px; }
+
+        .content .info {
+            background-color: var(--info-bg);
+            border: 2px solid var(--accent-color);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: var(--text-primary);
+            font-size: 15px;
+        }
+
+        .content .info::before {
+            content: "ⓘ";
+            font-size: 18px;
+            color: var(--accent-color);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .content .warn {
+            background-color: var(--warn-bg);
+            border: 2px solid #e53e3e;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: var(--text-primary);
+            font-size: 15px;
+        }
+
+        .content .warn::before {
+            content: "⚠";
+            font-size: 18px;
+            color: #e53e3e;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .content .mourn {
+            background-color: var(--mourn-bg);
+            border: 2px solid #666;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .content .trivia {
+            background-color: var(--trivia-bg);
+            border: 2px solid #34A853;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: var(--text-primary);
+            font-size: 15px;
+        }
+
+        .content .trivia::before {
+            content: "?";
+            font-size: 18px;
+            color: #34A853;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; background-color: var(--bg-content); margin: 20px 0; font-size: 16px; box-shadow: 0 1px 5px var(--shadow); }
+        thead th { background-color: var(--table-header-bg); color: var(--text-heading); font-weight: 500; text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--border-color); }
+        tbody td { padding: 12px 16px; color: var(--text-primary); border-bottom: 1px solid var(--border-color); }
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:hover { background-color: rgba(255,255,255,0.05); }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            .theme-toggle {
+                width: 40px;
+                height: 40px;
+                top: 15px;
+                right: 15px;
+            }
+
+            .headertitle {
+                font-size: 20px;
+            }
+
+            .content {
+                padding: 18px 16px;
+                border-radius: 14px;
+            }
+
+            .headerimage img {
+                border-radius: 12px;
+            }
+
+            table { font-size: 15px; border-radius: 8px; }
+            th, td { padding: 10px 12px !important; }
+        }
+    </style>
+</head>
+<body>
+<button class="theme-toggle" onclick="toggleTheme()" id="theme-toggle" title="切换深色模式">
+    <svg id="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+</button>
+<div class="header">
+    <div class="headerimage">
+        <img src="https://www.minecraft.net/content/dam/minecraftnet/article-asset/2026/minecraft-26-3-snapshot-4/new-article-hero-image.jpg" alt="快照26.3-snapshot-4已发布">
+    </div>
+    <div class="title-row">
+        <div class="headertitle">
+            快照26.3-snapshot-4已发布
+        </div>
+        <div class="headercategory">
+            麦块版讯
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <p>快照26.3-snapshot-4已发布。本次更新内容如下：</p>
+<ul>
+<li>将游戏的窗口管理、输入处理与平台集成库从GLFW替换为SDL3。
+<ul>
+<li>移除了“原始输入”鼠标设置，游戏内鼠标输入现在始终使用相对鼠标模式。</li>
+<li>按键绑定现在基于物理键位，不再受键盘布局影响。</li>
+<li>macOS下长按输入按键现在会弹出系统原生的重音符号与候选字窗口。</li>
+<li>修复了macOS下按住Shift时鼠标滚动方向反转、滚动失效的问题。</li>
+<li>修复了中文输入法下无法蹲跳的问题。</li>
+</ul>
+</li>
+<li>无边框全屏现在为默认全屏模式，无边框与独占全屏之间切换现在无需重启游戏。</li>
+<li>macOS现在不再支持独占全屏模式。</li>
+<li>游戏最小窗口尺寸现在限定为320×240像素。</li>
+<li>Linux系统若支持Wayland，现在将优先使用原生Wayland运行。</li>
+</ul>
+<div class="info"><ul>
+<li><strong>已知问题</strong>
+<ul>
+<li>Windows独占全屏模式在多显示器等场景下可能导致游戏崩溃。</li>
+<li>Wayland环境下进入独占全屏模式会触发游戏崩溃。</li>
+</ul>
+</li>
+</ul>
+</div>
+<ul>
+<li>旁观者模式玩家现在可通过与传送门交互进行传送，支持下界传送门、末地传送门与末地折跃门。</li>
+<li>犰狳浸没在液体中时现在不再尝试蜷缩身体。</li>
+<li>优化了调试屏幕。
+<ul>
+<li>现在支持独立的GUI缩放设置，可通过调试选项界面调整，默认为“自动”（分辨率高于常规GUI），也可选择与常规GUI缩放保持一致。</li>
+<li>加入了<code>player_speed</code>调试条目，实时显示玩家移动速度（单位：格/刻）。</li>
+<li>加入了显示器刷新率显示。</li>
+</ul>
+</li>
+<li>重排了创造模式物品栏。
+<ul>
+<li>矿物类物品与方块的排序逻辑现在统一为“非等级原料在前，可制作装备的等级原料在后”。</li>
+<li>自然方块标签页的内部组排序顺序现在统一为主世界、下界、末地。</li>
+</ul>
+</li>
+<li>数据包版本升级至<code>111.0</code>。
+<ul>
+<li>加入了大量物品组件，具体参见<a href="https://zh.minecraft.wiki/w/Java%E7%89%8826.3-snapshot-4">中文Minecraft Wiki</a>。</li>
+<li>默认情况下，点击告示牌与悬挂式告示牌（下统称“告示牌”）现在不再执行文本中的命令与点击事件；新放置的告示牌文本现在默认不解析组件。</li>
+<li>为告示牌加入了<code>allow_op_features</code>布尔字段（默认为<code>false</code>），设为<code>true</code>可恢复旧版行为；旧存档中的告示牌会自动设为<code>true</code>。</li>
+<li>变更了放置告示牌后自动打开编辑界面的规则：仅当告示牌未涂蜡、且只有正面可编辑时，放置后才会弹出编辑界面。</li>
+<li>告示牌现在支持读取与返回<code>sign_text_front</code>、<code>sign_text_back</code>与<code>waxed</code>物品组件。</li>
+<li>酿造台的<code>BrewTime</code>字段从<code>short</code>改为整数，<code>Fuel</code>字段从<code>byte</code>改为整数；加入了<code>total_brew_time</code>（本次酿造总时长）、<code>total_fuel</code>（上次添加的燃料总量）、<code>speed_multiplier</code>（酿造速度倍率）字段。</li>
+<li>熔炉、烟熏炉与高炉的已用烹饪时间、总烹饪时间、剩余燃烧时间、总燃烧时间字段全部从<code>short</code>改为整数；加入了<code>speed_multiplier</code>（烧制速度倍率）字段。</li>
+<li>加入并更改了部分环境属性，具体参见<a href="https://zh.minecraft.wiki/w/Java%E7%89%8826.3-snapshot-4">中文Minecraft Wiki</a>。</li>
+<li>所有拥有专属注册表的游戏数据类型现在全面支持注册表元素与标签引用，大幅简化了数据包编写。
+<ul>
+<li>原本仅接受单个内联值的字段，现在支持命名空间ID或内联值。</li>
+<li>原本接受列表的字段，现在支持内联值、单个ID、ID列表、内联值列表、<code>#</code>前缀的标签ID。</li>
+<li>受影响的类型包括进度、物品修饰器、战利品表、数值提供者、谓词、配方和槽位源。</li>
+<li>移除了谓词、物品修饰器、槽位源的<code>reference</code>引用类型（功能已被原生ID引用替代）。</li>
+</ul>
+</li>
+<li>重构了进度系统与战利品表系统，更改了世界生成，并进行了一些其他的技术性改动。具体参见<a href="https://zh.minecraft.wiki/w/Java%E7%89%8826.3-snapshot-4">中文Minecraft Wiki</a>。</li>
+</ul>
+</li>
+<li>资源包版本升级至92.0，并修复了一些漏洞。</li>
+</ul>
+<p>详细更新内容请见中文Minecraft Wiki与Minecraft官网更新日志。</p>
+
+</div>
+<div id="original-markdown-data" style="display:none;">
+    <div id="data-title">快照26.3-snapshot-4已发布</div>
+    <div id="data-banner">https://www.minecraft.net/content/dam/minecraftnet/article-asset/2026/minecraft-26-3-snapshot-4/new-article-hero-image.jpg</div>
+    <div id="data-category">麦块版讯</div>
+    <div id="data-content">快照26.3-snapshot-4已发布。本次更新内容如下：&#10;&#10;- 将游戏的窗口管理、输入处理与平台集成库从GLFW替换为SDL3。&#10;  - 移除了“原始输入”鼠标设置，游戏内鼠标输入现在始终使用相对鼠标模式。&#10;  - 按键绑定现在基于物理键位，不再受键盘布局影响。&#10;  - macOS下长按输入按键现在会弹出系统原生的重音符号与候选字窗口。&#10;  - 修复了macOS下按住Shift时鼠标滚动方向反转、滚动失效的问题。&#10;  - 修复了中文输入法下无法蹲跳的问题。&#10;- 无边框全屏现在为默认全屏模式，无边框与独占全屏之间切换现在无需重启游戏。&#10;- macOS现在不再支持独占全屏模式。&#10;- 游戏最小窗口尺寸现在限定为320×240像素。&#10;- Linux系统若支持Wayland，现在将优先使用原生Wayland运行。&#10;&#10;&lt;info&gt;&#10;- **已知问题**&#10;  - Windows独占全屏模式在多显示器等场景下可能导致游戏崩溃。&#10;  - Wayland环境下进入独占全屏模式会触发游戏崩溃。&#10;&lt;/info&gt;&#10;&#10;- 旁观者模式玩家现在可通过与传送门交互进行传送，支持下界传送门、末地传送门与末地折跃门。&#10;- 犰狳浸没在液体中时现在不再尝试蜷缩身体。&#10;- 优化了调试屏幕。&#10;  - 现在支持独立的GUI缩放设置，可通过调试选项界面调整，默认为“自动”（分辨率高于常规GUI），也可选择与常规GUI缩放保持一致。&#10;  - 加入了`player_speed`调试条目，实时显示玩家移动速度（单位：格/刻）。&#10;  - 加入了显示器刷新率显示。&#10;- 重排了创造模式物品栏。&#10;  - 矿物类物品与方块的排序逻辑现在统一为“非等级原料在前，可制作装备的等级原料在后”。&#10;  - 自然方块标签页的内部组排序顺序现在统一为主世界、下界、末地。&#10;- 数据包版本升级至`111.0`。&#10;  - 加入了大量物品组件，具体参见[中文Minecraft Wiki](https://zh.minecraft.wiki/w/Java%E7%89%8826.3-snapshot-4)。&#10;  - 默认情况下，点击告示牌与悬挂式告示牌（下统称“告示牌”）现在不再执行文本中的命令与点击事件；新放置的告示牌文本现在默认不解析组件。&#10;  - 为告示牌加入了`allow_op_features`布尔字段（默认为`false`），设为`true`可恢复旧版行为；旧存档中的告示牌会自动设为`true`。&#10;  - 变更了放置告示牌后自动打开编辑界面的规则：仅当告示牌未涂蜡、且只有正面可编辑时，放置后才会弹出编辑界面。&#10;  - 告示牌现在支持读取与返回`sign_text_front`、`sign_text_back`与`waxed`物品组件。&#10;  - 酿造台的`BrewTime`字段从`short`改为整数，`Fuel`字段从`byte`改为整数；加入了`total_brew_time`（本次酿造总时长）、`total_fuel`（上次添加的燃料总量）、`speed_multiplier`（酿造速度倍率）字段。&#10;  - 熔炉、烟熏炉与高炉的已用烹饪时间、总烹饪时间、剩余燃烧时间、总燃烧时间字段全部从`short`改为整数；加入了`speed_multiplier`（烧制速度倍率）字段。&#10;  - 加入并更改了部分环境属性，具体参见[中文Minecraft Wiki](https://zh.minecraft.wiki/w/Java%E7%89%8826.3-snapshot-4)。&#10;  - 所有拥有专属注册表的游戏数据类型现在全面支持注册表元素与标签引用，大幅简化了数据包编写。&#10;    - 原本仅接受单个内联值的字段，现在支持命名空间ID或内联值。&#10;    - 原本接受列表的字段，现在支持内联值、单个ID、ID列表、内联值列表、`#`前缀的标签ID。&#10;    - 受影响的类型包括进度、物品修饰器、战利品表、数值提供者、谓词、配方和槽位源。&#10;    - 移除了谓词、物品修饰器、槽位源的`reference`引用类型（功能已被原生ID引用替代）。&#10;  - 重构了进度系统与战利品表系统，更改了世界生成，并进行了一些其他的技术性改动。具体参见[中文Minecraft Wiki](https://zh.minecraft.wiki/w/Java%E7%89%8826.3-snapshot-4)。&#10;- 资源包版本升级至92.0，并修复了一些漏洞。&#10;&#10;详细更新内容请见中文Minecraft Wiki与Minecraft官网更新日志。</div>
+</div>
+<script>
+    function initTheme() {
+        const savedTheme = localStorage.getItem('darkMode');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'true' || (!savedTheme && prefersDark)) {
+            document.body.classList.add('dark-mode');
+            updateThemeIcon(true);
+        } else {
+            updateThemeIcon(false);
+        }
+    }
+
+    function toggleTheme() {
+        const isDark = document.body.classList.toggle('dark-mode');
+        localStorage.setItem('darkMode', isDark);
+        updateThemeIcon(isDark);
+    }
+
+    function updateThemeIcon(isDark) {
+        const icon = document.getElementById('theme-icon');
+        if (isDark) {
+            icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+        } else {
+            icon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
+        }
+    }
+
+    initTheme();
+</script>
+</body>
+</html>

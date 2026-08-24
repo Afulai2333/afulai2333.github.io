@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快照26.3-snapshot-1已发布</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.7;
+            padding: 20px 15px;
+            max-width: 900px;
+            margin: 0 auto;
+            
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .headerimage img {
+            width: 100%;
+            border-radius: 16px;
+            object-fit: cover;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            margin-bottom: 16px;
+        }
+
+        .title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .headertitle {
+            font-size: 24px;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .headercategory {
+            background-color: #e9f0ff;
+            color: #3a6cf4;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .content {
+            background-color: #fff;
+            padding: 24px;
+            border-radius: 18px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+
+        .content p {
+            font-size: 16px;
+            margin-bottom: 16px;
+            color: #444;
+        }
+
+        ul {
+            padding-left: 22px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #444;
+        }
+
+        li ul {
+            margin-top: 6px;
+            padding-left: 20px;
+        }
+
+        li ul li {
+            margin-bottom: 6px;
+            color: #555;
+        }
+
+        code {
+            font-family: "SF Mono", "Consolas", "Monaco", monospace;
+            background-color: #f1f3f5;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #d63384;
+            font-weight: 500;
+            word-break: break-all;
+        }
+
+        .content h1 { font-size: 1.8em; margin: 0.8em 0; color: #222; }
+        .content h2 { font-size: 1.5em; margin: 0.8em 0; color: #222; }
+        .content h3 { font-size: 1.25em; margin: 0.8em 0; color: #333; }
+        .content a { color: #3a6cf4; text-decoration: none; }
+        .content a:hover { text-decoration: underline; }
+        .content blockquote { border-left: 4px solid #3a6cf4; margin: 1em 0; padding: 0.5em 1em; background: #f9f9f9; color: #666; }
+        .content pre { background: #f5f5f5; color: #333; padding: 15px; border: 2px solid #888; border-radius: 10px; overflow-x: auto; margin: 1em 0; }
+        .content pre code { background: none; padding: 0; color: inherit; border: none; border-radius: 0; font-size: inherit; }
+        .content img { max-width: 100%; height: auto; border-radius: 8px; }
+
+        .content .info {
+            background-color: #f1f5ff;
+            border: 2px solid #3a6cf4;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: #444;
+            font-size: 15px;
+        }
+
+        .content .info::before {
+            content: "ⓘ";
+            font-size: 18px;
+            color: #3a6cf4;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .content .warn {
+            background-color: #fff5f5;
+            border: 2px solid #e53e3e;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: #444;
+            font-size: 15px;
+        }
+
+        .content .warn::before {
+            content: "⚠";
+            font-size: 18px;
+            color: #e53e3e;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .content .mourn {
+            background-color: #333;
+            border: 2px solid #fff;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; background-color: #fff; margin: 20px 0; font-size: 16px; box-shadow: 0 1px 5px rgba(0,0,0,0.05); }
+        thead th { background-color: #f1f5ff; color: #222; font-weight: 500; text-align: left; padding: 12px 16px; border-bottom: 1px solid #eaecef; }
+        tbody td { padding: 12px 16px; color: #444; border-bottom: 1px solid #f0f0f0; }
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:hover { background-color: #f9fbfd; }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            .headertitle {
+                font-size: 20px;
+            }
+
+            .content {
+                padding: 18px 16px;
+                border-radius: 14px;
+            }
+
+            .headerimage img {
+                border-radius: 12px;
+            }
+
+            table { font-size: 15px; border-radius: 8px; }
+            th, td { padding: 10px 12px !important; }
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="headerimage">
+        <img src="https://www.minecraft.net/content/dam/minecraftnet/article-asset/2026/minecraft-26-3-snapshot-1/new-article-hero-image.jpg" alt="快照26.3-snapshot-1已发布">
+    </div>
+    <div class="title-row">
+        <div class="headertitle">
+            快照26.3-snapshot-1已发布
+        </div>
+        <div class="headercategory">
+            麦块版讯
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <p>快照26.3-snapshot-1已发布。这是2026年第三次小更新的首个开发版本。本次更新内容如下：</p>
+<ul>
+<li>加入了<strong>斑驳森林（Dappled Forest）</strong>生物群系。<ul>
+<li>毗邻寒冷类生物群系生成。</li>
+<li>自然生成杨树（Poplar Tree）、倒下的杨树、层架蘑菇（Shelf Mushroom）、红灌木丛（Red Shrub）。</li>
+<li>生成绵羊、鸡、牛、猪、兔子和狐狸，均适用对应寒带变种。</li>
+<li>生成斑驳森林变种的废弃营地（Abandoned Camp）结构。</li>
+</ul>
+</li>
+<li>加入了<strong>杨树</strong>与<strong>杨木（Poplar）系列方块</strong>：<ul>
+<li>树叶分红、橙、黄三种颜色变种，对应匹配颜色的落叶粒子效果。</li>
+<li>杨树树叶掉落杨树树苗，树苗可随机长成三种颜色的杨树；杨树树苗也可通过流浪商人交易获取。</li>
+<li>树干为杨木原木，可合成完整的杨木方块组（木板、门、活板门、告示牌、船、运输船等）。</li>
+<li>树干周围自然生成层架蘑菇与枯叶堆。</li>
+</ul>
+</li>
+<li>加入了<strong>层架蘑菇</strong>。<ul>
+<li>生成于杨树及倒下的杨树树干上，分为小型、大型两种尺寸。</li>
+<li>小型可通过骨粉催熟为大型；大型被破坏时掉落2个层架蘑菇物品。</li>
+<li>可与其他蘑菇一样用于制作蘑菇煲和谜之炖菜，也可通过流浪商人交易获取。</li>
+<li>踩踏时有轻微弹性（特性与床类似），生物弹跳时会触发对应音效。</li>
+</ul>
+</li>
+<li>加入了<strong>红灌木丛</strong>。<ul>
+<li>装饰性植物，以小片形式生成在斑驳森林中。</li>
+<li>可放入堆肥桶使用；对其使用骨粉，可在相邻空位随机生成新的红灌木丛。</li>
+</ul>
+</li>
+<li>加入了<strong>废弃营地</strong>结构。<ul>
+<li>可在19种生物群系中生成。</li>
+<li>每个生物群系都有专属设计的营地变种，部分结构构件为全群系通用。</li>
+<li>营地内分布有箱子与木桶，内含对应战利品。</li>
+</ul>
+</li>
+<li>加入了<strong>羊毛楼梯</strong>与<strong>羊毛台阶</strong>。<ul>
+<li>所有颜色的羊毛方块，均加入了对应颜色的楼梯、台阶变种。</li>
+<li>继承羊毛方块的振动阻尼特性，可用于幽匿系列机制的隔音。</li>
+</ul>
+</li>
+<li>移除了云杉树的叶落叶粒子效果。</li>
+<li>蘑菇煲和迷之炖菜现在可使用任意2个蘑菇合成，不再限定种类。</li>
+<li>饰纹陶罐被破坏后，掉落的陶片现在会保留原有数据（如自定义名称）。</li>
+<li>数据包版本升级至<code>108.0</code>，资源包版本升级至<code>89.0</code>。</li>
+<li>移除了部分服务器软件依赖的日志行，推荐使用Minecraft服务器管理协议替代。</li>
+<li>服务器管理协议版本升至<code>3.1.0</code>，加入了世界全量升级相关的通知事件，包含升级启动、升级进度、升级完成、升级失败四类。</li>
+<li>使用<code>/give</code>给予的物品数量超出上限时，会返回错误信号，而非仅打印错误消息且返回<code>0</code>。</li>
+<li><code>/tellraw</code>命令原始聊天消息中的NBT组件现在最多解析6.4万次。</li>
+<li><code>/tick</code>的<code>step</code>、<code>step stop</code>、<code>sprint stop</code>子命令执行异常时现在返回错误信号。</li>
+<li><strong><code>/item</code>命令</strong>：<ul>
+<li>槽位参数统一改为槽位源参数，支持内联、引用两种形式，可同时选中多个槽位。</li>
+<li><code>replace</code>子命令语义调整：按顺序一一对应替换槽位内容，数量不匹配时多余部分直接忽略。</li>
+<li>加入了<code>fill</code>子命令：循环使用源物品，填满所有目标槽位。</li>
+<li>加入了<code>override</code>子命令：一一对应替换，多余的目标槽位会被清空。</li>
+<li>实体来源现在支持选择多个实体，各实体的槽位内容按顺序拼接。</li>
+<li>字符串格式的槽位范围写法（如<code>hotbar.4</code>）保持兼容。</li>
+</ul>
+</li>
+<li>为<code>/execute</code>命令加入了<code>slots</code>条件子命令，可统计目标方块或实体上指定槽位源的槽位数量；原<code>items</code>条件子命令的参数，从单个槽位改为槽位源。</li>
+<li>加入了<code>minecraft:provides_pottery_pattern</code>数据组件，用于描述物品堆叠存储的陶罐图案。</li>
+<li>更新了<code>minecraft:pot_decorations</code>数据组件，从4个物品ID的列表改为包含<code>back</code>、<code>left</code>、<code>right</code>和<code>front</code>四个可选物品堆叠字段的对象。</li>
+<li>更新了<code>minecraft:trim_material</code>数据组件，调整了内联材质的定义格式。</li>
+<li>纹饰材质注册表中，<code>asset_name</code>替换为<code>palette</code>；移除了<code>override_armor_assets</code>字段，改由资源包装备资源定义覆盖规则。</li>
+<li>盔甲纹饰调色板纹理路径整体迁移，实体纹饰纹理改为按需生成。</li>
+<li>加入了装备资源字段<code>trim_palette_replacements</code>，用于控制纹饰调色板的替换映射。</li>
+<li><code>worldgen/configured_feature</code>注册表迁移至<code>worldgen/feature</code>，配置改为内联在根对象中。</li>
+<li>加入了<code>minecraft:end_podium</code>特性类型，用于放置末地平台，分为激活、未激活两个实例。</li>
+<li>为树木地物加入了三类元素：<ul>
+<li><code>shelf_mushroom</code>树木装饰器：按概率在原木上生成层架蘑菇。</li>
+<li><code>poplar_foliage_placer</code>树叶放置器：生成菱形的杨树树叶树冠。</li>
+<li><code>poplar_trunk_placer</code>树干放置器：生成带分枝的杨树树干。</li>
+</ul>
+</li>
+<li>噪声设置中<code>surface_rule</code>字段重命名为<code>material_rule</code>。</li>
+<li>加入了材质规则注册表与材质条件注册表，均为数据驱动，支持内联定义或ID引用。</li>
+<li>为结构放置加入了<code>minecraft:dimension_origin</code>类型，在维度原点生成单个结构实例。</li>
+<li>为规则测试加入了两类：<ul>
+<li><code>minecraft:height_match</code>：检测方块Y坐标是否在指定区间内。</li>
+<li><code>minecraft:all_of</code>：检测一组规则测试是否全部成立。</li>
+</ul>
+</li>
+<li>加入了多个标签。</li>
+<li>修复了一些漏洞。<ul>
+<li>MC-4 - 物品有时会出现在错误的位置。</li>
+<li>MC-73162 - 在创造模式下，破坏可瞬间破坏的实体时，有时会一并破坏其身后的方块。</li>
+<li>MC-91006 - 部分实体在放置/破坏时会失去其名称。</li>
+<li>MC-102732 - 箭在命中未装备盾牌的实体时，会在视觉上弹开。</li>
+<li>MC-113006 - 用钓鱼竿收回的物品移动不顺畅，看起来像在瞬移。</li>
+<li>MC-122717 - 与命令结果不同，部分命令的成功提示信息会包含未受影响的实体。</li>
+<li>MC-151857 - 当<code>/give</code>命令影响多名玩家时，其成功提示信息使用了错误的字符串。</li>
+<li>MC-162159 - 在气泡柱上方骑乘船只会导致玩家被向上传送2格。</li>
+<li>MC-168446 - 单个的深色橡树和苍白橡树树苗能接受骨粉，尽管它们无法生长。</li>
+<li>MC-206356 - 下落的方块实体的运动在视觉上很缓慢。</li>
+<li>MC-222818 - 你可以在冒险模式下点燃TNT。</li>
+<li>MC-223321 - 在出生点保护范围内，你可以通过站立或跳跃来破坏海龟蛋。</li>
+<li>MC-223323 - 你可以在出生点保护范围内踩坏耕地。</li>
+<li>MC-264003 - 载有玩家的船在冰面上滑行时有时会突然停止。</li>
+<li>MC-265584 - 在灵魂沙正上方的气泡柱中，被发射器发射的TNT在视觉上会穿过上方的方块。</li>
+<li>MC-276692 - 落在目标头上的滞留药水不会给予目标其效果。</li>
+<li>MC-279395 - 树木可以生成在浮空的废弃传送门上方。</li>
+<li>MC-295756 - 活塞在客户端会失去同步，导致玩家被移动的方式与其他实体不同。</li>
+<li>MC-297741 - 在向上的气泡柱中，受重力影响的方块可能会（在客户端）穿入其上方的固体方块。</li>
+<li>MC-298431 - 船只会被黏液块以不一致的方式弹射出去。</li>
+<li>MC-298762 - 幻翼会使弓/弩射出的箭偏转。</li>
+<li>MC-302221 - 移动的实体会使箭偏转。</li>
+<li>MC-304594 - 矛可以使骑乘中的交互实体脱离其载具。</li>
+<li>MC-305535 - 当玩家处于熔岩中时，只需单击跳跃键就能激活鞘翅。</li>
+<li>MC-307625 - 在显示末地传送门或末地折跃门的方块展示实体上看不到发光效果。</li>
+<li>MC-307890 - 间歇泉粒子柱的部分纹理在一些地方使用了错误的颜色。</li>
+<li>MC-307933 - 深层矿石可以通过替换硫黄涌泉周围的凝灰岩而生成在地表。</li>
+<li>MC-308008 - <code>/tag</code>命令的成功提示信息显示其影响的实体数量比实际的多。</li>
+<li>MC-308009 - <code>/scoreboard players enable</code>命令的成功提示信息显示其影响的玩家数量比实际的多。</li>
+<li>MC-308011 - <code>/recipe</code>命令的成功提示信息显示其影响的玩家数量比实际的多。</li>
+<li>MC-308012 - <code>/enchant</code>命令的成功提示信息显示其影响的实体数量比实际的多。</li>
+<li>MC-308013 - <code>/effect</code>命令的成功提示信息显示其影响的实体数量比实际的多。</li>
+<li>MC-308254 - 因接触岩浆块硫方怪而死亡，不会增加玩家的<code>killed_by:sulfur_cube</code>统计项。</li>
+<li>MC-308314 - 自定义玩家的头在硫方怪内部时，无法正确渲染其纹理。</li>
+<li>MC-308405 - 当游戏未处于开放状态时，<code>/unpublish</code>命令会执行成功，尽管显示了失败信息。</li>
+<li>MC-308490 - 普通硫方怪原型产生的是石头音效，尽管它不再使用石头方块。</li>
+<li>MC-308789 - 在冒险模式下，滴水石锥和硫黄尖锥可以被三叉戟破坏。</li>
+<li>MC-308830 - 放置床以替换高草丛时，不会破坏草丛的另一半。</li>
+<li>MC-308836 - 混淆过的文字不再保持一致的宽度。</li>
+<li>MC-308849 - 嘎枝会受到击退效果。</li>
+</ul>
+</li>
+</ul>
+<p>部分译名仅供参考。详细更新内容请见Minecraft官网更新日志。</p>
+<p>欲获得如上文所示的漏洞列表，请使用<a href="https://github.com/Afulai2333/mojira-jql-client">Mojira JQL Search Client</a>项目！</p>
+
+</div>
+</body>
+</html>

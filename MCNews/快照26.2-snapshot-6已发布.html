@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快照26.2-snapshot-6已发布</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.7;
+            padding: 20px 15px;
+            max-width: 900px;
+            margin: 0 auto;
+            filter: grayscale(100%);
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .headerimage img {
+            width: 100%;
+            border-radius: 16px;
+            object-fit: cover;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            margin-bottom: 16px;
+        }
+
+        .title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .headertitle {
+            font-size: 24px;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .headercategory {
+            background-color: #e9f0ff;
+            color: #3a6cf4;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .content {
+            background-color: #fff;
+            padding: 24px;
+            border-radius: 18px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+
+        .content p {
+            font-size: 16px;
+            margin-bottom: 16px;
+            color: #444;
+        }
+
+        ul {
+            padding-left: 22px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #444;
+        }
+
+        li ul {
+            margin-top: 6px;
+            padding-left: 20px;
+        }
+
+        li ul li {
+            margin-bottom: 6px;
+            color: #555;
+        }
+
+        code {
+            font-family: "SF Mono", "Consolas", "Monaco", monospace;
+            background-color: #f1f3f5;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #d63384;
+            font-weight: 500;
+            word-break: break-all;
+        }
+
+        .content h1 { font-size: 1.8em; margin: 0.8em 0; color: #222; }
+        .content h2 { font-size: 1.5em; margin: 0.8em 0; color: #222; }
+        .content h3 { font-size: 1.25em; margin: 0.8em 0; color: #333; }
+        .content a { color: #3a6cf4; text-decoration: none; }
+        .content a:hover { text-decoration: underline; }
+        .content blockquote { border-left: 4px solid #3a6cf4; margin: 1em 0; padding: 0.5em 1em; background: #f9f9f9; color: #666; }
+        .content pre { background: #f5f5f5; color: #333; padding: 15px; border: 2px solid #888; border-radius: 10px; overflow-x: auto; margin: 1em 0; }
+        .content pre code { background: none; padding: 0; color: inherit; border: none; border-radius: 0; font-size: inherit; }
+        .content img { max-width: 100%; height: auto; border-radius: 8px; }
+
+        .content .info {
+            background-color: #f1f5ff;
+            border: 2px solid #3a6cf4;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: #444;
+            font-size: 15px;
+        }
+
+        .content .info::before {
+            content: "ⓘ";
+            font-size: 18px;
+            color: #3a6cf4;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .content .warn {
+            background-color: #fff5f5;
+            border: 2px solid #e53e3e;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: #444;
+            font-size: 15px;
+        }
+
+        .content .warn::before {
+            content: "⚠";
+            font-size: 18px;
+            color: #e53e3e;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .content .mourn {
+            background-color: #333;
+            border: 2px solid #fff;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; background-color: #fff; margin: 20px 0; font-size: 16px; box-shadow: 0 1px 5px rgba(0,0,0,0.05); }
+        thead th { background-color: #f1f5ff; color: #222; font-weight: 500; text-align: left; padding: 12px 16px; border-bottom: 1px solid #eaecef; }
+        tbody td { padding: 12px 16px; color: #444; border-bottom: 1px solid #f0f0f0; }
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:hover { background-color: #f9fbfd; }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            .headertitle {
+                font-size: 20px;
+            }
+
+            .content {
+                padding: 18px 16px;
+                border-radius: 14px;
+            }
+
+            .headerimage img {
+                border-radius: 12px;
+            }
+
+            table { font-size: 15px; border-radius: 8px; }
+            th, td { padding: 10px 12px !important; }
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="headerimage">
+        <img src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/screenshots/26.2-snapshot-6-new%201170x500.jpg" alt="快照26.2-snapshot-6已发布">
+    </div>
+    <div class="title-row">
+        <div class="headertitle">
+            快照26.2-snapshot-6已发布
+        </div>
+        <div class="headercategory">
+            麦块版讯
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <p>快照26.2-snapshot-6已发布。本次更新加入了“混沌立方”的最后一批特性。</p>
+<p><div class="mourn">沉痛悼念浏阳烟花厂爆炸事故遇难者，愿逝者安息。</div></p>
+<p>本次更新主要内容如下：</p>
+<ul>
+<li><strong>为硫方怪加入了2种新原型。</strong><ul>
+<li><strong>缓慢弹性（Slow Bouncy）</strong>：吸收石头方块触发。属性为低速、高弹性、中等摩擦力与空气阻力，并具备浮力。</li>
+<li><strong>炽热（Hot）</strong>：吸收岩浆块触发，基础属性与普通型一致。接触实体会造成伤害（效果同岩浆块）。</li>
+</ul>
+</li>
+<li>加入了<strong>加洛语</strong>（Gallo）、<strong>乌兹别克语</strong>（Uzbek）与<strong>沃罗语</strong>（Võro）三种游戏语言。</li>
+<li>加入了畜牧类进度 <strong>“Uh Oh”</strong>，达成条件为让硫方怪吸收TNT方块。</li>
+<li><strong>调整了硫黄洞穴生物群系。</strong><ul>
+<li>重新设计了所有<strong>地表硫黄泉</strong>的外观与生成逻辑。</li>
+<li>降低了其在海洋、丘陵、山脉下方的生成概率。</li>
+<li>移除了凝灰岩和花岗岩带的生成，改为生成更多硫黄方块，以提升硫黄水池的生成概率。</li>
+</ul>
+</li>
+<li><strong>烈性硫黄</strong>间歇泉喷发的开始和结束阶段，现在会发出游戏事件，可被幽匿感测体检测。</li>
+<li>更新了间歇泉的喷发音效。</li>
+<li>数据包版本升级至<code>105.0</code>。</li>
+<li><strong>更新了硫方怪原型注册表。</strong><ul>
+<li>加入了<code>minecraft:sulfur_cube_archetype</code>注册表，包含<code>hot</code>与<code>slow_bouncy</code>两个条目。</li>
+<li>移除了<code>explosion_fuse</code>字段，替换为可选的<code>explosion</code>对象（包含<code>fuse</code>、<code>power</code>与<code>causes_fire</code>字段）。</li>
+<li>加入了可选的<code>contact_damage</code>对象（包含<code>amount</code>、<code>damage_type</code>与<code>attribute_to_source</code>字段）。</li>
+<li>加入了<code>knockback_modifiers</code>字段，可分别设置水平与垂直击退力。</li>
+</ul>
+</li>
+<li>移除了生物实体的<code>HurtByTimestamp</code>标签，统一使用<code>ticks_since_last_hurt_by_mob</code>替代。</li>
+<li><strong>改进了世界生成。</strong><ul>
+<li><strong>地表规则</strong>：修改了<code>noise_threshold</code>条件，加入了<code>is_3d</code>布尔字段（默认<code>false</code>）；移除了<code>noise_gradient</code>规则，其效果现可通过<code>noise_threshold</code>实现。</li>
+<li><strong>已配置的地物</strong>：加入了<code>minecraft:weighted_random_selector</code>（按权重随机生成地物）；大型滴水石柱的半径上限从19降至16，风偏移受到限制以避免超出相邻区块；根系统加入了<code>level_test_distance</code>和<code>max_level_deviation</code>字段。</li>
+<li><strong>结构处理器</strong>：<code>block_rot</code>现在会继承前序处理器的方块状态，而非始终使用结构的原始方块（处理链中的第一个处理器除外）。</li>
+</ul>
+</li>
+<li>加入了<code>#sulfur_cube_archetype/hot</code>和<code>#sulfur_cube_archetype/slow_bouncy</code>物品标签，用于标记可决定硫方怪原型的物品。</li>
+<li>修复了一些漏洞。</li>
+</ul>
+<p>详细更新内容请见Minecraft官网更新日志。</p>
+
+</div>
+</body>
+</html>

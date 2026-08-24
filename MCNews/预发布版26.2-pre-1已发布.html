@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>预发布版26.2-pre-1已发布</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.7;
+            padding: 20px 15px;
+            max-width: 900px;
+            margin: 0 auto;
+            
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .headerimage img {
+            width: 100%;
+            border-radius: 16px;
+            object-fit: cover;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            margin-bottom: 16px;
+        }
+
+        .title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .headertitle {
+            font-size: 24px;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .headercategory {
+            background-color: #e9f0ff;
+            color: #3a6cf4;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .content {
+            background-color: #fff;
+            padding: 24px;
+            border-radius: 18px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+
+        .content p {
+            font-size: 16px;
+            margin-bottom: 16px;
+            color: #444;
+        }
+
+        ul {
+            padding-left: 22px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #444;
+        }
+
+        li ul {
+            margin-top: 6px;
+            padding-left: 20px;
+        }
+
+        li ul li {
+            margin-bottom: 6px;
+            color: #555;
+        }
+
+        code {
+            font-family: "SF Mono", "Consolas", "Monaco", monospace;
+            background-color: #f1f3f5;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #d63384;
+            font-weight: 500;
+            word-break: break-all;
+        }
+
+        .content h1 { font-size: 1.8em; margin: 0.8em 0; color: #222; }
+        .content h2 { font-size: 1.5em; margin: 0.8em 0; color: #222; }
+        .content h3 { font-size: 1.25em; margin: 0.8em 0; color: #333; }
+        .content a { color: #3a6cf4; text-decoration: none; }
+        .content a:hover { text-decoration: underline; }
+        .content blockquote { border-left: 4px solid #3a6cf4; margin: 1em 0; padding: 0.5em 1em; background: #f9f9f9; color: #666; }
+        .content pre { background: #f5f5f5; color: #333; padding: 15px; border: 2px solid #888; border-radius: 10px; overflow-x: auto; margin: 1em 0; }
+        .content pre code { background: none; padding: 0; color: inherit; border: none; border-radius: 0; font-size: inherit; }
+        .content img { max-width: 100%; height: auto; border-radius: 8px; }
+
+        .content .info {
+            background-color: #f1f5ff;
+            border: 2px solid #3a6cf4;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: #444;
+            font-size: 15px;
+        }
+
+        .content .info::before {
+            content: "ⓘ";
+            font-size: 18px;
+            color: #3a6cf4;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .content .warn {
+            background-color: #fff5f5;
+            border: 2px solid #e53e3e;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: #444;
+            font-size: 15px;
+        }
+
+        .content .warn::before {
+            content: "⚠";
+            font-size: 18px;
+            color: #e53e3e;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .content .mourn {
+            background-color: #333;
+            border: 2px solid #fff;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; background-color: #fff; margin: 20px 0; font-size: 16px; box-shadow: 0 1px 5px rgba(0,0,0,0.05); }
+        thead th { background-color: #f1f5ff; color: #222; font-weight: 500; text-align: left; padding: 12px 16px; border-bottom: 1px solid #eaecef; }
+        tbody td { padding: 12px 16px; color: #444; border-bottom: 1px solid #f0f0f0; }
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:hover { background-color: #f9fbfd; }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            .headertitle {
+                font-size: 20px;
+            }
+
+            .content {
+                padding: 18px 16px;
+                border-radius: 14px;
+            }
+
+            .headerimage img {
+                border-radius: 12px;
+            }
+
+            table { font-size: 15px; border-radius: 8px; }
+            th, td { padding: 10px 12px !important; }
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="headerimage">
+        <img src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/screenshots/26.2-pre-1%201170x500.jpg" alt="预发布版26.2-pre-1已发布">
+    </div>
+    <div class="title-row">
+        <div class="headertitle">
+            预发布版26.2-pre-1已发布
+        </div>
+        <div class="headercategory">
+            麦块版讯
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <p>预发布版26.2-pre-1已发布。本次更新内容如下：</p>
+<ul>
+<li>移除了此前快照中引入的点对点（P2P）连接功能。</li>
+</ul>
+<p><div class="info">由于当前体验未达预期，该功能暂不适合正式发布。</div></p>
+<ul>
+<li>为小型硫方怪更新了独立模型与纹理，以与基岩版保持一致。</li>
+<li>为12种不同原型的硫方怪分别加入了专属的受击音效和推动音效。</li>
+<li>加入了为小型硫方怪喂食黏液球时的专属音效。</li>
+<li>更新了硫黄洞穴的迷雾颜色。</li>
+<li>缩短了硫黄尖锥的最大生长长度，解决了硫黄洞穴中尖锥过度生长的问题。</li>
+<li>烈性硫黄驱动的连续间歇泉装置现在必须搭配熔岩源方块才能正常喷发。</li>
+<li>更新了其中一种鸡的音效变种的受伤和死亡音效。</li>
+<li>好友列表按钮现在将始终可见，即使在选项中禁用了好友功能。</li>
+<li>数据包版本升至106.1，资源包版本升至88.0。</li>
+<li>加入了两个独立的垃圾信息阈值配置，彻底分离了聊天与命令的防刷屏机制（默认均为10秒，与原合并阈值一致）：<ul>
+<li><code>chat-spam-threshold-seconds</code>：聊天消息刷屏阈值。</li>
+<li><code>command-spam-threshold-seconds</code>：命令刷屏阈值。</li>
+<li>玩家每发送1条消息/命令，计数器增加1秒；每游戏刻计数器减少1；当计数器达到阈值时，玩家会被自动踢出。将任一阈值设为0可禁用对应类型的踢出。</li>
+</ul>
+</li>
+<li>为硫方怪原型注册表加入了<code>sound_settings</code>字段，包含4个子项：<ul>
+<li><code>hit_sound</code>：含方块时的受击声音事件。</li>
+<li><code>push_sound</code>：含方块时的推动声音事件。</li>
+<li><code>push_sound_impulse_threshold</code>：触发推动音效的最小冲量值。</li>
+<li><code>push_sound_cooldown</code>：推动音效的冷却时间（秒）。</li>
+</ul>
+</li>
+<li><code>/execute on owner</code>命令现在会正确将恼鬼视为其召唤者（唤魔者）的所有物。</li>
+<li>加入了隐藏世界预设<code>minecraft:flat_all_dimensions</code>，默认不在创建世界界面显示。</li>
+<li>重命名了<code>block/quartz_pillar.png</code>和<code>block/purpur_pillar.png</code>方块精灵图，为其加入了<code>_side</code>后缀。</li>
+<li>移除了通用音效：<code>entity.sulfur_cube.hit</code>、<code>entity.sulfur_cube.push</code>。</li>
+<li>修复了一些漏洞。</li>
+</ul>
+<p>详细更新内容请见Minecraft官网更新日志。</p>
+<p>距离Minecraft LIVE – TwitchCon May 2026开幕还剩4天！</p>
+<p>敬请期待本次Minecraft LIVE！若您因直播时间较晚而无法收看，可在5月31日下午1:00前关注本账号发布的直播总结专栏——【方块回响】栏目，获取完整活动内容与情报。</p>
+
+</div>
+</body>
+</html>
